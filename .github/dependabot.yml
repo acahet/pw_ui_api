@@ -1,0 +1,50 @@
+version: 2
+updates:
+  # Track regular Yarn dependencies
+  - package-ecosystem: "yarn"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 2
+    reviewers:
+      - "acahet"
+    assignees:
+      - "acahet"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "automated"
+    # Only update production dependencies
+    # versioning-strategy: "auto"
+    # allow:
+    #   - dependency-type: "direct:production"
+
+  # Track devDependencies separately (like Playwright, TypeScript, testing libraries)
+  - package-ecosystem: "yarn"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 2
+    reviewers:
+      - "acahet"
+    assignees:
+      - "acahet"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "automated"
+    versioning-strategy: "auto"
+    # allow:
+    #   - dependency-type: "direct:development"
