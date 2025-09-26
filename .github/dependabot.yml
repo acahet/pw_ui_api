@@ -1,7 +1,7 @@
 version: 2
 updates:
-  # Track regular Yarn dependencies
-  - package-ecosystem: "yarn"
+  # Track regular npm dependencies
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
@@ -26,7 +26,7 @@ updates:
     #   - dependency-type: "direct:production"
 
   # Track devDependencies separately (like Playwright, TypeScript, testing libraries)
-  - package-ecosystem: "yarn"
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"

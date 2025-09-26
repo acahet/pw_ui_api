@@ -1,15 +1,15 @@
-# WIP: PLaywright setup
+# WIP: Playwright setup - UI/API
 
-A brief setup for playwright
+TBD
 
-## Table of Contents
+## Table of Contents TBD
 - [Project Structure](#projectstructure)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
 
-## Project Structure
+## Project Structure WIP
 
 Playwright-Allure-Demo/
 ├──.github                  # Workflow to run tests, check pr title and dependabot
@@ -26,19 +26,6 @@ Playwright-Allure-Demo/
 ├── README.md               # Project documentation
 └── ...
 
-## Installation
+## Installation TBD
 
 Instructions on how to install the project. Include any prerequisites and the steps to get the development environment running.
-
-```bash
-# Example installation commands
-yarn
-
-# Run example tests from playwright ui tests
-yarn test:ui
-
-# Run pw api tests
-yarn test:api
-
-# Open playwright UI
-yarn test:ui
