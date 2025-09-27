@@ -33,7 +33,7 @@
   "scripts": {
     "lint": "npx eslint",
     "code:format": "prettier --write \"tests/**/*.ts\"",
-    "test:ui": "npx playwright test --project ui=tests",
+    "test:ui": "npx playwright test --project ui-tests",
     "test:api": "npx playwright test --project api-tests",
     "test:ui-mode": "npm run test --ui",
     "report": "yarn playwright show-report tests/report/playwright-report"
