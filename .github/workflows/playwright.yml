@@ -10,6 +10,9 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      EMAIL_API: ${{ secrets.EMAIL_API }}
+      PASSWORD_API: ${{ secrets.PASSWORD_API }}
     steps:
     - uses: actions/checkout@v4
 
