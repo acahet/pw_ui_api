@@ -1,15 +1,22 @@
 name: Playwright Tests
+
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
     paths:
       - 'tests/**'
+
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+
+    env:
+      EMAIL_API: ${{ secrets.EMAIL_API }}
+      PASSWORD_API: ${{ secrets.PASSWORD_API }}
+
     steps:
     - uses: actions/checkout@v4
 
@@ -33,16 +40,20 @@ jobs:
         npm install -g yarn
         yarn
 
+    - name: Get Playwright version
+      id: playwright-version
+      run: echo "PLAYWRIGHT_VERSION=$(jq -r '.devDependencies[\"@playwright/test\"]' package.json)" >> $GITHUB_ENV
+
     - name: Cache Playwright browsers
       uses: actions/cache@v3
-      id: cache-chromium
+      id: cache-playwright
       with:
-        path: ~/.cache/ms-playwright/chromium
-        key: ${{ runner.os }}-playwright-chromium-${{ hashFiles('**/package.json') }}
+        path: ~/.cache/ms-playwright
+        key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
 
-    - name: Install Playwright Browsers
-      if: steps.cache-chromium.outputs.cache-hit != 'true'
-      run: yarn playwright install --with-deps
+    - name: Install Playwright Chromium browser
+      if: steps.cache-playwright.outputs.cache-hit != 'true'
+      run: npx playwright install chromium --with-deps
 
     - name: Run Playwright API tests
       run: npx playwright test --project=api-tests
