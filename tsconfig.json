@@ -19,8 +19,8 @@
       "@config": [
         "tests/config/index.ts"
       ],
-      "@logger": [
-        "tests/utils/logger.ts"
+      "@utils/*": [
+        "tests/utils/*"
       ]
     },
     "types": [
