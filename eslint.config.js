@@ -58,7 +58,7 @@ export default [
     ignores: [
       'node_modules',
       'test-results',
-      'playwright-report',
+      'tests/report/',
       'playwright/.cache',
       '.auth',
       '.env',
