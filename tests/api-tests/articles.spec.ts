@@ -11,11 +11,12 @@ let authToken: string
 test.describe('Feature: Articles API', () => {
 
     test.beforeAll(async ({ request }) => {
+        console.log('Process.env.email: ', process.env.EMAIL_API)
         const loginResponse = await request.post(`${domain}/${endpoints.login}`, {
             data: {
                 user: {
-                    email: process.env.EMAIL as string,
-                    password: process.env.PASSWORD as string,
+                    email: process.env.EMAIL_API as string,
+                    password: process.env.PASSWORD_API as string,
                 },
             },
         });
