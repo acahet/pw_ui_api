@@ -1,41 +1,34 @@
 import { test } from '@fixtures';
-import { APIResponse, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { endpoints, httpStatus } from '@utils/constants';
 
-const domain = 'https://conduit-api.bondaracademy.com/';
-const articlesParam = '?limit=10&offset=0';
-
-
-let authToken: string
+let authToken: string;
 
 test.describe('Feature: Articles API', () => {
-
-    test.beforeAll(async ({ request }) => {
-        const loginResponse = await request.post(`${domain}/${endpoints.login}`, {
-            data: {
+    test.beforeAll(async ({ api }) => {
+        const loginResponse = await api
+            .path(endpoints.login)
+            .body({
                 user: {
                     email: process.env.EMAIL_API as string,
                     password: process.env.PASSWORD_API as string,
                 },
-            },
-        });
-        const tokenJSON = await loginResponse.json();
-        authToken = 'Token ' + tokenJSON.user.token;
+            })
+            .postRequest(httpStatus.Status200_Ok);
+
+        authToken = 'Token ' + loginResponse.user.token;
     });
 
-    test('GET Articles', async ({ request }) => {
-        const articlesResponse: APIResponse = await request.get(
-            `${domain}/${endpoints.articles}${articlesParam}`,
-        );
-        expect(articlesResponse.status()).toBe(httpStatus.Status200_Ok);
-        const articlesResponseBody = await articlesResponse.json();
-        expect(articlesResponseBody).toHaveProperty('articles');
-        expect(articlesResponseBody).toHaveProperty('articlesCount');
-        expect(articlesResponseBody.articles.length).toBeGreaterThan(0);
-        expect(articlesResponseBody.articles.length).toBeLessThanOrEqual(10);
-    });
-    test('CREATE and DELETE Article', async ({ request }) => {
+    test('GET Articles', async ({ api }) => {
+        const articlesResponse = await api
+            .path(endpoints.articles)
+            .params({ limit: 10, offset: 0 })
+            .getRequest(httpStatus.Status200_Ok);
 
+        expect(articlesResponse.articles.length).toBeGreaterThan(0);
+        expect(articlesResponse.articles.length).toBeLessThanOrEqual(10);
+    });
+    test('CREATE and DELETE Article', async ({ api, request }) => {
         //CREATE ARTICLE
         const newArticle = {
             article: {
@@ -46,77 +39,52 @@ test.describe('Feature: Articles API', () => {
             },
         };
 
-        const newArticlesResponse: APIResponse = await request.post(
-            `${domain}/${endpoints.articles}`,
-            {
-                data: newArticle,
-                headers: {
-                    Authorization: authToken,
-                },
-            },
-        );
-        expect(newArticlesResponse.status()).toBe(httpStatus.Status201_Created);
-        const newArticlesResponseBody = await newArticlesResponse.json();
-        const articleSlug = newArticlesResponseBody.article.slug;
-        expect(newArticlesResponseBody).toHaveProperty('article');
-        expect(newArticlesResponseBody.article.title).toBe(
-            newArticle.article.title,
-        );
-        expect(newArticlesResponseBody.article.description).toBe(
-            newArticle.article.description,
-        );
-        expect(newArticlesResponseBody.article.body).toBe(newArticle.article.body);
+        const newArticlesResponse = await api
+            .path(endpoints.articles)
+            .headers({ Authorization: authToken })
+            .body(newArticle)
+            .postRequest(httpStatus.Status201_Created);
 
-        const articlesResponse: APIResponse = await request.get(
-            `${domain}/${endpoints.articles}${articlesParam}`,
-            {
-                headers: {
-                    Authorization: authToken,
-                },
-            },
-        );
-        expect(articlesResponse.status()).toBe(httpStatus.Status200_Ok);
-        //READ
-        const articlesResponseBody = await articlesResponse.json();
-        expect(articlesResponseBody.articles[0].title).toBe(
-            newArticle.article.title,
-        );
-        expect(articlesResponseBody.articles[0].description).toBe(
+        const articleSlug = newArticlesResponse.article.slug;
+        expect(newArticlesResponse).toHaveProperty('article');
+        expect(newArticlesResponse.article.title).toBe(newArticle.article.title);
+        expect(newArticlesResponse.article.description).toBe(
             newArticle.article.description,
         );
-        expect(articlesResponseBody.articles[0].body).toBe(newArticle.article.body);
+        expect(newArticlesResponse.article.body).toBe(newArticle.article.body);
+
+        const articlesResponse = await api
+            .path(endpoints.articles)
+            .headers({ Authorization: authToken })
+            .getRequest(httpStatus.Status200_Ok);
+
+        expect(articlesResponse.articles[0].title).toBe(newArticle.article.title);
+        expect(articlesResponse.articles[0].description).toBe(
+            newArticle.article.description,
+        );
+        expect(articlesResponse.articles[0].body).toBe(newArticle.article.body);
 
         //DELETE
 
-        const deleteArticleResponse: APIResponse = await request.delete(
-            `${domain}/${endpoints.articles}/${articleSlug}`,
-            {
-                headers: {
-                    Authorization: authToken,
-                },
-            },
-        );
-        expect(deleteArticleResponse.status()).toBe(204);
+        const deleteArticleResponse = await api
+            .path(endpoints.updateDeleteArticle(articleSlug))
+            .headers({ Authorization: authToken })
+            .deleteRequest(httpStatus.Status204_No_Content);
+        expect(deleteArticleResponse).toBeUndefined();
 
-        const articlesResponseAfterDelete: APIResponse = await request.get(
-            `${domain}/${endpoints.articles}${articlesParam}`,
-            {
-                headers: {
-                    Authorization: authToken,
-                },
-            },
-        );
-        expect(articlesResponseAfterDelete.status()).toBe(httpStatus.Status200_Ok);
-        const articlesResponseBodyAfterDelete =
-            await articlesResponseAfterDelete.json();
+        const articlesResponseAfterDelete = await api
+            .path(endpoints.articles)
+            .params({ limit: 10, offset: 0 })
+            .headers({ Authorization: authToken })
+            .getRequest(httpStatus.Status200_Ok);
+
         expect(
-            articlesResponseBodyAfterDelete.articles.some(
+            articlesResponseAfterDelete.articles.some(
                 (article: { slug: string }) => article.slug === articleSlug,
             ),
         ).toBeFalsy();
     });
-    test('CREATE, UPDATE and DELETE Article', async ({ request }) => {
-
+    test('CREATE, UPDATE and DELETE Article', async ({ api, request }) => {
         //CREATE ARTICLE
         const newArticle = {
             article: {
@@ -127,94 +95,67 @@ test.describe('Feature: Articles API', () => {
             },
         };
 
-        const newArticlesResponse: APIResponse = await request.post(
-            `${domain}/${endpoints.articles}`,
-            {
-                data: newArticle,
-                headers: {
-                    Authorization: authToken,
-                },
-            },
-        );
-        expect(newArticlesResponse.status()).toBe(httpStatus.Status201_Created);
-        const newArticlesResponseBody = await newArticlesResponse.json();
-        const articleSlug = newArticlesResponseBody.article.slug;
-        expect(newArticlesResponseBody).toHaveProperty('article');
-        expect(newArticlesResponseBody.article.title).toBe(
-            newArticle.article.title,
-        );
-        expect(newArticlesResponseBody.article.description).toBe(
-            newArticle.article.description,
-        );
-        expect(newArticlesResponseBody.article.body).toBe(newArticle.article.body);
+        const newArticlesResponse = await api
+            .path(endpoints.articles)
+            .headers({ Authorization: authToken })
+            .body(newArticle)
+            .postRequest(httpStatus.Status201_Created);
 
-        const articlesResponse: APIResponse = await request.get(
-            `${domain}/${endpoints.articles}${articlesParam}`,
-            {
-                headers: {
-                    Authorization: authToken,
-                },
-            },
-        );
-        expect(articlesResponse.status()).toBe(httpStatus.Status200_Ok);
-        //READ
-        const articlesResponseBody = await articlesResponse.json();
-        expect(articlesResponseBody.articles[0].title).toBe(
-            newArticle.article.title,
-        );
-        expect(articlesResponseBody.articles[0].description).toBe(
+        const articleSlug = newArticlesResponse.article.slug;
+        expect(newArticlesResponse).toHaveProperty('article');
+        expect(newArticlesResponse.article.title).toBe(newArticle.article.title);
+        expect(newArticlesResponse.article.description).toBe(
             newArticle.article.description,
         );
-        expect(articlesResponseBody.articles[0].body).toBe(newArticle.article.body);
+        expect(newArticlesResponse.article.body).toBe(newArticle.article.body);
+
+        const articlesResponse = await api
+            .path(endpoints.articles)
+            .params({ limit: 10, offset: 0 })
+            .headers({ Authorization: authToken })
+            .getRequest(httpStatus.Status200_Ok);
+
+        //READ
+        expect(articlesResponse.articles[0].title).toBe(newArticle.article.title);
+        expect(articlesResponse.articles[0].description).toBe(
+            newArticle.article.description,
+        );
+        expect(articlesResponse.articles[0].body).toBe(newArticle.article.body);
 
         //UPDATE
-        const updateArticleResponse = await request.put(
-            `${domain}/${endpoints.articles}/${articleSlug}`,
-            {
-                data: {
-                    article: {
-                        title: 'Updated Article Title PW AC',
-                        description: 'Updated Article Description PW AC',
-                        body: 'This is the updated body of the article. PW AC',
-                    },
+        const updateArticleResponse = await api
+            .path(endpoints.updateDeleteArticle(articleSlug))
+            .headers({ Authorization: authToken })
+            .body({
+                article: {
+                    title: 'Updated Article Title PW AC',
+                    description: 'Updated Article Description PW AC',
+                    body: 'This is the updated body of the article. PW AC',
                 },
-                headers: {
-                    Authorization: authToken,
-                },
-            },
-        );
-        expect(updateArticleResponse.status()).toBe(httpStatus.Status200_Ok);
-        const updateArticleResponseJSON = await updateArticleResponse.json();
-        const articleSlugUpdated = updateArticleResponseJSON.article.slug;
-        expect(updateArticleResponseJSON.article.title).toBe(
+            })
+            .putRequest(httpStatus.Status200_Ok);
+
+        const articleSlugUpdated = updateArticleResponse.article.slug;
+        expect(updateArticleResponse.article.title).toBe(
             'Updated Article Title PW AC',
         );
 
         //DELETE
 
-        const deleteArticleResponse: APIResponse = await request.delete(
-            `${domain}/${endpoints.articles}/${articleSlugUpdated}`,
-            {
-                headers: {
-                    Authorization: authToken,
-                },
-            },
-        );
-        expect(deleteArticleResponse.status()).toBe(httpStatus.Status204_No_Content);
+        const deleteArticleResponse = await api
+            .path(endpoints.updateDeleteArticle(articleSlugUpdated))
+            .headers({ Authorization: authToken })
+            .deleteRequest(httpStatus.Status204_No_Content);
+        expect(deleteArticleResponse).toBeUndefined();
 
-        const articlesResponseAfterDelete: APIResponse = await request.get(
-            `${domain}/${endpoints.articles}${articlesParam}`,
-            {
-                headers: {
-                    Authorization: authToken,
-                },
-            },
-        );
-        expect(articlesResponseAfterDelete.status()).toBe(httpStatus.Status200_Ok);
-        const articlesResponseBodyAfterDelete =
-            await articlesResponseAfterDelete.json();
+        const articlesResponseAfterDelete = await api
+            .path(endpoints.articles)
+            .params({ limit: 10, offset: 0 })
+            .headers({ Authorization: authToken })
+            .getRequest(httpStatus.Status200_Ok);
+
         expect(
-            articlesResponseBodyAfterDelete.articles.some(
+            articlesResponseAfterDelete.articles.some(
                 (article: { slug: string }) => article.slug === articleSlug,
             ),
         ).toBeFalsy();
