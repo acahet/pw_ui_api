@@ -35,13 +35,13 @@ jobs:
 
     - name: Cache Playwright browsers
       uses: actions/cache@v3
-      id: cache-browsers
+      id: cache-chromium
       with:
-        path: ~/.cache/ms-playwright
-        key: ${{ runner.os }}-playwright-browsers-${{ hashFiles('**/package.json') }}
+        path: ~/.cache/ms-playwright/chromium
+        key: ${{ runner.os }}-playwright-chromium-${{ hashFiles('**/package.json') }}
 
     - name: Install Playwright Browsers
-      if: steps.cache-browsers.outputs.cache-hit != 'true'
+      if: steps.cache-chromium.outputs.cache-hit != 'true'
       run: yarn playwright install --with-deps
 
     - name: Run Playwright API tests
