@@ -20,8 +20,6 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ['html', { outputFolder: './tests/report/playwright-report' }],
@@ -44,6 +42,7 @@ export default defineConfig({
       testDir: './tests/ui-tests',
       outputDir: './tests/report/test-results/ui-tests',
       fullyParallel: true,
+      workers: process.env.CI ? 2 : undefined,
     },
     /**
      * uncomment below if you want to have an PW-API project
