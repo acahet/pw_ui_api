@@ -1,5 +1,5 @@
-import { APILogger } from '@logger';
 import { APIRequestContext, test } from '@playwright/test';
+import { APILogger } from '@utils/logger';
 
 export class RequestHandler {
   private request: APIRequestContext;

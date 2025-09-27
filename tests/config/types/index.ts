@@ -23,16 +23,16 @@ type ValueOf<T> = T[keyof T];
 type LocaleMap = Record<string, string>;
 
 type endpoint = {
-    tags: string;
-    login: string;
-    postArticle: string;
-    articles: string;
-    updateDeleteArticle: (slug: string) => string;
+  tags: string;
+  login: string;
+  postArticle: string;
+  articles: string;
+  updateDeleteArticle: (slug: string) => string;
 };
 
 type httpStatusCode = {
-    Status200_Ok: number;
-    Status201_Created: number;
-    Status204_No_Content: number;
+  Status200_Ok: number;
+  Status201_Created: number;
+  Status204_No_Content: number;
 };
 export { LocaleMap, ValueOf, endpoint, httpStatusCode };
