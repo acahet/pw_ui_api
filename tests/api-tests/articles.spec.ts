@@ -6,7 +6,7 @@ const articlesPath = 'api/articles';
 const articlesParam = '?limit=10&offset=0';
 const loginPath = 'api/users/login';
 
-test.describe('API tests', () => {
+test.describe('Feature: Articles API', () => {
   test('GET Articles', async ({ request }) => {
     const articlesResponse: APIResponse = await request.get(
       `${domain}/${articlesPath}${articlesParam}`,
@@ -18,18 +18,19 @@ test.describe('API tests', () => {
     expect(articlesResponseBody.articles.length).toBeGreaterThan(0);
     expect(articlesResponseBody.articles.length).toBeLessThanOrEqual(10);
   });
-  test('POST and DELETE Article', async ({ request }) => {
+  test('CREATE, READ, UPDATE, DELETE Article', async ({ request }) => {
+    //GET TOKEN
     const loginResponse = await request.post(`${domain}/${loginPath}`, {
       data: {
         user: {
-          email: 'pw_udemy@test.com',
-          password: 'Test1234',
+          email: process.env.EMAIL as string,
+          password: process.env.PASSWORD as string,
         },
       },
     });
     const tokenJSON = await loginResponse.json();
     const authToken = 'Token ' + tokenJSON.user.token;
-
+    //CREATE ARTICLE
     const newArticle = {
       article: {
         title: 'New Article Title PW AC',
@@ -51,7 +52,6 @@ test.describe('API tests', () => {
     expect(newArticlesResponse.status()).toBe(201);
     const newArticlesResponseBody = await newArticlesResponse.json();
     const articleSlug = newArticlesResponseBody.article.slug;
-    console.log({ newArticlesResponseBody }, newArticlesResponse.status());
     expect(newArticlesResponseBody).toHaveProperty('article');
     expect(newArticlesResponseBody.article.title).toBe(
       newArticle.article.title,
@@ -70,6 +70,7 @@ test.describe('API tests', () => {
       },
     );
     expect(articlesResponse.status()).toBe(200);
+    //READ
     const articlesResponseBody = await articlesResponse.json();
     expect(articlesResponseBody.articles[0].title).toBe(
       newArticle.article.title,
@@ -79,8 +80,33 @@ test.describe('API tests', () => {
     );
     expect(articlesResponseBody.articles[0].body).toBe(newArticle.article.body);
 
-    const deleteArticleResponse: APIResponse = await request.delete(
+    //UPDATE
+    const updateArticleResponse = await request.put(
       `${domain}/${articlesPath}/${articleSlug}`,
+      {
+        data: {
+          article: {
+            title: 'Updated Article Title PW AC',
+            description: 'Updated Article Description PW AC',
+            body: 'This is the updated body of the article. PW AC',
+          },
+        },
+        headers: {
+          Authorization: authToken,
+        },
+      },
+    );
+    expect(updateArticleResponse.status()).toBe(200);
+    const updateArticleResponseJSON = await updateArticleResponse.json();
+    const articleSlugUpdated = updateArticleResponseJSON.article.slug;
+    expect(updateArticleResponseJSON.article.title).toBe(
+      'Updated Article Title PW AC',
+    );
+
+    //DELETE
+
+    const deleteArticleResponse: APIResponse = await request.delete(
+      `${domain}/${articlesPath}/${articleSlugUpdated}`,
       {
         headers: {
           Authorization: authToken,
