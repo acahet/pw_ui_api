@@ -1,5 +1,5 @@
 import { test } from '@fixtures';
-import { expect } from '@playwright/test';
+import { expect } from '@utils/custom-expect';
 
 test.describe(
   'Feature: Tags API',
@@ -17,7 +17,7 @@ test.describe(
         .getRequest(httpStatus.Status200_Ok);
       expect(tagsResponse).toHaveProperty('tags');
       expect(tagsResponse.tags.length).toBeGreaterThan(0);
-      expect(tagsResponse.tags.length).toBeLessThanOrEqual(10);
+      expect(tagsResponse.tags.length).shouldBeEqual(10);
     });
   },
 );

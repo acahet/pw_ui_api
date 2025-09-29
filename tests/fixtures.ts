@@ -2,6 +2,7 @@ import * as Config from '@config';
 import { Homepage } from '@pages/Homepage';
 import { test as base } from '@playwright/test';
 import { endpoints, httpStatus } from '@utils/constants';
+import { setCustomExpectLogger } from '@utils/custom-expect';
 import { APILogger } from '@utils/logger';
 import { RequestHandler } from '@utils/request-handler';
 
@@ -14,7 +15,7 @@ export const test = base.extend<{
 }>({
   api: async ({ request }, use) => {
     const logger = new APILogger();
-    // setCustomExpectLogger(logger);
+    setCustomExpectLogger(logger);
     const requestHandler = new RequestHandler(
       request,
       'https://conduit-api.bondaracademy.com/', // config.apiUrl as string,
@@ -28,7 +29,7 @@ export const test = base.extend<{
     await use(homepage);
   },
   // eslint-disable-next-line no-empty-pattern
-  config: async ({}, use) => {
+  config: async ({ }, use) => {
     const config = Config;
     await use(config);
   },
