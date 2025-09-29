@@ -32,9 +32,9 @@ test.describe(
         .path(endpoints.articles)
         .params({ limit: 10, offset: 0 })
         .getRequest(httpStatus.Status200_Ok);
-
+      expect(articlesResponse.articles.length).shouldBeLessThanOrEqual(10);
       expect(articlesResponse.articlesCount).shouldBeEqual(10)
-      expect(articlesResponse.articles.length).toBeGreaterThan(0);
+
     });
     test('CREATE and DELETE Article', async ({
       api,

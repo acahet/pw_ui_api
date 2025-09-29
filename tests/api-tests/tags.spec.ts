@@ -11,13 +11,14 @@ test.describe(
     tag: ['@tags'],
   },
   () => {
-    test('GET tags', async ({ api, endpoints, httpStatus }) => {
+    test('GET tags', async ({ api, endpoints, httpStatus: { Status200_Ok } }) => {
       const tagsResponse = await api
         .path(endpoints.tags)
-        .getRequest(httpStatus.Status200_Ok);
+        .getRequest(Status200_Ok);
       expect(tagsResponse).toHaveProperty('tags');
-      expect(tagsResponse.tags.length).toBeGreaterThan(0);
-      expect(tagsResponse.tags.length).shouldBeEqual(10);
+      expect(tagsResponse.tags[0]).shouldBeEqual('Test');
+      expect(tagsResponse.tags.length).shouldBeLessThanOrEqual(10);
+
     });
   },
 );

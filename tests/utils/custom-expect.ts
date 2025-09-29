@@ -10,6 +10,7 @@ declare global {
     namespace PlaywrightTest {
         interface Matchers<R, T> {
             shouldBeEqual(expected: T): R;
+            shouldBeLessThanOrEqual(expected: T): R;
         }
     }
 }
@@ -42,6 +43,36 @@ export const expect = baseExpect.extend({
             `Received: ${this.utils.printReceived(received)}\n\n` +
             `Recent API Activity: \n${logs}`;
         return { message: () => message, pass };
-    }
+    },
+    shouldBeLessThanOrEqual(received: any, expected: any) {
+        let pass: boolean;
+        let logs: string = '';
+        try {
+            baseExpect(received).toBeLessThanOrEqual(expected);
+            pass = true;
+            if (this.isNot) {
+                logs = apiLogger.getRecentLogs();
+            }
+        } catch (e: any) {
+            pass = false;
+            logs = apiLogger.getRecentLogs();
+        }
+        const hint = this.isNot ? 'not ' : '';
+
+        const message =
+            this.utils.matcherHint(
+                'shouldBeLessThanOrEqual',
+                undefined,
+                undefined,
+                {
+                    isNot: this.isNot,
+                }
+            ) +
+            '\n\n' +
+            `Expected: ${hint}${this.utils.printExpected(expected)}\n` +
+            `Received: ${this.utils.printReceived(received)}\n\n` +
+            `Recent API Activity: \n${logs}`;
+        return { message: () => message, pass };
+    },
 
 })
