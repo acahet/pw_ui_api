@@ -23,7 +23,7 @@ export interface TestOptions {
 export const test = base.extend<TestOptions, WorkerFixture>({
   authToken: [
     // eslint-disable-next-line no-empty-pattern
-    async ({ }, use) => {
+    async ({}, use) => {
       const authToken = await createToken(
         Config.apiConfig.userEmail,
         Config.apiConfig.userPassword,
@@ -50,13 +50,13 @@ export const test = base.extend<TestOptions, WorkerFixture>({
     await use(homepage);
   },
   // eslint-disable-next-line no-empty-pattern
-  config: async ({ }, use) => {
+  config: async ({}, use) => {
     const config = Config;
     await use(config);
   },
-  validateSchema: async ({ }, use) => {
+  validateSchema: async ({}, use) => {
     await use(validateSchema);
   },
   httpStatus,
-  endpoints
+  endpoints,
 });
