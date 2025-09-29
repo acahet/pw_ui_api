@@ -1,16 +1,23 @@
 import { test } from '@fixtures';
 import { expect } from '@playwright/test';
 
-const domain = 'https://conduit-api.bondaracademy.com/';
-const tagsPath = 'api/tags';
-
-test.describe('API tests', () => {
-  test('Get all tags', async ({ request }) => {
-    const tagsResponse = await request.get(`${domain}/${tagsPath}`);
-    expect(tagsResponse.status()).toBe(200);
-    const tagsResponseBody = await tagsResponse.json();
-    expect(tagsResponseBody).toHaveProperty('tags');
-    expect(tagsResponseBody.tags.length).toBeGreaterThan(0);
-    expect(tagsResponseBody.tags.length).toBeLessThanOrEqual(10);
-  });
-});
+test.describe(
+  'Feature: Tags API',
+  {
+    annotation: {
+      type: 'api-tags',
+      description: 'Tests for the Tags API endpoints',
+    },
+    tag: ['@tags'],
+  },
+  () => {
+    test('GET tags', async ({ api, endpoints, httpStatus }) => {
+      const tagsResponse = await api
+        .path(endpoints.tags)
+        .getRequest(httpStatus.Status200_Ok);
+      expect(tagsResponse).toHaveProperty('tags');
+      expect(tagsResponse.tags.length).toBeGreaterThan(0);
+      expect(tagsResponse.tags.length).toBeLessThanOrEqual(10);
+    });
+  },
+);

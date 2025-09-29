@@ -1,16 +1,16 @@
-import { endpoint, httpStatusCode } from '@config';
+import { Endpoint, HttpStatusCode } from '@config';
 
-export const httpStatus: httpStatusCode = {
+export const httpStatus: HttpStatusCode = {
   Status200_Ok: 200,
   Status201_Created: 201,
   Status204_No_Content: 204,
 };
 
-export const endpoints: endpoint = {
+export const endpoints: Endpoint = {
   // users: '/api/users',
-  tags: `/api/tags`,
-  login: `/api/users/login`,
-  postArticle: `/api/articles`,
-  articles: `/api/articles`,
-  updateDeleteArticle: (slug: string) => `/api/articles/${slug}`,
+  tags: 'api/tags',
+  login: 'api/users/login',
+  postArticle: 'api/articles',
+  articles: 'api/articles',
+  updateDeleteArticle: (slug: string) => `api/articles/${slug}`,
 };
