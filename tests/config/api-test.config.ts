@@ -1,11 +1,11 @@
 const processENV = process.env.TEST_ENV;
-const env = processENV || 'qa';
+const env = processENV ?? 'qa';
 
-type CONFIG = {
+interface CONFIG {
   apiUrl: string;
   userEmail: string;
   userPassword: string;
-};
+}
 const apiConfig: CONFIG = {
   apiUrl: process.env.API_URL as string,
   userEmail: process.env.EMAIL_API as string,
@@ -24,7 +24,8 @@ if (env === 'qa') {
   apiConfig.userPassword = userPassword;
 }
 if (env === 'prod') {
-  ((apiConfig.userEmail = ''), (apiConfig.userPassword = ''));
+  apiConfig.userEmail = '';
+  apiConfig.userPassword = '';
 }
 
 export { apiConfig };

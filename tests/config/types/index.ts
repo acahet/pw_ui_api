@@ -23,6 +23,32 @@ type ValueOf<T> = T[keyof T];
 type LocaleMap = Record<string, string>;
 
 /**
+ * Types for JSON Schemas
+ * These types help ensure consistency and type safety when
+ * working with JSON schemas for API responses.
+ */
+type SchemaDir = 'tags' | 'articles';
+
+/**
+ * Mapping of schema directories to their respective file names.
+ * This helps ensure that only valid file names are used for each directory.
+ */
+interface SchemaFileMap {
+  tags: 'GET_tags';
+  articles: 'GET_articles' | 'POST_articles' | 'PUT_articles';
+}
+
+/**
+ * Type representing valid schema file names for a given directory.
+ */
+type SchemaFile<Dir extends SchemaDir> = SchemaFileMap[Dir];
+
+/**
+ * Type representing a generic JSON Schema object.
+ */
+type JSONSchema = Record<string, any>;
+
+/**
  * Types for API endpoints
  * These types help ensure consistency and type safety when
  * working with API requests.
@@ -44,4 +70,12 @@ interface HttpStatusCode {
   Status201_Created: number;
   Status204_No_Content: number;
 }
-export { LocaleMap, ValueOf, Endpoint, HttpStatusCode };
+export {
+  LocaleMap,
+  ValueOf,
+  Endpoint,
+  HttpStatusCode,
+  JSONSchema,
+  SchemaDir,
+  SchemaFile,
+};

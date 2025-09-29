@@ -1,8 +1,6 @@
 import { test } from '@fixtures';
 import { expect } from '@utils/custom-expect';
 
-let authToken: string;
-
 test.describe(
   'Feature: Articles API',
   {

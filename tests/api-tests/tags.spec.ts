@@ -15,10 +15,12 @@ test.describe(
       api,
       endpoints,
       httpStatus: { Status200_Ok },
+      validateSchema
     }) => {
       const tagsResponse = await api
         .path(endpoints.tags)
         .getRequest(Status200_Ok);
+      await validateSchema('tags', 'GET_tags');
       expect(tagsResponse).toHaveProperty('tags');
       expect(tagsResponse.tags[0]).shouldBeEqual('Test');
       expect(tagsResponse.tags.length).shouldBeLessThanOrEqual(10);
