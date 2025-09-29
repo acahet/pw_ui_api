@@ -21,6 +21,9 @@
       ],
       "@utils/*": [
         "tests/utils/*"
+      ],
+      "@helpers/*": [
+        "tests/helpers/*"
       ]
     },
     "types": [

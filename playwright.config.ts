@@ -29,7 +29,6 @@ export default defineConfig({
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
@@ -51,8 +50,7 @@ export default defineConfig({
       name: 'api-tests',
       testDir: './tests/api-tests',
       workers: 1,
-      outputDir: './tests/report/test-results/api-tests',
-      fullyParallel: false,
+      outputDir: './tests/report/test-results/api-tests'
     },
 
   ],

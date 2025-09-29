@@ -1,4 +1,5 @@
 import { test } from '@fixtures';
+import { createToken } from '@helpers/createToken';
 import { expect } from '@utils/custom-expect';
 
 let authToken: string;
@@ -13,18 +14,11 @@ test.describe(
     tag: ['@articles'],
   },
   () => {
-    test.beforeAll(async ({ api, endpoints, httpStatus }) => {
-      const loginResponse = await api
-        .path(endpoints.login)
-        .body({
-          user: {
-            email: process.env.EMAIL_API as string,
-            password: process.env.PASSWORD_API as string,
-          },
-        })
-        .postRequest(httpStatus.Status200_Ok);
-
-      authToken = 'Token ' + loginResponse.user.token;
+    test.beforeAll(async () => {
+      authToken = await createToken(
+        process.env.EMAIL_API as string,
+        process.env.PASSWORD_API as string,
+      );
     });
 
     test('GET Articles', async ({ api, endpoints, httpStatus }) => {
