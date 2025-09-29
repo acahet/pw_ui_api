@@ -1,6 +1,5 @@
 import { test } from '@fixtures';
 import { expect } from '@utils/custom-expect';
-import { validateSchema } from '@utils/schema-validator';
 
 test.describe(
   'Feature: Tags API',
@@ -16,6 +15,7 @@ test.describe(
       api,
       endpoints,
       httpStatus: { Status200_Ok },
+      validateSchema
     }) => {
       const tagsResponse = await api
         .path(endpoints.tags)
