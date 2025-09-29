@@ -24,6 +24,9 @@
       ],
       "@helpers/*": [
         "tests/helpers/*"
+      ],
+      "@schemas/*": [
+        "tests/response-schemas/*"
       ]
     },
     "types": [

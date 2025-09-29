@@ -6,6 +6,7 @@ let apiLogger: APILogger;
 export const setCustomExpectLogger = (logger: APILogger) => {
   apiLogger = logger;
 };
+
 declare global {
   namespace PlaywrightTest {
     interface Matchers<R, T> {
@@ -14,6 +15,7 @@ declare global {
     }
   }
 }
+
 export const expect = baseExpect.extend({
   shouldBeEqual(received: any, expected: any) {
     let pass: boolean;

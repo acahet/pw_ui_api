@@ -7,19 +7,20 @@ import { setCustomExpectLogger } from '@utils/custom-expect';
 import { APILogger } from '@utils/logger';
 import { RequestHandler } from '@utils/request-handler';
 
-export type WorkerFixture = {
+export interface WorkerFixture {
   authToken: string;
-};
-export type TestOptions = {
+}
+export interface TestOptions {
   api: RequestHandler;
   homePage: Homepage;
   config: Awaited<typeof Config>;
   httpStatus: typeof httpStatus;
   endpoints: typeof endpoints;
-};
+}
 
 export const test = base.extend<TestOptions, WorkerFixture>({
   authToken: [
+    // eslint-disable-next-line no-empty-pattern
     async ({}, use) => {
       const authToken = await createToken(
         Config.apiConfig.userEmail,
