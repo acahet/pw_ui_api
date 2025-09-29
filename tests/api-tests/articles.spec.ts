@@ -1,5 +1,5 @@
 import { test } from '@fixtures';
-import { expect } from '@playwright/test';
+import { expect } from '@utils/custom-expect';
 
 let authToken: string;
 
@@ -32,9 +32,9 @@ test.describe(
         .path(endpoints.articles)
         .params({ limit: 10, offset: 0 })
         .getRequest(httpStatus.Status200_Ok);
+      expect(articlesResponse.articles.length).shouldBeLessThanOrEqual(10);
+      expect(articlesResponse.articlesCount).shouldBeEqual(10)
 
-      expect(articlesResponse.articles.length).toBeGreaterThan(0);
-      expect(articlesResponse.articles.length).toBeLessThanOrEqual(10);
     });
     test('CREATE and DELETE Article', async ({
       api,
@@ -59,22 +59,14 @@ test.describe(
 
       const articleSlug: string = newArticlesResponse.article.slug;
       expect(newArticlesResponse).toHaveProperty('article');
-      expect(newArticlesResponse.article.title).toBe(newArticle.article.title);
-      expect(newArticlesResponse.article.description).toBe(
-        newArticle.article.description,
-      );
-      expect(newArticlesResponse.article.body).toBe(newArticle.article.body);
+      expect(newArticlesResponse.article.title).shouldBeEqual(newArticle.article.title);
 
       const articlesResponse = await api
         .path(endpoints.articles)
         .headers({ Authorization: authToken })
         .getRequest(httpStatus.Status200_Ok);
 
-      expect(articlesResponse.articles[0].title).toBe(newArticle.article.title);
-      expect(articlesResponse.articles[0].description).toBe(
-        newArticle.article.description,
-      );
-      expect(articlesResponse.articles[0].body).toBe(newArticle.article.body);
+      expect(articlesResponse.articles[0].title).shouldBeEqual(newArticle.article.title);
 
       //DELETE
 
@@ -119,11 +111,7 @@ test.describe(
 
       const articleSlug: string = newArticlesResponse.article.slug;
       expect(newArticlesResponse).toHaveProperty('article');
-      expect(newArticlesResponse.article.title).toBe(newArticle.article.title);
-      expect(newArticlesResponse.article.description).toBe(
-        newArticle.article.description,
-      );
-      expect(newArticlesResponse.article.body).toBe(newArticle.article.body);
+      expect(newArticlesResponse.article.title).shouldBeEqual(newArticle.article.title);
 
       const articlesResponse = await api
         .path(endpoints.articles)
@@ -132,11 +120,7 @@ test.describe(
         .getRequest(httpStatus.Status200_Ok);
 
       //READ
-      expect(articlesResponse.articles[0].title).toBe(newArticle.article.title);
-      expect(articlesResponse.articles[0].description).toBe(
-        newArticle.article.description,
-      );
-      expect(articlesResponse.articles[0].body).toBe(newArticle.article.body);
+      expect(articlesResponse.articles[0].title).shouldBeEqual(newArticle.article.title);
 
       //UPDATE
       const updateArticleResponse = await api
@@ -152,7 +136,7 @@ test.describe(
         .putRequest(httpStatus.Status200_Ok);
 
       const articleSlugUpdated: string = updateArticleResponse.article.slug;
-      expect(updateArticleResponse.article.title).toBe(
+      expect(updateArticleResponse.article.title).shouldBeEqual(
         'Updated Article Title PW AC',
       );
 

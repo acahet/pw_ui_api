@@ -6,7 +6,13 @@ export class APILogger {
     headers: Record<string, string>,
     body?: any,
   ) {
-    const logEntry = { method, url, headers, body };
+    // Deep clone the body to avoid mutating the original
+    const safeBody = body ? JSON.parse(JSON.stringify(body)) : undefined;
+    if (safeBody?.user?.password) {
+      safeBody.user.password = '***';
+    }
+
+    const logEntry = { method, url, headers, body: safeBody };
     this.recentLogs.push({ type: 'Response Details', data: logEntry });
   }
   logResponse(statusCode: number, body?: any) {
