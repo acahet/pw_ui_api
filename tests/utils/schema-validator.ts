@@ -1,11 +1,19 @@
-import { SchemaDir, SchemaFile } from '@config';
+import { JSONSchema, SchemaDir, SchemaFile } from '@config';
 import Ajv from 'ajv';
 import fs from 'fs/promises';
+import { createSchema } from 'genson-js';
 import path from 'path';
 
 const SCHEMA_BASE_PATH = './response-schemas';
 const ajv = new Ajv({ allErrors: true });
 
+/**
+ * Validates the schema of a response body against a JSON schema.
+ * @param dirName - The directory name for the schema
+ * @param fileName - The file name for the schema
+ * @param responseBody - The response body to validate
+ * @param createSchemaFlag - Flag to create a new schema if it doesn't exist
+ */
 export async function validateSchema<
   Dir extends SchemaDir,
   File extends SchemaFile<Dir>,
@@ -21,7 +29,7 @@ export async function validateSchema<
     `${fileName}_schema.json`,
   );
   if (createSchemaFlag) {
-    // await generateNewSchema(responseBody, schemaPath);
+    await generateNewSchema(responseBody, schemaPath);
   }
 
   const schema = await loadSchema(schemaPath);
@@ -52,4 +60,49 @@ async function loadSchema(schemaPath: string) {
   } catch (error) {
     throw new Error(`Failed to read the schema file: ${error.message}`);
   }
+}
+
+/**
+ * Generates a new JSON schema based on the response body.
+ * @param responseBody - The response body to generate the schema from
+ * @param schemaPath - The path to save the generated schema
+ */
+async function generateNewSchema(responseBody: object, schemaPath: string) {
+  try {
+    const generateSchema = createSchema(responseBody);
+    const enrichedSchema = addDateTimeFormats(generateSchema);
+    await fs.mkdir(path.dirname(schemaPath), { recursive: true });
+    await fs.writeFile(schemaPath, JSON.stringify(enrichedSchema, null, 4));
+  } catch (error: any) {
+    throw new Error(`Failed to create schema file: ${error.message}`);
+  }
+}
+
+/**
+ * Adds date-time formats to specific properties in the JSON schema.
+ * @param schema - The JSON schema object
+ * @returns The enriched JSON schema object
+ */
+function addDateTimeFormats(schema: JSONSchema): JSONSchema {
+  if (schema.type === 'object' && schema.properties) {
+    for (const [key, value] of Object.entries(schema.properties)) {
+      if (
+        (key === 'createdAt' || key === 'updatedAt') &&
+        value &&
+        typeof value === 'object'
+      ) {
+        schema.properties[key] = {
+          ...value,
+          format: 'date-time',
+        };
+      } else {
+        // recurse into nested objects
+        addDateTimeFormats(value as JSONSchema);
+      }
+    }
+  } else if (schema.type === 'array' && schema.items) {
+    addDateTimeFormats(schema.items as JSONSchema);
+  }
+
+  return schema;
 }

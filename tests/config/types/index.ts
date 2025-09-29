@@ -35,7 +35,11 @@ type SchemaDir = 'tags' | 'articles';
  */
 interface SchemaFileMap {
   tags: 'GET_tags';
-  articles: 'GET_articles' | 'POST_articles' | 'PUT_articles';
+  articles:
+    | 'GET_articles'
+    | 'POST_articles'
+    | 'PUT_articles'
+    | 'DELETE_articles';
 }
 
 /**

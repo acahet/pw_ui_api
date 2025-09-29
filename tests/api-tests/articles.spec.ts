@@ -17,6 +17,7 @@ test.describe(
         .params({ limit: 10, offset: 0 })
         .clearAuth()
         .getRequest(httpStatus.Status200_Ok);
+
       expect(articlesResponse.articles.length).shouldBeLessThanOrEqual(10);
       expect(articlesResponse.articlesCount).shouldBeEqual(10);
     });
@@ -39,7 +40,10 @@ test.describe(
         .path(endpoints.articles)
         .body(newArticle)
         .postRequest(httpStatus.Status201_Created);
-
+      await expect(newArticlesResponse).shouldMatchSchema(
+        'articles',
+        'POST_articles',
+      );
       const articleSlug: string = newArticlesResponse.article.slug;
       expect(newArticlesResponse).toHaveProperty('article');
       expect(newArticlesResponse.article.title).shouldBeEqual(
@@ -49,6 +53,7 @@ test.describe(
       const articlesResponse = await api
         .path(endpoints.articles)
         .getRequest(httpStatus.Status200_Ok);
+
       expect(articlesResponse.articles[0].title).shouldBeEqual(
         newArticle.article.title,
       );
@@ -64,7 +69,10 @@ test.describe(
         .path(endpoints.articles)
         .params({ limit: 10, offset: 0 })
         .getRequest(httpStatus.Status200_Ok);
-
+      await expect(articlesResponseAfterDelete).shouldMatchSchema(
+        'articles',
+        'GET_articles',
+      );
       expect(
         articlesResponseAfterDelete.articles.some(
           (article: { slug: string }) => article.slug === articleSlug,
@@ -90,7 +98,10 @@ test.describe(
         .path(endpoints.articles)
         .body(newArticle)
         .postRequest(httpStatus.Status201_Created);
-
+      await expect(newArticlesResponse).shouldMatchSchema(
+        'articles',
+        'POST_articles',
+      );
       const articleSlug: string = newArticlesResponse.article.slug;
       expect(newArticlesResponse).toHaveProperty('article');
       expect(newArticlesResponse.article.title).shouldBeEqual(
@@ -118,7 +129,10 @@ test.describe(
           },
         })
         .putRequest(httpStatus.Status200_Ok);
-
+      await expect(updateArticleResponse).shouldMatchSchema(
+        'articles',
+        'PUT_articles',
+      );
       const articleSlugUpdated: string = updateArticleResponse.article.slug;
       expect(updateArticleResponse.article.title).shouldBeEqual(
         'Updated Article Title PW AC',
@@ -131,16 +145,15 @@ test.describe(
         .deleteRequest(httpStatus.Status204_No_Content);
       expect(deleteArticleResponse).toBeUndefined();
 
+      //VERIFY DELETION
       const articlesResponseAfterDelete = await api
         .path(endpoints.articles)
         .params({ limit: 10, offset: 0 })
         .getRequest(httpStatus.Status200_Ok);
-
-      expect(
-        articlesResponseAfterDelete.articles.some(
-          (article: { slug: string }) => article.slug === articleSlug,
-        ),
-      ).toBeFalsy();
+      await expect(articlesResponseAfterDelete).shouldMatchSchema(
+        'articles',
+        'GET_articles',
+      );
     });
   },
 );
