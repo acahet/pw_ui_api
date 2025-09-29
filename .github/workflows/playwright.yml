@@ -16,6 +16,7 @@ jobs:
     env:
       EMAIL_API: ${{ secrets.EMAIL_API }}
       PASSWORD_API: ${{ secrets.PASSWORD_API }}
+      API_URL: ${{ secrets.API_URL }}
 
     steps:
     - uses: actions/checkout@v4

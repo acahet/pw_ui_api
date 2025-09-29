@@ -33,8 +33,7 @@ test.describe(
         .params({ limit: 10, offset: 0 })
         .getRequest(httpStatus.Status200_Ok);
       expect(articlesResponse.articles.length).shouldBeLessThanOrEqual(10);
-      expect(articlesResponse.articlesCount).shouldBeEqual(10)
-
+      expect(articlesResponse.articlesCount).shouldBeEqual(10);
     });
     test('CREATE and DELETE Article', async ({
       api,
@@ -59,14 +58,18 @@ test.describe(
 
       const articleSlug: string = newArticlesResponse.article.slug;
       expect(newArticlesResponse).toHaveProperty('article');
-      expect(newArticlesResponse.article.title).shouldBeEqual(newArticle.article.title);
+      expect(newArticlesResponse.article.title).shouldBeEqual(
+        newArticle.article.title,
+      );
 
       const articlesResponse = await api
         .path(endpoints.articles)
         .headers({ Authorization: authToken })
         .getRequest(httpStatus.Status200_Ok);
 
-      expect(articlesResponse.articles[0].title).shouldBeEqual(newArticle.article.title);
+      expect(articlesResponse.articles[0].title).shouldBeEqual(
+        newArticle.article.title,
+      );
 
       //DELETE
 
@@ -111,7 +114,9 @@ test.describe(
 
       const articleSlug: string = newArticlesResponse.article.slug;
       expect(newArticlesResponse).toHaveProperty('article');
-      expect(newArticlesResponse.article.title).shouldBeEqual(newArticle.article.title);
+      expect(newArticlesResponse.article.title).shouldBeEqual(
+        newArticle.article.title,
+      );
 
       const articlesResponse = await api
         .path(endpoints.articles)
@@ -120,7 +125,9 @@ test.describe(
         .getRequest(httpStatus.Status200_Ok);
 
       //READ
-      expect(articlesResponse.articles[0].title).shouldBeEqual(newArticle.article.title);
+      expect(articlesResponse.articles[0].title).shouldBeEqual(
+        newArticle.article.title,
+      );
 
       //UPDATE
       const updateArticleResponse = await api

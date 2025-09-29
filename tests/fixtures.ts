@@ -16,9 +16,10 @@ export const test = base.extend<{
   api: async ({ request }, use) => {
     const logger = new APILogger();
     setCustomExpectLogger(logger);
+
     const requestHandler = new RequestHandler(
       request,
-      'https://conduit-api.bondaracademy.com/', // config.apiUrl as string,
+      Config.apiConfig.apiUrl,
       logger,
       // authToken
     );
@@ -29,7 +30,7 @@ export const test = base.extend<{
     await use(homepage);
   },
   // eslint-disable-next-line no-empty-pattern
-  config: async ({ }, use) => {
+  config: async ({}, use) => {
     const config = Config;
     await use(config);
   },
