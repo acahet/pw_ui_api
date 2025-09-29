@@ -22,17 +22,26 @@ type ValueOf<T> = T[keyof T];
  */
 type LocaleMap = Record<string, string>;
 
-type endpoint = {
+/**
+ * Types for API endpoints
+ * These types help ensure consistency and type safety when
+ * working with API requests.
+ */
+type Endpoint = {
   tags: string;
   login: string;
   postArticle: string;
   articles: string;
   updateDeleteArticle: (slug: string) => string;
 };
-
-type httpStatusCode = {
+/**
+ * Types for HTTP status codes
+ * These types help ensure consistency and type safety when
+ * working with API responses.
+ */
+type HttpStatusCode = {
   Status200_Ok: number;
   Status201_Created: number;
   Status204_No_Content: number;
 };
-export { LocaleMap, ValueOf, endpoint, httpStatusCode };
+export { LocaleMap, ValueOf, Endpoint, HttpStatusCode };

@@ -1,6 +1,7 @@
 import * as Config from '@config';
 import { Homepage } from '@pages/Homepage';
 import { test as base } from '@playwright/test';
+import { endpoints, httpStatus } from '@utils/constants';
 import { APILogger } from '@utils/logger';
 import { RequestHandler } from '@utils/request-handler';
 
@@ -8,6 +9,8 @@ export const test = base.extend<{
   api: RequestHandler;
   homePage: Homepage;
   config: Awaited<typeof Config>;
+  httpStatus: typeof httpStatus;
+  endpoints: typeof endpoints;
 }>({
   api: async ({ request }, use) => {
     const logger = new APILogger();
@@ -29,4 +32,6 @@ export const test = base.extend<{
     const config = Config;
     await use(config);
   },
+  httpStatus,
+  endpoints,
 });
