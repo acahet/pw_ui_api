@@ -29,20 +29,20 @@ export default defineConfig({
 
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-
     trace: 'retain-on-failure',
-    screenshot: 'only-on-failure',
+
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'ui-tests',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], screenshot: 'only-on-failure', },
       testDir: './tests/ui-tests',
       outputDir: './tests/report/test-results/ui-tests',
       fullyParallel: true,
       workers: process.env.CI ? 2 : undefined,
+      dependencies: ['api-tests']
     },
     /**
      * uncomment below if you want to have an PW-API project
@@ -51,8 +51,7 @@ export default defineConfig({
       name: 'api-tests',
       testDir: './tests/api-tests',
       workers: 1,
-      outputDir: './tests/report/test-results/api-tests',
-      fullyParallel: false,
+      outputDir: './tests/report/test-results/api-tests'
     },
 
   ],

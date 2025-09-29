@@ -13,24 +13,11 @@ test.describe(
     tag: ['@articles'],
   },
   () => {
-    test.beforeAll(async ({ api, endpoints, httpStatus }) => {
-      const loginResponse = await api
-        .path(endpoints.login)
-        .body({
-          user: {
-            email: process.env.EMAIL_API as string,
-            password: process.env.PASSWORD_API as string,
-          },
-        })
-        .postRequest(httpStatus.Status200_Ok);
-
-      authToken = 'Token ' + loginResponse.user.token;
-    });
-
     test('GET Articles', async ({ api, endpoints, httpStatus }) => {
       const articlesResponse = await api
         .path(endpoints.articles)
         .params({ limit: 10, offset: 0 })
+        .clearAuth()
         .getRequest(httpStatus.Status200_Ok);
       expect(articlesResponse.articles.length).shouldBeLessThanOrEqual(10);
       expect(articlesResponse.articlesCount).shouldBeEqual(10);
@@ -52,7 +39,6 @@ test.describe(
 
       const newArticlesResponse = await api
         .path(endpoints.articles)
-        .headers({ Authorization: authToken })
         .body(newArticle)
         .postRequest(httpStatus.Status201_Created);
 
@@ -64,9 +50,7 @@ test.describe(
 
       const articlesResponse = await api
         .path(endpoints.articles)
-        .headers({ Authorization: authToken })
         .getRequest(httpStatus.Status200_Ok);
-
       expect(articlesResponse.articles[0].title).shouldBeEqual(
         newArticle.article.title,
       );
@@ -75,14 +59,12 @@ test.describe(
 
       const deleteArticleResponse = await api
         .path(endpoints.updateDeleteArticle(articleSlug))
-        .headers({ Authorization: authToken })
         .deleteRequest(httpStatus.Status204_No_Content);
       expect(deleteArticleResponse).toBeUndefined();
 
       const articlesResponseAfterDelete = await api
         .path(endpoints.articles)
         .params({ limit: 10, offset: 0 })
-        .headers({ Authorization: authToken })
         .getRequest(httpStatus.Status200_Ok);
 
       expect(
@@ -108,7 +90,6 @@ test.describe(
 
       const newArticlesResponse = await api
         .path(endpoints.articles)
-        .headers({ Authorization: authToken })
         .body(newArticle)
         .postRequest(httpStatus.Status201_Created);
 
@@ -121,7 +102,6 @@ test.describe(
       const articlesResponse = await api
         .path(endpoints.articles)
         .params({ limit: 10, offset: 0 })
-        .headers({ Authorization: authToken })
         .getRequest(httpStatus.Status200_Ok);
 
       //READ
@@ -132,7 +112,6 @@ test.describe(
       //UPDATE
       const updateArticleResponse = await api
         .path(endpoints.updateDeleteArticle(articleSlug))
-        .headers({ Authorization: authToken })
         .body({
           article: {
             title: 'Updated Article Title PW AC',
@@ -151,14 +130,12 @@ test.describe(
 
       const deleteArticleResponse = await api
         .path(endpoints.updateDeleteArticle(articleSlugUpdated))
-        .headers({ Authorization: authToken })
         .deleteRequest(httpStatus.Status204_No_Content);
       expect(deleteArticleResponse).toBeUndefined();
 
       const articlesResponseAfterDelete = await api
         .path(endpoints.articles)
         .params({ limit: 10, offset: 0 })
-        .headers({ Authorization: authToken })
         .getRequest(httpStatus.Status200_Ok);
 
       expect(
