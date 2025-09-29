@@ -8,9 +8,9 @@ export const httpStatus: HttpStatusCode = {
 
 export const endpoints: Endpoint = {
   // users: '/api/users',
-  tags: `/api/tags`,
-  login: `/api/users/login`,
-  postArticle: `/api/articles`,
-  articles: `/api/articles`,
-  updateDeleteArticle: (slug: string) => `/api/articles/${slug}`,
+  tags: 'api/tags',
+  login: 'api/users/login',
+  postArticle: 'api/articles',
+  articles: 'api/articles',
+  updateDeleteArticle: (slug: string) => `api/articles/${slug}`,
 };

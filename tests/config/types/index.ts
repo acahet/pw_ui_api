@@ -27,21 +27,21 @@ type LocaleMap = Record<string, string>;
  * These types help ensure consistency and type safety when
  * working with API requests.
  */
-type Endpoint = {
+interface Endpoint {
   tags: string;
   login: string;
   postArticle: string;
   articles: string;
   updateDeleteArticle: (slug: string) => string;
-};
+}
 /**
  * Types for HTTP status codes
  * These types help ensure consistency and type safety when
  * working with API responses.
  */
-type HttpStatusCode = {
+interface HttpStatusCode {
   Status200_Ok: number;
   Status201_Created: number;
   Status204_No_Content: number;
-};
+}
 export { LocaleMap, ValueOf, Endpoint, HttpStatusCode };

@@ -47,6 +47,8 @@ export default [
       '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/unbound-method': 'off',
       '@typescript-eslint/no-unsafe-function-type': 'off',
+      '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/non-nullable-type-assertion-style': 'off',
       //EOR - end of review
       'playwright/no-skipped-test': 'warn',
       'playwright/no-standalone-expect': 'error',
