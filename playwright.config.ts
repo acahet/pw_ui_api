@@ -30,14 +30,14 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     trace: 'retain-on-failure',
-    screenshot: 'only-on-failure',
+
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'ui-tests',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], screenshot: 'only-on-failure', },
       testDir: './tests/ui-tests',
       outputDir: './tests/report/test-results/ui-tests',
       fullyParallel: true,

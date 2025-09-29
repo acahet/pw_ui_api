@@ -13,8 +13,6 @@ test.describe(
     tag: ['@articles'],
   },
   () => {
-
-
     test('GET Articles', async ({ api, endpoints, httpStatus }) => {
       const articlesResponse = await api
         .path(endpoints.articles)
