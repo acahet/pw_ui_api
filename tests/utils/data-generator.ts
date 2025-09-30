@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import articleRequestPayload from '@request-objects/articles/POST_article.json' with { type: 'json' };
+import useLoginRequestPayload from '@request-objects/user/POST_login.json' with { type: 'json' };
 import userRequestPayload from '@request-objects/user/POST_signup.json' with { type: 'json' };
 
 /**
@@ -21,4 +22,11 @@ export function getNewUser() {
   newUser.user.email = `qa_test_${randomString}@example.com`;
   newUser.user.password = `qa_test_${randomString}`;
   return newUser;
+}
+
+export function invalidUser() {
+  const existingUser = structuredClone(useLoginRequestPayload);
+  existingUser.user.email = `qa_test@example.com`;
+  existingUser.user.password = `qa_test_password`;
+  return existingUser;
 }

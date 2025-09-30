@@ -3,6 +3,7 @@ import { Endpoint, HttpStatusCode } from '@config';
 export const httpStatus: HttpStatusCode = {
   Status200_Ok: 200,
   Status201_Created: 201,
+  Status403_Forbidden: 403,
   Status204_No_Content: 204,
   Status422_Unprocessable_Content: 422,
 };
