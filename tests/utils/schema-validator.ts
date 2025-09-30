@@ -38,9 +38,9 @@ export async function validateSchema<
   if (!valid) {
     throw new Error(
       `Schema validation ${fileName}_schema.json failed\n` +
-      `${JSON.stringify(validate.errors, null, 4)}\n\n` +
-      `Actual response Body:\n` +
-      `${JSON.stringify(responseBody, null, 4)}`,
+        `${JSON.stringify(validate.errors, null, 4)}\n\n` +
+        `Actual response Body:\n` +
+        `${JSON.stringify(responseBody, null, 4)}`,
     );
   }
 }

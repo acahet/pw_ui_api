@@ -11,13 +11,20 @@ test.describe(
     tag: ['@articles'],
   },
   () => {
-    test('GET Articles', async ({ api, endpoints, httpStatus }) => {
+    test('GET Articles', async ({
+      api,
+      endpoints,
+      httpStatus: { Status200_Ok },
+    }) => {
       const articlesResponse = await api
         .path(endpoints.articles)
         .params({ limit: 10, offset: 0 })
         .clearAuth()
-        .getRequest(httpStatus.Status200_Ok);
-
+        .getRequest(Status200_Ok);
+      await expect(articlesResponse).shouldMatchSchema(
+        'articles',
+        'GET_articles',
+      );
       expect(articlesResponse.articles.length).shouldBeLessThanOrEqual(10);
       expect(articlesResponse.articlesCount).shouldBeEqual(10);
     });

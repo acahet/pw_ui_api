@@ -11,7 +11,7 @@ import { APILogger } from '@utils/logger';
  * const response = await api.path('/endpoint').params({ key: 'value' }).headers({ 'Custom-Header': 'value' }).body({ data: 'value' }).postRequest(201);
  * @returns {Promise<any>} The response JSON from the API request.
  * @throws {Error} If the actual status code does not match the expected status code, an error is thrown with recent API activity logs.
- * 
+ *
  */
 export class RequestHandler {
   private request: APIRequestContext;
