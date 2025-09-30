@@ -38,9 +38,9 @@ export async function validateSchema<
   if (!valid) {
     throw new Error(
       `Schema validation ${fileName}_schema.json failed\n` +
-        `${JSON.stringify(validate.errors, null, 4)}\n\n` +
-        `Actual response Body:\n` +
-        `${JSON.stringify(responseBody, null, 4)}`,
+      `${JSON.stringify(validate.errors, null, 4)}\n\n` +
+      `Actual response Body:\n` +
+      `${JSON.stringify(responseBody, null, 4)}`,
     );
   }
 }
@@ -69,8 +69,8 @@ async function loadSchema(schemaPath: string) {
  */
 async function generateNewSchema(responseBody: object, schemaPath: string) {
   try {
-    const generateSchema = createSchema(responseBody);
-    const enrichedSchema = addDateTimeFormats(generateSchema);
+    const enrichedSchema = createSchema(responseBody);
+    // const enrichedSchema = addDateTimeFormats(generateSchema);
     await fs.mkdir(path.dirname(schemaPath), { recursive: true });
     await fs.writeFile(schemaPath, JSON.stringify(enrichedSchema, null, 4));
   } catch (error: any) {
