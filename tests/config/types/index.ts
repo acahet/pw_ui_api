@@ -39,6 +39,7 @@ interface SchemaFileMap {
     | 'GET_articles'
     | 'POST_articles'
     | 'PUT_articles'
+    | 'GET_articles_favorite'
     | 'DELETE_articles';
 }
 
@@ -58,6 +59,8 @@ type JSONSchema = Record<string, any>;
  * working with API requests.
  */
 interface Endpoint {
+  user: string;
+  users: string;
   tags: string;
   login: string;
   postArticle: string;
@@ -73,6 +76,7 @@ interface HttpStatusCode {
   Status200_Ok: number;
   Status201_Created: number;
   Status204_No_Content: number;
+  Status422_Unprocessable_Content: number;
 }
 export {
   LocaleMap,

@@ -52,7 +52,7 @@ test.describe(
         .putRequest(httpStatus.Status200_Ok);
       await expect(updateArticleResponse).shouldMatchSchema(
         'articles',
-        'PUT_articles'
+        'PUT_articles',
       );
       const articleSlugUpdated: string = updateArticleResponse.article.slug;
       expect(updateArticleResponse.article.title).shouldBeEqual(
