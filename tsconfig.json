@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "esModuleInterop": true,
     "strict": false,
@@ -27,7 +28,10 @@
       ],
       "@schemas/*": [
         "tests/response-schemas/*"
-      ]
+      ],
+      "@request-objects/*": [
+        "request-objects/*"
+      ],
     },
     "types": [
       "@playwright/test",
