@@ -16,4 +16,5 @@ export const endpoints: Endpoint = {
   postArticle: 'api/articles',
   articles: 'api/articles',
   updateDeleteArticle: (slug: string) => `api/articles/${slug}`,
+  profiles: (username: string) => `api/profiles/${username}`,
 };

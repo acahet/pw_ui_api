@@ -27,7 +27,7 @@ type LocaleMap = Record<string, string>;
  * These types help ensure consistency and type safety when
  * working with JSON schemas for API responses.
  */
-type SchemaDir = 'tags' | 'articles' | 'users';
+type SchemaDir = 'tags' | 'articles' | 'users' | 'profiles';
 
 /**
  * Mapping of schema directories to their respective file names.
@@ -47,7 +47,9 @@ interface SchemaFileMap {
     | 'POST_articles'
     | 'PUT_articles'
     | 'GET_articles_favorite'
+    | 'GET_user_articles'
     | 'DELETE_articles';
+  profiles: 'GET_profile';
 }
 
 /**
@@ -73,6 +75,7 @@ interface Endpoint {
   postArticle: string;
   articles: string;
   updateDeleteArticle: (slug: string) => string;
+  profiles: (username: string) => string;
 }
 /**
  * Types for HTTP status codes
