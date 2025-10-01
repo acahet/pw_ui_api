@@ -57,17 +57,17 @@ jobs:
         run: npx playwright install chromium --with-deps
 
       - name: Run Playwright API tests
-        run: npx playwright test --project=api-tests
+        run: npx playwright test --project=api-tests --reporter blob
 
       - name: Run Playwright UI tests
         if: ${{ always() }}
-        run: npx playwright test --project=ui-tests
+        run: npx playwright test --project=ui-tests --reporter blob
 
       - uses: actions/upload-artifact@v4
         if: ${{ always() }}
         with:
           name: merged-reports-as-blob
-          path: tests/report/playwright-report/
+          path: blob-report
           retention-days: 7
 
   merge-reports-and-upload:
@@ -121,7 +121,7 @@ jobs:
         with:
           name: playwright-report-${{ steps.timestampid.outputs.timestamp }}
           path: playwright-report
-          retention-days: 14
+          retention-days: 7
 
       - name: Push the new files to github pages
         uses: peaceiris/actions-gh-pages@v4
