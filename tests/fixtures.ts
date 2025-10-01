@@ -1,6 +1,7 @@
 import * as Config from '@config';
 import { createToken } from '@helpers/createToken';
-import { Homepage } from '@pages/Homepage';
+import { HomePage } from '@pages/Homepage';
+import { LoginPage } from '@pages/LoginPage';
 import { test as base } from '@playwright/test';
 import { endpoints, httpStatus } from '@utils/constants';
 import { setCustomExpectLogger } from '@utils/custom-expect';
@@ -13,11 +14,12 @@ export interface WorkerFixture {
 }
 export interface TestOptions {
   api: RequestHandler;
-  homePage: Homepage;
+  homePage: HomePage;
   config: Awaited<typeof Config>;
   httpStatus: typeof httpStatus;
   endpoints: typeof endpoints;
   validateSchema: typeof validateSchema;
+  loginPage: LoginPage;
 }
 
 export const test = base.extend<TestOptions, WorkerFixture>({
@@ -45,10 +47,6 @@ export const test = base.extend<TestOptions, WorkerFixture>({
     );
     await use(requestHandler);
   },
-  homePage: async ({ page }, use) => {
-    const homepage = new Homepage(page);
-    await use(homepage);
-  },
   // eslint-disable-next-line no-empty-pattern
   config: async ({}, use) => {
     const config = Config;
@@ -56,6 +54,15 @@ export const test = base.extend<TestOptions, WorkerFixture>({
   },
   validateSchema: async ({}, use) => {
     await use(validateSchema);
+  },
+  // page-objects
+  loginPage: async ({ page }, use) => {
+    const loginPage = new LoginPage(page);
+    await use(loginPage);
+  },
+  homePage: async ({ page }, use) => {
+    const homePage = new HomePage(page);
+    await use(homePage);
   },
   httpStatus,
   endpoints,

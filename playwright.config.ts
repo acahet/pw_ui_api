@@ -1,4 +1,4 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -30,14 +30,17 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     trace: 'retain-on-failure',
-
+    baseURL: 'https://conduit.bondaracademy.com'
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'ui-tests',
-      use: { ...devices['Desktop Chrome'], screenshot: 'only-on-failure', },
+      use: {
+        screenshot: 'only-on-failure',
+        defaultBrowserType: 'chromium'
+      },
       testDir: './tests/ui-tests',
       outputDir: './tests/report/test-results/ui-tests',
       fullyParallel: true,
