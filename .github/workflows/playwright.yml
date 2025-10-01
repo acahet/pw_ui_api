@@ -9,7 +9,7 @@ on:
       - 'tests/**'
 
 jobs:
-  test:
+  setup-and-run-tests:
     timeout-minutes: 60
     runs-on: ubuntu-latest
 
@@ -19,53 +19,116 @@ jobs:
       API_URL: ${{ secrets.API_URL }}
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Cache Node.js dependencies
-      uses: actions/cache@v3
-      id: cache-node
-      with:
-        path: |
-          ~/.npm
-          **/node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock', '**/package-lock.json') }}
+      - name: Cache Node.js dependencies
+        uses: actions/cache@v3
+        id: cache-node
+        with:
+          path: |
+            ~/.npm
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock', '**/package-lock.json') }}
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
 
-    - name: Install dependencies
-      if: steps.cache-node.outputs.cache-hit != 'true'
-      run: |
-        npm install -g yarn
-        yarn
+      - name: Install dependencies
+        if: steps.cache-node.outputs.cache-hit != 'true'
+        run: |
+          npm install -g yarn
+          yarn install --frozen-lockfile
 
-    - name: Get Playwright version
-      id: playwright-version
-      run: echo "PLAYWRIGHT_VERSION=$(jq -r '.devDependencies[\"@playwright/test\"]' package.json)" >> $GITHUB_ENV
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "PLAYWRIGHT_VERSION=$(jq -r '.devDependencies[\"@playwright/test\"]' package.json)" >> $GITHUB_ENV
 
-    - name: Cache Playwright browsers
-      uses: actions/cache@v3
-      id: cache-playwright
-      with:
-        path: ~/.cache/ms-playwright
-        key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+      - name: Cache Playwright browsers
+        uses: actions/cache@v3
+        id: cache-playwright
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
 
-    - name: Install Playwright Chromium browser
-      if: steps.cache-playwright.outputs.cache-hit != 'true'
-      run: npx playwright install chromium --with-deps
+      - name: Install Playwright Chromium browser
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
+        run: npx playwright install chromium --with-deps
 
-    - name: Run Playwright API tests
-      run: npx playwright test --project=api-tests
+      - name: Run Playwright API tests
+        run: npx playwright test --project=api-tests --reporter=blob --output=blob-report/api
 
-    - name: Run Playwright UI tests
-      if: ${{ success() }}
-      run: npx playwright test --project=ui-tests
+      - name: Run Playwright UI tests
+        if: ${{ always() }}
+        run: npx playwright test --project=ui-tests --reporter=blob --output=blob-report/ui
 
-    - uses: actions/upload-artifact@v4
-      if: ${{ failure() }}
-      with:
-        name: playwright-report
-        path: tests/report/playwright-report/
-        retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: merged-reports-as-blob
+          path: blob-report
+          retention-days: 7
+
+  merge-reports-and-upload:
+    if: always()
+    needs: [setup-and-run-tests]
+    runs-on: ubuntu-latest
+
+    outputs:
+      timestamp: ${{ steps.timestampid.outputs.timestamp }}
+
+    steps:
+      - name: Set a timestamp
+        id: timestampid
+        run: echo "timestamp=$(date --utc +%Y%m%d_%H%M%SZ)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Restore Node.js dependencies cache
+        uses: actions/cache@v3
+        id: cache-node
+        with:
+          path: |
+            ~/.npm
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock', '**/package-lock.json') }}
+
+      - name: Ensure Yarn is installed
+        run: npm install -g yarn
+
+      - name: Install dependencies (only if needed)
+        if: steps.cache-node.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
+      - name: Download blob reports from GitHub Actions Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: merged-reports-as-blob
+          path: downloaded-merged-reports-as-blob
+
+      - name: Merge the blobs into one single HTML Report
+        run: npx playwright merge-reports --reporter html ./downloaded-merged-reports-as-blob
+
+      - name: Upload full html report to artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ steps.timestampid.outputs.timestamp }}
+          path: playwright-report
+          retention-days: 7
+
+      - name: Push the new files to github pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./playwright-report
+          destination_dir: ${{ steps.timestampid.outputs.timestamp }}
+
+      - name: Write URL in summary
+        run: echo "### Test results (link available after 20 secs) - https://${{ github.repository_owner }}.github.io/${{github.event.repository.name}}/${{ steps.timestampid.outputs.timestamp }}/" >> $GITHUB_STEP_SUMMARY
