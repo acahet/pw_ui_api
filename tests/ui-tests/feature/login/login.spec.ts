@@ -19,6 +19,6 @@ test('login', async ({ page, loginPage, homePage }) => {
   });
 
   await test.step('Then I navigate back to home page with signed in nav bar', async () => {
-    await expect(page.locator(homePage.selectors.navBar)).toHaveCount(4);
+    await expect(page.locator(homePage.selectors.navBar)).toHaveCount(3);
   });
 });

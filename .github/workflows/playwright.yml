@@ -64,8 +64,28 @@ jobs:
       run: npx playwright test --project=ui-tests
 
     - uses: actions/upload-artifact@v4
-      if: ${{ failure() }}
+      if: ${{ always() }}
       with:
         name: playwright-report
         path: tests/report/playwright-report/
         retention-days: 7
+  deploy:
+    needs: test
+    if: ${{ always() }} # deploy report even if tests fail
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download report artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: playwright-report
+          path: tests/report/playwright-report/
+
+      - name: Deploy report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./playwright-report

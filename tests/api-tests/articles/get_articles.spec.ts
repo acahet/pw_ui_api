@@ -26,7 +26,7 @@ test.describe(
         'GET_articles',
       );
       expect(articlesResponse.articles.length).shouldBeLessThanOrEqual(10);
-      expect(articlesResponse.articlesCount).shouldBeEqual(10);
+      expect(articlesResponse.articlesCount).shouldBeEqual(9);
     });
   },
 );
