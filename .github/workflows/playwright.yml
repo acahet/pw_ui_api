@@ -67,7 +67,7 @@ jobs:
         if: ${{ always() }}
         with:
           name: merged-reports-as-blob
-          path: blob-report
+          path: tests/report/playwright-report/
           retention-days: 7
 
   merge-reports-and-upload:
