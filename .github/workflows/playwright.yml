@@ -57,11 +57,11 @@ jobs:
         run: npx playwright install chromium --with-deps
 
       - name: Run Playwright API tests
-        run: npx playwright test --project=api-tests --reporter blob
+        run: npx playwright test --project=api-tests --reporter=blob --output=blob-report/api
 
       - name: Run Playwright UI tests
         if: ${{ always() }}
-        run: npx playwright test --project=ui-tests --reporter blob
+        run: npx playwright test --project=ui-tests --reporter=blob --output=blob-report/ui
 
       - uses: actions/upload-artifact@v4
         if: ${{ always() }}
@@ -131,4 +131,4 @@ jobs:
           destination_dir: ${{ steps.timestampid.outputs.timestamp }}
 
       - name: Write URL in summary
-        run: echo "### Test results (link available after 20 secs) - https://${{ github.repository_owner }}.github.io/${{github.repository}}/${{ steps.timestampid.outputs.timestamp }}/" >> $GITHUB_STEP_SUMMARY
+        run: echo "### Test results (link available after 20 secs) - https://${{ github.repository_owner }}.github.io/${{github.event.repository.name}}/${{ steps.timestampid.outputs.timestamp }}/" >> $GITHUB_STEP_SUMMARY
