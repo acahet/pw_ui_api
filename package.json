@@ -36,7 +36,7 @@
     "test:all": "npx playwright test",
     "test:ui": "npx playwright test --project ui-tests",
     "test:api": "npx playwright test --project api-tests",
-    "test:ui-mode": "npm run test --ui",
+    "test:ui-mode": "npx playwright test --ui",
     "report": "yarn playwright show-report tests/report/playwright-report"
   }
 }
