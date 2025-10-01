@@ -71,7 +71,7 @@ jobs:
         retention-days: 7
   deploy:
     needs: test
-    if: ${{ always() }} # deploy report even if tests fail
+    if: ${{ always() }}
     runs-on: ubuntu-latest
 
     steps:
@@ -82,11 +82,23 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: playwright-report
-          path: tests/report/playwright-report/
+          path: tests/resport/playwright-report
 
-      - name: Deploy report to GitHub Pages
+      - name: Generate index of reports
+        run: |
+          INDEX_FILE="playwright-report/index.html"
+          echo "<html><body><h1>Playwright Reports</h1><ul>" > $INDEX_FILE
+          for dir in $(ls playwright-report | sort -r); do
+            if [ -d "playwright-report/$dir" ]; then
+              echo "<li><a href='./$dir/index.html'>$dir</a></li>" >> $INDEX_FILE
+            fi
+          done
+          echo "</ul></body></html>" >> $INDEX_FILE
+
+      - name: Deploy report to GitHub Pages with history
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: tests/report/playwright-report/
+          publish_dir: tests/resport/playwright-report
+          keep_files: true
