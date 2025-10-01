@@ -56,24 +56,18 @@ jobs:
         if: steps.cache-playwright.outputs.cache-hit != 'true'
         run: npx playwright install chromium --with-deps
 
-      # Run ALL projects together, reporters configured in playwright.config.ts
-      - name: Run Playwright Tests
-        run: npx playwright test
+      - name: Run Playwright API tests
+        run: npx playwright test --project=api-tests --reporter=blob --output=blob-report/api
 
-      # Upload blob reports for history/merge if needed
+      - name: Run Playwright UI tests
+        if: ${{ always() }}
+        run: npx playwright test --project=ui-tests --reporter=blob --output=blob-report/ui
+
       - uses: actions/upload-artifact@v4
         if: ${{ always() }}
         with:
           name: merged-reports-as-blob
           path: blob-report
-          retention-days: 7
-
-      # Upload HTML report directly as well
-      - uses: actions/upload-artifact@v4
-        if: ${{ always() }}
-        with:
-          name: playwright-html-report
-          path: playwright-report
           retention-days: 7
 
   merge-reports-and-upload:
@@ -112,23 +106,23 @@ jobs:
         if: steps.cache-node.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
 
-      # Download HTML report directly (since it was already generated)
-      - name: Download HTML report
+      - name: Download blob reports from GitHub Actions Artifacts
         uses: actions/download-artifact@v4
         with:
-          name: playwright-html-report
-          path: playwright-report
+          name: merged-reports-as-blob
+          path: downloaded-merged-reports-as-blob
 
-      # Upload with timestamp for history
-      - name: Upload timestamped html report
+      - name: Merge the blobs into one single HTML Report
+        run: npx playwright merge-reports --reporter html ./downloaded-merged-reports-as-blob
+
+      - name: Upload full html report to artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report-${{ steps.timestampid.outputs.timestamp }}
           path: playwright-report
-          retention-days: 14
+          retention-days: 7
 
-      # Publish to GitHub Pages
       - name: Push the new files to github pages
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -136,6 +130,5 @@ jobs:
           publish_dir: ./playwright-report
           destination_dir: ${{ steps.timestampid.outputs.timestamp }}
 
-      # Correct repo name (not username/repo)
       - name: Write URL in summary
-        run: echo "### Test results (link available after 20 secs) - https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{ steps.timestampid.outputs.timestamp }}/" >> $GITHUB_STEP_SUMMARY
+        run: echo "### Test results (link available after 20 secs) - https://${{ github.repository_owner }}.github.io/${{github.event.repository.name}}/${{ steps.timestampid.outputs.timestamp }}/" >> $GITHUB_STEP_SUMMARY
