@@ -86,7 +86,7 @@ jobs:
 
       - name: Generate index of reports
         run: |
-          INDEX_FILE="playwright-report/index.html"
+          INDEX_FILE="tests/resport/playwright-report/index.html"
           echo "<html><body><h1>Playwright Reports</h1><ul>" > $INDEX_FILE
           for dir in $(ls playwright-report | sort -r); do
             if [ -d "playwright-report/$dir" ]; then
