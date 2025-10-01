@@ -131,4 +131,4 @@ jobs:
           destination_dir: ${{ steps.timestampid.outputs.timestamp }}
 
       - name: Write URL in summary
-        run: echo "### Test results (link available after 20 secs) - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ steps.timestampid.outputs.timestamp }}/" >> $GITHUB_STEP_SUMMARY
+        run: echo "### Test results (link available after 20 secs) - https://${{ github.repository_owner }}.github.io/${{github.repository}}/${{ steps.timestampid.outputs.timestamp }}/" >> $GITHUB_STEP_SUMMARY
