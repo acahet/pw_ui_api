@@ -83,14 +83,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: playwright-report
-          path: reports-history
+          path: tests/report/playwright-report/
 
       - name: Generate index of reports
         run: |
-          INDEX_FILE="reports-history/index.html"
+          INDEX_FILE="tests/report/playwright-report/index.html"
           echo "<html><body><h1>Playwright Reports</h1><ul>" > $INDEX_FILE
-          for dir in $(ls reports-history | sort -r); do
-            if [ -d "reports-history/$dir" ]; then
+          for dir in $(ls tests/report/playwright-report/ | sort -r); do
+            if [ -d "tests/report/playwright-report/$dir" ]; then
               echo "<li><a href='./$dir/index.html'>$dir</a></li>" >> $INDEX_FILE
             fi
           done
@@ -101,5 +101,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: reports-history
+          publish_dir: tests/report/playwright-report/
           keep_files: true
