@@ -39,7 +39,7 @@ jobs:
         if: steps.cache-node.outputs.cache-hit != 'true'
         run: |
           npm install -g yarn
-          yarn
+          yarn install --frozen-lockfile
 
       - name: Get Playwright version
         id: playwright-version
@@ -66,61 +66,69 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: ${{ always() }}
         with:
-          name: merged-playwright-report
-          path: playwright-report
+          name: merged-reports-as-blob
+          path: blob-report
           retention-days: 7
 
   merge-reports-and-upload:
-    # Merge reports after playwright tests, even if some shards have failed
     if: always()
     needs: [setup-and-run-tests]
     runs-on: ubuntu-latest
 
     outputs:
-        timestamp: ${{ steps.timestampid.outputs.timestamp }}
+      timestamp: ${{ steps.timestampid.outputs.timestamp }}
 
     steps:
+      - name: Set a timestamp
+        id: timestampid
+        run: echo "timestamp=$(date --utc +%Y%m%d_%H%M%SZ)" >> "$GITHUB_OUTPUT"
 
-    # We want a unique identifier to be used when we create subdirectories for our github pages with reports
-    - name: Set a timestamp
-      id: timestampid
-      # this will store current time with UTC in outputs.timestamp (eg of value: 20231028_233147Z)
-      run: echo "timestamp=$(date --utc +%Y%m%d_%H%M%SZ)" >> "$GITHUB_OUTPUT" 
+      - uses: actions/checkout@v4
 
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: 18
-    - name: Install dependencies
-      run: npm ci
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
 
-    # we now download the reports uploaded previously to merge them and create one single html report
-    - name: Download blob reports from GitHub Actions Artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: merged-reports-as-blob # name of the file stored as artifact (as uploaded at the previous job)
-        path: downloaded-merged-reports-as-blob # name of the folder where the download will be saved
+      - name: Restore Node.js dependencies cache
+        uses: actions/cache@v3
+        id: cache-node
+        with:
+          path: |
+            ~/.npm
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock', '**/package-lock.json') }}
 
-    # Playwright will generate a report and store it inside a folder called '/playwright-report'
-    - name: Merge the blobs into one single HTML Report
-      run: npx playwright merge-reports --reporter html ./downloaded-merged-reports-as-blob
+      - name: Ensure Yarn is installed
+        run: npm install -g yarn
 
-    - name: /[OPTIONAL] Upload full html report to artifacts for history
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: playwright-report-${{ steps.timestampid.outputs.timestamp }} # name of the file you want to have once its uploaded
-        path: playwright-report # path where the reports are, from where to take the files
-        retention-days: 14
+      - name: Install dependencies (only if needed)
+        if: steps.cache-node.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
 
-    - name: Push the new files to github pages
-    # This will create a separate branch called gh-pages where it will store only reports. And from where it will push all future changes 
-    # to github pages. Having a separate branch will keep the reports and changes commits separate to your main/master
-      uses: peaceiris/actions-gh-pages@v4
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./playwright-report # from what folder to take files. It takes only contents
-        destination_dir: ${{ steps.timestampid.outputs.timestamp }} # a sub-directory where to publish to avoid overwriting other reports
-        
-    - name: Write URL in summary
-      run: echo "### Test results (link available after 20 secs) - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ steps.timestampid.outputs.timestamp }}/" >> $GITHUB_STEP_SUMMARY
+      - name: Download blob reports from GitHub Actions Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: merged-reports-as-blob
+          path: downloaded-merged-reports-as-blob
+
+      - name: Merge the blobs into one single HTML Report
+        run: npx playwright merge-reports --reporter html ./downloaded-merged-reports-as-blob
+
+      - name: Upload full html report to artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ steps.timestampid.outputs.timestamp }}
+          path: playwright-report
+          retention-days: 14
+
+      - name: Push the new files to github pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./playwright-report
+          destination_dir: ${{ steps.timestampid.outputs.timestamp }}
+
+      - name: Write URL in summary
+        run: echo "### Test results (link available after 20 secs) - https://${{ github.repository_owner }}.github.io/playwright-example-with-typescript/${{ steps.timestampid.outputs.timestamp }}/" >> $GITHUB_STEP_SUMMARY
