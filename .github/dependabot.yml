@@ -1,31 +1,25 @@
 version: 2
 updates:
-  # Track regular npm dependencies
+  ############################################################
+  # 1. SECURITY UPDATES (always separate, always immediate)
+  ############################################################
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "09:00"
-      timezone: "UTC"
-    open-pull-requests-limit: 2
-    reviewers:
-      - "acahet"
-    assignees:
-      - "acahet"
-    commit-message:
-      prefix: "chore"
-      prefix-development: "chore"
-      include: "scope"
+      interval: "daily"
+    allow:
+      - dependency-type: "all"
     labels:
-      - "dependencies"
-      - "automated"
-    # Only update production dependencies
-    # versioning-strategy: "auto"
-    # allow:
-    #   - dependency-type: "direct:production"
+      - "security"
+    commit-message:
+      prefix: "security"
+    vulnerability-alerts: true
+    # Security updates are intentionally not grouped
+    groups: {}
 
-  # Track devDependencies separately (like Playwright, TypeScript, testing libraries)
+  ############################################################
+  # 2. MAINTENANCE UPDATES (weekly, grouped)
+  ############################################################
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -33,18 +27,55 @@ updates:
       day: "monday"
       time: "09:00"
       timezone: "UTC"
-    open-pull-requests-limit: 2
-    reviewers:
-      - "acahet"
-    assignees:
-      - "acahet"
     commit-message:
       prefix: "chore"
-      prefix-development: "chore"
       include: "scope"
+    assignees:
+      - "acahet"
+    reviewers:
+      - "acahet"
     labels:
       - "dependencies"
       - "automated"
-    versioning-strategy: "auto"
-    # allow:
-    #   - dependency-type: "direct:development"
+    versioning-strategy: increase
+    # Update ALL direct dependencies (prod + dev)
+    allow:
+      - dependency-type: "direct"
+
+    ##########################################################
+    # GROUP DEFINITIONS
+    ##########################################################
+    groups:
+      playwright:
+        patterns:
+          - "@playwright/*"
+          - "eslint-plugin-playwright"
+
+      eslint:
+        patterns:
+          - "eslint"
+          - "@typescript-eslint/*"
+          - "typescript-eslint"
+
+      typescript:
+        patterns:
+          - "typescript"
+          - "ts-node"
+          - "tsconfig-paths"
+
+      ajv:
+        patterns:
+          - "ajv"
+          - "ajv-formats"
+
+      biome:
+        patterns:
+          - "@biomejs/*"
+
+      faker:
+        patterns:
+          - "@faker-js/*"
+
+      others:
+        patterns:
+          - "*"
