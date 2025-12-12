@@ -1,6 +1,5 @@
 import { test } from '@fixtures';
 import { expect } from '@utils/custom-expect';
-import { RequestHandler } from '@utils/request-handler';
 
 test.describe(
   'Feature: User Articles API',

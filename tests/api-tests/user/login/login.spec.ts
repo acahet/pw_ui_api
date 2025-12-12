@@ -1,11 +1,9 @@
-import { SchemaDir, SchemaFile } from '@config';
 import { test } from '@fixtures';
 import { httpStatus } from '@utils/constants';
 import { expect } from '@utils/custom-expect';
 import { invalidUser } from '@utils/data-generator';
-import { Dir } from 'fs';
 
-let userData = invalidUser();
+const userData = invalidUser();
 
 const runTestFor = (title: string, status: number, body: object, schema) => {
   test(`${title}`, async ({ api, endpoints }) => {
