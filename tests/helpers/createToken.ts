@@ -8,20 +8,27 @@ export async function createToken(email: string, password: string) {
   const context = await request.newContext();
   const logger = new APILogger();
   const api = new RequestHandler(context, apiConfig.apiUrl, logger);
+
   try {
     const tokenResponse = await api
       .path(endpoints.login)
       .body({
         user: {
-          email: email,
-          password: password,
+          email,
+          password,
         },
       })
       .postRequest(httpStatus.Status200_Ok);
+
     return 'Token ' + tokenResponse.user.token;
-  } catch (error: any) {
-    Error.captureStackTrace(error, createToken);
-    throw error;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      Error.captureStackTrace(error, createToken);
+      throw error;
+    }
+
+    // ✅ Handles non-Error throws safely
+    throw new Error(`Unknown error occurred: ${JSON.stringify(error)}`);
   } finally {
     await context.dispose();
   }

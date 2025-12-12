@@ -1,4 +1,4 @@
-import { JSONSchema, SchemaDir, SchemaFile } from '@config';
+import { SchemaDir, SchemaFile } from '@config';
 import Ajv from 'ajv';
 import fs from 'fs/promises';
 import { createSchema } from 'genson-js';
@@ -76,33 +76,4 @@ async function generateNewSchema(responseBody: object, schemaPath: string) {
   } catch (error: any) {
     throw new Error(`Failed to create schema file: ${error.message}`);
   }
-}
-
-/**
- * Adds date-time formats to specific properties in the JSON schema.
- * @param schema - The JSON schema object
- * @returns The enriched JSON schema object
- */
-function addDateTimeFormats(schema: JSONSchema): JSONSchema {
-  if (schema.type === 'object' && schema.properties) {
-    for (const [key, value] of Object.entries(schema.properties)) {
-      if (
-        (key === 'createdAt' || key === 'updatedAt') &&
-        value &&
-        typeof value === 'object'
-      ) {
-        schema.properties[key] = {
-          ...value,
-          format: 'date-time',
-        };
-      } else {
-        // recurse into nested objects
-        addDateTimeFormats(value as JSONSchema);
-      }
-    }
-  } else if (schema.type === 'array' && schema.items) {
-    addDateTimeFormats(schema.items as JSONSchema);
-  }
-
-  return schema;
 }

@@ -12,17 +12,17 @@ type PasswordError =
   | 'is too short (minimum is 8 characters)'
   | 'is too long (maximum is 20 characters)';
 
-type UsernameTestCase = {
+interface UsernameTestCase {
   title: string;
   username: string;
   expectedError?: UsernameError;
-};
+}
 
-type PasswordTestCase = {
+interface PasswordTestCase {
   title: string;
   password: string;
   expectedError?: PasswordError;
-};
+}
 
 const usernameTest: UsernameTestCase[] = [
   {
@@ -59,7 +59,7 @@ const runTestFor = (
   value: string,
   expectedError: string | undefined,
 ) => {
-  let { user } = getNewUser();
+  const { user } = getNewUser();
   user.email = 'invalid_email';
   test(`${title}`, async ({
     api,
@@ -78,9 +78,11 @@ const runTestFor = (
       .clearAuth()
       .postRequest(Status422_Unprocessable_Content);
     const abs = newUserResponse.errors[section];
-    expectedError
-      ? expect(abs[0]).shouldBeEqual(expectedError)
-      : expect(newUserResponse.errors).not.toHaveProperty(section);
+    if (expectedError) {
+      expect(abs[0]).shouldBeEqual(expectedError);
+    } else {
+      expect(newUserResponse.errors).not.toHaveProperty(section);
+    }
   });
 };
 

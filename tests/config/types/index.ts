@@ -4,36 +4,26 @@
  * Example:
  *   type Status = { OPEN: 'open'; CLOSED: 'closed' };
  *   type StatusValues = ValueOf<Status>; // "open" | "closed"
- *
- * Useful when you want to accept any possible value from an object type
- * instead of repeating the union manually.
  */
-type ValueOf<T> = T[keyof T];
+export type ValueOf<T> = T[keyof T];
 
 /**
  * A map of locale → string.
- *
- * Example:
- *   { br: "translation-portuguese", it: "translation-italian" }
- *
- * Useful for storing translations or locale-specific strings,
- * especially when writing tests or building features that depend
- * on multi-language support.
+ * Example: { br: "pt-BR", it: "it-IT" }
  */
-type LocaleMap = Record<string, string>;
+export type LocaleMap = Record<string, string>;
 
 /**
- * Types for JSON Schemas
- * These types help ensure consistency and type safety when
- * working with JSON schemas for API responses.
+ * Allowed JSON schema directories.
+ * Using union instead of loose string for strong safety.
  */
-type SchemaDir = 'tags' | 'articles' | 'users' | 'profiles';
+export type SchemaDir = 'tags' | 'articles' | 'users' | 'profiles';
 
 /**
- * Mapping of schema directories to their respective file names.
- * This helps ensure that only valid file names are used for each directory.
+ * Mapping of schema directories to valid schema file names.
+ * This enforces strict folder → file relationships.
  */
-interface SchemaFileMap {
+export interface SchemaFileMap {
   users:
     | 'POST_users'
     | 'POST_users_login'
@@ -41,7 +31,9 @@ interface SchemaFileMap {
     | 'POST_users_invalid_login'
     | 'POST_users_blank_email_login'
     | 'POST_users_blank_password_login';
+
   tags: 'GET_tags';
+
   articles:
     | 'GET_articles'
     | 'POST_articles'
@@ -49,52 +41,45 @@ interface SchemaFileMap {
     | 'GET_articles_favorite'
     | 'GET_user_articles'
     | 'DELETE_articles';
+
   profiles: 'GET_profile';
 }
 
 /**
- * Type representing valid schema file names for a given directory.
+ * Type-safe schema file selector by directory.
  */
-type SchemaFile<Dir extends SchemaDir> = SchemaFileMap[Dir];
+export type SchemaFile<Dir extends SchemaDir> = SchemaFileMap[Dir];
 
 /**
- * Type representing a generic JSON Schema object.
+ * Generic JSON Schema type.
+ * Can be tightened later with zod-to-json-schema if needed.
  */
-type JSONSchema = Record<string, any>;
+export type JSONSchema = Record<string, unknown>;
 
 /**
- * Types for API endpoints
- * These types help ensure consistency and type safety when
- * working with API requests.
+ * API Endpoint contract.
+ * Functions are used where dynamic params are required.
  */
-interface Endpoint {
-  user: string;
-  users: string;
-  tags: string;
-  login: string;
-  postArticle: string;
-  articles: string;
-  updateDeleteArticle: (slug: string) => string;
-  profiles: (username: string) => string;
+export interface Endpoint {
+  readonly user: string;
+  readonly users: string;
+  readonly tags: string;
+  readonly login: string;
+  readonly postArticle: string;
+  readonly articles: string;
+
+  readonly updateDeleteArticle: (slug: string) => string;
+  readonly profiles: (username: string) => string;
 }
+
 /**
- * Types for HTTP status codes
- * These types help ensure consistency and type safety when
- * working with API responses.
+ * Strict HTTP status contract.
+ * Uses readonly to prevent mutation at runtime.
  */
-interface HttpStatusCode {
-  Status200_Ok: number;
-  Status201_Created: number;
-  Status403_Forbidden: number;
-  Status204_No_Content: number;
-  Status422_Unprocessable_Content: number;
+export interface HttpStatusCode {
+  readonly Status200_Ok: 200;
+  readonly Status201_Created: 201;
+  readonly Status403_Forbidden: 403;
+  readonly Status204_No_Content: 204;
+  readonly Status422_Unprocessable_Content: 422;
 }
-export {
-  LocaleMap,
-  ValueOf,
-  Endpoint,
-  HttpStatusCode,
-  JSONSchema,
-  SchemaDir,
-  SchemaFile,
-};

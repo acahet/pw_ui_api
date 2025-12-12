@@ -10,6 +10,7 @@ export const setCustomExpectLogger = (logger: APILogger) => {
 };
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace PlaywrightTest {
     interface Matchers<R, T> {
       shouldBeEqual(expected: T): R;
@@ -39,7 +40,8 @@ export const expect = baseExpect.extend({
       if (this.isNot) {
         logs = apiLogger ? apiLogger.getRecentLogs() : 'No API logs available';
       }
-    } catch (e: any) {
+    } catch (_: any) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       pass = false;
       logs = apiLogger ? apiLogger.getRecentLogs() : 'No API logs available';
     }
@@ -65,12 +67,13 @@ export const expect = baseExpect.extend({
     let pass: boolean;
     let logs: string = '';
     try {
-      baseExpect(received).toBeLessThanOrEqual(expected);
+      baseExpect(received).toBeLessThanOrEqual(expected as number | bigint);
       pass = true;
       if (this.isNot) {
         logs = apiLogger.getRecentLogs();
       }
-    } catch (e: any) {
+    } catch (_: any) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       pass = false;
       logs = apiLogger.getRecentLogs();
     }
@@ -104,13 +107,18 @@ export const expect = baseExpect.extend({
     let message: string = '';
 
     try {
-      await validateSchema(dirName, fileName, received, createSchemaFlag);
+      await validateSchema(
+        dirName,
+        fileName,
+        received as object,
+        createSchemaFlag,
+      );
       pass = true;
       message = 'Schema validation passed';
     } catch (e: any) {
       pass = false;
       const logs = apiLogger.getRecentLogs();
-      message = `${e.message}\n\n\RecentAPI Activity:\n${logs}`;
+      message = `${e.message}\n\nRecentAPI Activity:\n${logs}`;
     }
     return { message: () => message, pass };
   },

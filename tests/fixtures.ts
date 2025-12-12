@@ -52,6 +52,7 @@ export const test = base.extend<TestOptions, WorkerFixture>({
     const config = Config;
     await use(config);
   },
+  // eslint-disable-next-line no-empty-pattern
   validateSchema: async ({}, use) => {
     await use(validateSchema);
   },

@@ -7,7 +7,7 @@ export default [
   { files: ['**/*.{js,mjs,cjs,ts}'] },
   {
     languageOptions: {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+       
       globals: globals.node,
       parserOptions: {
         projectService: {
