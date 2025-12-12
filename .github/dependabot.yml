@@ -1,24 +1,7 @@
 version: 2
 updates:
   ############################################################
-  # 1. SECURITY UPDATES (always separate, always immediate)
-  ############################################################
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    allow:
-      - dependency-type: "all"
-    labels:
-      - "security"
-    commit-message:
-      prefix: "security"
-    vulnerability-alerts: true
-    # Security updates are intentionally not grouped
-    groups: {}
-
-  ############################################################
-  # 2. MAINTENANCE UPDATES (weekly, grouped)
+  # SINGLE npm block: handles both security + maintenance
   ############################################################
   - package-ecosystem: "npm"
     directory: "/"
@@ -27,23 +10,31 @@ updates:
       day: "monday"
       time: "09:00"
       timezone: "UTC"
+
+    # enables security PRs separately
+    vulnerability-alerts: true
+
     commit-message:
       prefix: "chore"
       include: "scope"
+
     assignees:
       - "acahet"
+
     reviewers:
       - "acahet"
+
     labels:
       - "dependencies"
       - "automated"
+
     versioning-strategy: increase
-    # Update ALL direct dependencies (prod + dev)
+
     allow:
       - dependency-type: "direct"
 
     ##########################################################
-    # GROUP DEFINITIONS
+    # GROUP DEFINITIONS (MAINTENANCE ONLY)
     ##########################################################
     groups:
       playwright:
