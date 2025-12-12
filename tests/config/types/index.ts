@@ -17,32 +17,32 @@ export type LocaleMap = Record<string, string>;
  * Allowed JSON schema directories.
  * Using union instead of loose string for strong safety.
  */
-export type SchemaDir = 'tags' | 'articles' | 'users' | 'profiles';
+export type SchemaDir = "tags" | "articles" | "users" | "profiles";
 
 /**
  * Mapping of schema directories to valid schema file names.
  * This enforces strict folder → file relationships.
  */
 export interface SchemaFileMap {
-  users:
-    | 'POST_users'
-    | 'POST_users_login'
-    | 'GET_user'
-    | 'POST_users_invalid_login'
-    | 'POST_users_blank_email_login'
-    | 'POST_users_blank_password_login';
+	users:
+		| "POST_users"
+		| "POST_users_login"
+		| "GET_user"
+		| "POST_users_invalid_login"
+		| "POST_users_blank_email_login"
+		| "POST_users_blank_password_login";
 
-  tags: 'GET_tags';
+	tags: "GET_tags";
 
-  articles:
-    | 'GET_articles'
-    | 'POST_articles'
-    | 'PUT_articles'
-    | 'GET_articles_favorite'
-    | 'GET_user_articles'
-    | 'DELETE_articles';
+	articles:
+		| "GET_articles"
+		| "POST_articles"
+		| "PUT_articles"
+		| "GET_articles_favorite"
+		| "GET_user_articles"
+		| "DELETE_articles";
 
-  profiles: 'GET_profile';
+	profiles: "GET_profile";
 }
 
 /**
@@ -61,15 +61,15 @@ export type JSONSchema = Record<string, unknown>;
  * Functions are used where dynamic params are required.
  */
 export interface Endpoint {
-  readonly user: string;
-  readonly users: string;
-  readonly tags: string;
-  readonly login: string;
-  readonly postArticle: string;
-  readonly articles: string;
+	readonly user: string;
+	readonly users: string;
+	readonly tags: string;
+	readonly login: string;
+	readonly postArticle: string;
+	readonly articles: string;
 
-  readonly updateDeleteArticle: (slug: string) => string;
-  readonly profiles: (username: string) => string;
+	readonly updateDeleteArticle: (slug: string) => string;
+	readonly profiles: (username: string) => string;
 }
 
 /**
@@ -77,9 +77,9 @@ export interface Endpoint {
  * Uses readonly to prevent mutation at runtime.
  */
 export interface HttpStatusCode {
-  readonly Status200_Ok: 200;
-  readonly Status201_Created: 201;
-  readonly Status403_Forbidden: 403;
-  readonly Status204_No_Content: 204;
-  readonly Status422_Unprocessable_Content: 422;
+	readonly Status200_Ok: 200;
+	readonly Status201_Created: 201;
+	readonly Status403_Forbidden: 403;
+	readonly Status204_No_Content: 204;
+	readonly Status422_Unprocessable_Content: 422;
 }
