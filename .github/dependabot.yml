@@ -1,8 +1,6 @@
 version: 2
+
 updates:
-  ############################################################
-  # SINGLE npm block: handles both security + maintenance
-  ############################################################
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -11,16 +9,12 @@ updates:
       time: "09:00"
       timezone: "UTC"
 
-    # enables security PRs separately
-    vulnerability-alerts: true
-
     commit-message:
       prefix: "chore"
       include: "scope"
 
     assignees:
       - "acahet"
-
     reviewers:
       - "acahet"
 
@@ -33,9 +27,6 @@ updates:
     allow:
       - dependency-type: "direct"
 
-    ##########################################################
-    # GROUP DEFINITIONS (MAINTENANCE ONLY)
-    ##########################################################
     groups:
       playwright:
         patterns:
