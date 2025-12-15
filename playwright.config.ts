@@ -45,7 +45,7 @@ export default defineConfig({
       testDir: './tests/ui-tests',
       outputDir: './tests/report/test-results/ui-tests',
       fullyParallel: true,
-      workers: process.env.CI ? 2 : undefined
+      workers: process.env.CI ? 2 : 1
     },
     /**
      * uncomment below if you want to have an PW-API project
