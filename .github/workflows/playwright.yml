@@ -97,17 +97,30 @@ jobs:
           set -e
           PR_NUM=${{ github.event.number }}
           echo "Preparing Allure preview for PR #${PR_NUM}"
-          # Clone gh-pages branch (create if it doesn't exist)
-          if ! git clone --depth 1 --branch gh-pages "$REPO" gh-pages; then
-            git clone --depth 1 "$REPO" gh-pages || true
-            cd gh-pages || exit 1
-            git checkout --orphan gh-pages || true
+          # Ensure no leftover directory from previous runs
+          rm -rf gh-pages
+
+          # If the remote has a gh-pages branch, clone it; otherwise create it cleanly
+          if git ls-remote --exit-code --heads "$REPO" gh-pages; then
+            git clone --depth 1 --branch gh-pages "$REPO" gh-pages
+          else
+            # Initialize an orphan gh-pages branch and push it to remote
+            mkdir gh-pages
+            cd gh-pages
+            git init
+            git remote add origin "$REPO"
+            git checkout --orphan gh-pages
             git rm -rf . || true
-            git commit --allow-empty -m "create gh-pages branch" || true
-            git push origin gh-pages || true
+            git commit --allow-empty -m "create gh-pages branch"
+            git push origin gh-pages
             cd ..
             git clone --depth 1 --branch gh-pages "$REPO" gh-pages
           fi
+
+          # Configure git identity so commits in the runner are allowed
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
           rm -rf gh-pages/pr-${PR_NUM}
           mkdir -p gh-pages/pr-${PR_NUM}
           cp -R allure-report/* gh-pages/pr-${PR_NUM}/
