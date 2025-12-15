@@ -17,7 +17,7 @@
     "ajv-formats": "^3.0.1",
     "babel-plugin-module-resolver": "^5.0.2",
     "dotenv": "^17.2.3",
-    "eslint": "^9.39.1",
+    "eslint": "^9.39.2",
     "eslint-plugin-playwright": "^2.4.0",
     "fs": "^0.0.1-security",
     "genson-js": "^0.0.8",
