@@ -79,3 +79,51 @@ jobs:
         with:
           name: allure-report
           path: allure-report
+
+      - name: Upload Allure report for GitHub Pages
+        if: ${{ github.ref == 'refs/heads/main' && success() }}
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./allure-report
+
+      - name: Deploy Allure report to GitHub Pages
+        if: ${{ github.ref == 'refs/heads/main' && success() }}
+        uses: actions/deploy-pages@v1
+      - name: Deploy Allure preview for Pull Request
+        if: ${{ github.event_name == 'pull_request' && success() && github.event.pull_request.head.repo.fork == false }}
+        env:
+          REPO: https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+        run: |
+          set -e
+          PR_NUM=${{ github.event.number }}
+          echo "Preparing Allure preview for PR #${PR_NUM}"
+          # Clone gh-pages branch (create if it doesn't exist)
+          if ! git clone --depth 1 --branch gh-pages "$REPO" gh-pages; then
+            git clone --depth 1 "$REPO" gh-pages || true
+            cd gh-pages || exit 1
+            git checkout --orphan gh-pages || true
+            git rm -rf . || true
+            git commit --allow-empty -m "create gh-pages branch" || true
+            git push origin gh-pages || true
+            cd ..
+            git clone --depth 1 --branch gh-pages "$REPO" gh-pages
+          fi
+          rm -rf gh-pages/pr-${PR_NUM}
+          mkdir -p gh-pages/pr-${PR_NUM}
+          cp -R allure-report/* gh-pages/pr-${PR_NUM}/
+          cd gh-pages
+          git add pr-${PR_NUM}
+          if git commit -m "chore: update allure preview for PR #${PR_NUM}"; then
+            git push origin gh-pages
+          else
+            echo "No changes to push for PR #${PR_NUM}"
+          fi
+      - name: Comment PR with Allure preview URL
+        if: ${{ github.event_name == 'pull_request' && success() && github.event.pull_request.head.repo.fork == false }}
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const pr = context.payload.pull_request.number;
+            const url = `https://${context.repo.owner}.github.io/${context.repo.repo}/pr-${pr}/`;
+            await github.rest.issues.createComment({ owner: context.repo.owner, repo: context.repo.repo, issue_number: pr, body: `Allure preview for this PR: ${url}` });
