@@ -22,8 +22,9 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
-    ['html', { outputFolder: './tests/report/playwright-report' }],
-    ['list'] // Change to your desired report directory
+    // ['html', { outputFolder: './tests/report/playwright-report' }],
+    ['list'], // Change to your desired report directory
+    ['allure-playwright']
     // Add other reporters if needed
   ],
 

@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [main, master]
     paths:
-      - 'tests/**'
+      - "tests/**"
 
 jobs:
   test:
@@ -19,53 +19,63 @@ jobs:
       API_URL: ${{ secrets.API_URL }}
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Cache Node.js dependencies
-      uses: actions/cache@v3
-      id: cache-node
-      with:
-        path: |
-          ~/.npm
-          **/node_modules
-        key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock', '**/package-lock.json') }}
+      - name: Cache Node.js dependencies
+        uses: actions/cache@v3
+        id: cache-node
+        with:
+          path: |
+            ~/.npm
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock', '**/package-lock.json') }}
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: lts/*
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
 
-    - name: Install dependencies
-      if: steps.cache-node.outputs.cache-hit != 'true'
-      run: |
-        npm install -g yarn
-        yarn
+      - name: Install dependencies
+        if: steps.cache-node.outputs.cache-hit != 'true'
+        run: |
+          npm install -g yarn
+          yarn
 
-    - name: Get Playwright version
-      id: playwright-version
-      run: echo "PLAYWRIGHT_VERSION=$(jq -r '.devDependencies[\"@playwright/test\"]' package.json)" >> $GITHUB_ENV
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "PLAYWRIGHT_VERSION=$(jq -r '.devDependencies[\"@playwright/test\"]' package.json)" >> $GITHUB_ENV
 
-    - name: Cache Playwright browsers
-      uses: actions/cache@v3
-      id: cache-playwright
-      with:
-        path: ~/.cache/ms-playwright
-        key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
+      - name: Cache Playwright browsers
+        uses: actions/cache@v3
+        id: cache-playwright
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
 
-    - name: Install Playwright Chromium browser
-      if: steps.cache-playwright.outputs.cache-hit != 'true'
-      run: npx playwright install chromium --with-deps
+      - name: Install Playwright Chromium browser
+        if: steps.cache-playwright.outputs.cache-hit != 'true'
+        run: npx playwright install chromium --with-deps
 
-    - name: Run Playwright API tests
-      run: npx playwright test --project=api-tests
+      - name: Run Playwright API tests
+        run: npx playwright test --project=api-tests
 
-    - name: Run Playwright UI tests
-      if: ${{ success() }}
-      run: npx playwright test --project=ui-tests
+      - name: Run Playwright UI tests
+        if: ${{ success() }}
+        run: npx playwright test --project=ui-tests
 
-    - uses: actions/upload-artifact@v4
-      if: ${{ failure() }}
-      with:
-        name: playwright-report
-        path: tests/report/playwright-report/
-        retention-days: 7
+      - uses: actions/upload-artifact@v4
+        if: ${{ failure() }}
+        with:
+          name: playwright-report
+          path: tests/report/playwright-report/
+          retention-days: 7
+
+      - name: Generate Allure report
+        run: |
+          npx allure generate allure-results --clean -o allure-report
+
+      - name: Upload Allure report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report
