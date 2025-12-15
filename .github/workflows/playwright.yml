@@ -82,13 +82,13 @@ jobs:
 
       - name: Upload Allure report for GitHub Pages
         if: ${{ github.ref == 'refs/heads/main' && success() }}
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./allure-report
 
       - name: Deploy Allure report to GitHub Pages
         if: ${{ github.ref == 'refs/heads/main' && success() }}
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
       - name: Deploy Allure preview for Pull Request
         if: ${{ github.event_name == 'pull_request' && success() && github.event.pull_request.head.repo.fork == false }}
         env:
