@@ -10,5 +10,5 @@ permissions:
 
 jobs:
     lint-pr-title:
-        uses: acahet/shared-workflows/.github/workflows/pr-title-check.yml@v1
+        uses: acahet/shared-workflows/.github/workflows/pr-title-check.yml@main
         secrets: inherit

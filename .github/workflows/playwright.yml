@@ -1,20 +1,20 @@
 name: UI Tests CI
 on:
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
-    paths: ['tests/**']
+    push:
+        branches: [main, master]
+    pull_request:
+        branches: [main, master]
+        paths: ['tests/**']
 
 jobs:
-  run-tests:
-    uses: acahet/shared-workflows/.github/workflows/playwright.yml@v1.0.0
-    with:
-      run-api-tests: true # API tests are skipped
-      run-ui-tests: true  # UI tests are run
-      node-version: '20' # Optional: Override Node.js version
-    secrets:
-      # Secrets must be passed explicitly from the calling repo's secrets
-      EMAIL_API: ${{ secrets.EMAIL_API }}
-      PASSWORD_API: ${{ secrets.PASSWORD_API }}
-      API_URL: ${{ secrets.API_URL }}
+    run-tests:
+        uses: acahet/shared-workflows/.github/workflows/playwright.yml@main
+        with:
+            run-api-tests: true # API tests are skipped
+            run-ui-tests: true # UI tests are run
+            node-version: '20' # Optional: Override Node.js version
+        secrets:
+            # Secrets must be passed explicitly from the calling repo's secrets
+            EMAIL_API: ${{ secrets.EMAIL_API }}
+            PASSWORD_API: ${{ secrets.PASSWORD_API }}
+            API_URL: ${{ secrets.API_URL }}
