@@ -9,8 +9,8 @@ test("login", async ({ page, loginPage, homePage }) => {
 	});
 	await test.step("WHEN - I add valid credentials", async () => {
 		await loginPage.do.compileLoginForm(
-			process.env.EMAIL_API!,
-			process.env.PASSWORD_API!,
+			process.env.EMAIL_API as string,
+			process.env.PASSWORD_API as string,
 		);
 	});
 
