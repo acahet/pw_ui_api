@@ -1,17 +1,17 @@
-import { test } from '@fixtures';
-import { expect } from '@utils/custom-expect';
+import { test } from "@fixtures";
+import { expect } from "@utils/custom-expect";
 
 test.describe(
-	'Feature: Articles API',
+	"Feature: Articles API",
 	{
 		annotation: {
-			type: 'api-articles',
-			description: 'Tests for the Articles API endpoints',
+			type: "api-articles",
+			description: "Tests for the Articles API endpoints",
 		},
-		tag: ['@articles'],
+		tag: ["@articles"],
 	},
 	() => {
-		test('GET Articles', async ({
+		test("GET Articles", async ({
 			api,
 			endpoints,
 			httpStatus: { Status200_Ok },
@@ -22,13 +22,11 @@ test.describe(
 				.withoutAuth()
 				.getRequest(Status200_Ok);
 			await expect(articlesResponse).shouldMatchSchema(
-				'articles',
-				'GET_articles'
+				"articles",
+				"GET_articles",
 			);
-			expect(articlesResponse.articles.length).shouldBeLessThanOrEqual(
-				10
-			);
+			expect(articlesResponse.articles.length).shouldBeLessThanOrEqual(10);
 			expect(articlesResponse.articlesCount).shouldBeEqual(10);
 		});
-	}
+	},
 );
