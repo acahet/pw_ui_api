@@ -1,18 +1,18 @@
-import { test } from '@fixtures';
-import { expect } from '@utils/custom-expect';
-import { getNewRandomArticle } from '@utils/data-generator';
+import { test } from "@fixtures";
+import { expect } from "@utils/custom-expect";
+import { getNewRandomArticle } from "@utils/data-generator";
 
 test.describe(
-	'Feature: Articles API',
+	"Feature: Articles API",
 	{
 		annotation: {
-			type: 'api-articles',
-			description: 'Tests for the Articles API endpoints',
+			type: "api-articles",
+			description: "Tests for the Articles API endpoints",
 		},
-		tag: ['@articles'],
+		tag: ["@articles"],
 	},
 	() => {
-		test('CREATE and DELETE Article', async ({
+		test("CREATE and DELETE Article", async ({
 			api,
 			endpoints,
 			httpStatus,
@@ -23,13 +23,13 @@ test.describe(
 				.body(articleRequestPayload)
 				.postRequest(httpStatus.Status201_Created);
 			await expect(newArticlesResponse).shouldMatchSchema(
-				'articles',
-				'POST_articles'
+				"articles",
+				"POST_articles",
 			);
 			const articleSlug: string = newArticlesResponse.article.slug;
-			expect(newArticlesResponse).toHaveProperty('article');
+			expect(newArticlesResponse).toHaveProperty("article");
 			expect(newArticlesResponse.article.title).shouldBeEqual(
-				articleRequestPayload.article.title
+				articleRequestPayload.article.title,
 			);
 
 			const articlesResponse = await api
@@ -37,7 +37,7 @@ test.describe(
 				.getRequest(httpStatus.Status200_Ok);
 
 			expect(articlesResponse.articles[0].title).shouldBeEqual(
-				articleRequestPayload.article.title
+				articleRequestPayload.article.title,
 			);
 
 			//DELETE
@@ -52,14 +52,14 @@ test.describe(
 				.params({ limit: 10, offset: 0 })
 				.getRequest(httpStatus.Status200_Ok);
 			await expect(articlesResponseAfterDelete).shouldMatchSchema(
-				'articles',
-				'GET_articles'
+				"articles",
+				"GET_articles",
 			);
 			expect(
 				articlesResponseAfterDelete.articles.some(
-					(article: { slug: string }) => article.slug === articleSlug
-				)
+					(article: { slug: string }) => article.slug === articleSlug,
+				),
 			).toBeFalsy();
 		});
-	}
+	},
 );

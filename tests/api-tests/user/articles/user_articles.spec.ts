@@ -1,17 +1,17 @@
-import { test } from '@fixtures';
-import { expect } from '@utils/custom-expect';
+import { test } from "@fixtures";
+import { expect } from "@utils/custom-expect";
 
 test.describe(
-	'Feature: User Articles API',
+	"Feature: User Articles API",
 	{
 		annotation: {
-			type: 'api-user-articles',
-			description: 'Tests for the Logged user Articles API endpoints',
+			type: "api-user-articles",
+			description: "Tests for the Logged user Articles API endpoints",
 		},
-		tag: ['@user', '@articles'],
+		tag: ["@user", "@articles"],
 	},
 	() => {
-		test('GET Current User Favorite Articles', async ({
+		test("GET Current User Favorite Articles", async ({
 			api,
 			endpoints,
 			httpStatus: { Status200_Ok },
@@ -31,13 +31,13 @@ test.describe(
 
 				.getRequest(Status200_Ok);
 			await expect(articlesResponse).shouldMatchSchema(
-				'articles',
-				'GET_articles_favorite'
+				"articles",
+				"GET_articles_favorite",
 			);
 			expect(articlesResponse.articlesCount).shouldBeEqual(0);
 		});
 
-		test('GET Current User Articles', async ({
+		test("GET Current User Articles", async ({
 			api,
 			endpoints,
 			httpStatus: { Status200_Ok },
@@ -55,10 +55,10 @@ test.describe(
 				})
 				.getRequest(Status200_Ok);
 			await expect(articlesResponse).shouldMatchSchema(
-				'articles',
-				'GET_user_articles'
+				"articles",
+				"GET_user_articles",
 			);
 			expect(articlesResponse.articlesCount).shouldBeEqual(0);
 		});
-	}
+	},
 );
