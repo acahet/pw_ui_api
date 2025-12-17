@@ -21,7 +21,7 @@ export async function validateSchema<
 	dirName: Dir,
 	fileName: File,
 	responseBody: object,
-	createSchemaFlag: boolean = false,
+	createSchemaFlag: boolean = true,
 ): Promise<void> {
 	const schemaPath = path.join(
 		SCHEMA_BASE_PATH,
