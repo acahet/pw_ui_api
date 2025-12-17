@@ -23,7 +23,11 @@ test.describe(
 			const articlesResponse = await api
 				.path(endpoints.articles)
 				.clearAuth()
-				.params({ favorited: currentUser.user.username, limit: 10, offset: 0 })
+				.params({
+					favorited: currentUser.user.username,
+					limit: 10,
+					offset: 0,
+				})
 
 				.getRequest(Status200_Ok);
 			await expect(articlesResponse).shouldMatchSchema(
@@ -44,7 +48,11 @@ test.describe(
 
 			const articlesResponse = await api
 				.path(endpoints.articles)
-				.params({ author: currentUser.user.username, limit: 10, offset: 0 })
+				.params({
+					author: currentUser.user.username,
+					limit: 10,
+					offset: 0,
+				})
 				.getRequest(Status200_Ok);
 			await expect(articlesResponse).shouldMatchSchema(
 				"articles",

@@ -11,7 +11,7 @@
                     "type": "string"
                 },
                 "bio": {
-                    "type": "string"
+                    "type": ["null", "string"]
                 },
                 "image": {
                     "type": "string"

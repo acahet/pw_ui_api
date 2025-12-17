@@ -38,8 +38,9 @@
                             "type": "string"
                         },
                         "bio": {
-                            "type": "string"
+                            "type": ["string", "null"]
                         },
+
                         "image": {
                             "type": "string"
                         },

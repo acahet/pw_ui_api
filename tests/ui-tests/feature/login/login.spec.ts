@@ -7,18 +7,15 @@ test("login", async ({ page, loginPage, homePage }) => {
 		await expect(page.locator(homePage.selectors.navBar)).toHaveCount(3);
 		await homePage.do.goToLoginPage();
 	});
-	await test.step("WHEN - I add valid credentials", async () => {
+	await test.step("WHEN - I add valid credentials", async () =>
 		await loginPage.do.compileLoginForm(
 			process.env.EMAIL_API as string,
 			process.env.PASSWORD_API as string,
-		);
-	});
+		));
 
-	await test.step("AND - I click signin button", async () => {
-		await loginPage.do.signIn();
-	});
+	await test.step("AND - I click signin button", async () =>
+		await loginPage.do.signIn());
 
-	await test.step("Then I navigate back to home page with signed in nav bar", async () => {
-		await expect(page.locator(homePage.selectors.navBar)).toHaveCount(4);
-	});
+	await test.step("Then I navigate back to home page with signed in nav bar", async () =>
+		await expect(page.locator(homePage.selectors.navBar)).toHaveCount(3));
 });

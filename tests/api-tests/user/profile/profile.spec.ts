@@ -20,7 +20,7 @@ test.describe(
 				.path(endpoints.user)
 				.getRequest(Status200_Ok);
 
-			await expect(currentUser).shouldMatchSchema("users", "GET_user", true);
+			await expect(currentUser).shouldMatchSchema("users", "GET_user");
 			const profileResponse = await api
 				.path(endpoints.profiles(currentUser.user.username as string))
 				.getRequest(Status200_Ok);
