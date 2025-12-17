@@ -11,36 +11,6 @@ test.describe(
 		tag: ["@user", "@articles"],
 	},
 	() => {
-		test.beforeEach(
-			"Clean up existing articles",
-			async ({
-				api,
-				endpoints,
-				httpStatus: { Status200_Ok, Status204_No_Content },
-			}) => {
-				const currentUser = await api
-					.path(endpoints.user)
-					.getRequest(Status200_Ok);
-
-				const articlesResponse = await api
-					.path(endpoints.articles)
-					.params({
-						author: currentUser.user.username,
-						limit: 100,
-						offset: 0,
-					})
-					.getRequest(Status200_Ok);
-
-				if (articlesResponse.articlesCount > 0) {
-					for (const article of articlesResponse.articles) {
-						await api
-							.path(endpoints.updateDeleteArticle(article.slug as string))
-							.deleteRequest(Status204_No_Content);
-					}
-				}
-			},
-		);
-
 		test("GET Current User Favorite Articles", async ({
 			api,
 			endpoints,
@@ -52,13 +22,12 @@ test.describe(
 
 			const articlesResponse = await api
 				.path(endpoints.articles)
-				.clearAuth()
+				.withoutAuth()
 				.params({
 					favorited: currentUser.user.username,
 					limit: 10,
 					offset: 0,
 				})
-
 				.getRequest(Status200_Ok);
 			await expect(articlesResponse).shouldMatchSchema(
 				"articles",

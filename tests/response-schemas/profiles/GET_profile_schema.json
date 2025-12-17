@@ -1,0 +1,24 @@
+{
+	"type": "object",
+	"properties": {
+		"profile": {
+			"type": "object",
+			"properties": {
+				"username": {
+					"type": "string"
+				},
+				"bio": {
+					"type": ["null", "string"]
+				},
+				"image": {
+					"type": "string"
+				},
+				"following": {
+					"type": "boolean"
+				}
+			},
+			"required": ["username", "bio", "image", "following"]
+		}
+	},
+	"required": ["profile"]
+}

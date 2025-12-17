@@ -4,7 +4,7 @@ import fs from "fs/promises";
 import { createSchema } from "genson-js";
 import path from "path";
 
-const SCHEMA_BASE_PATH = "./response-schemas";
+const SCHEMA_BASE_PATH = "./tests/response-schemas";
 const ajv = new Ajv({ allErrors: true });
 
 /**

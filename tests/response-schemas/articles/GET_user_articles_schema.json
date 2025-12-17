@@ -1,0 +1,12 @@
+{
+	"type": "object",
+	"properties": {
+		"articles": {
+			"type": "array"
+		},
+		"articlesCount": {
+			"type": "integer"
+		}
+	},
+	"required": ["articles", "articlesCount"]
+}

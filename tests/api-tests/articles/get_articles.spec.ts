@@ -19,7 +19,7 @@ test.describe(
 			const articlesResponse = await api
 				.path(endpoints.articles)
 				.params({ limit: 10, offset: 0 })
-				.clearAuth()
+				.withoutAuth()
 				.getRequest(Status200_Ok);
 			await expect(articlesResponse).shouldMatchSchema(
 				"articles",

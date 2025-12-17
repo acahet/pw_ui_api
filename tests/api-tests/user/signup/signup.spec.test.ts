@@ -75,7 +75,7 @@ const runTestFor = (
 					password: section === "password" ? value : user.password,
 				},
 			})
-			.clearAuth()
+			.withoutAuth()
 			.postRequest(Status422_Unprocessable_Content);
 		const abs = newUserResponse.errors[section];
 		if (expectedError) {
