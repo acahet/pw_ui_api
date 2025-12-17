@@ -10,7 +10,7 @@ const runTestFor = (title: string, status: number, body: object, schema) => {
 		const login = await api
 			.path(endpoints.login)
 			.body(body)
-			.clearAuth()
+			.withoutAuth()
 			.postRequest(status);
 		await expect(login).shouldMatchSchema("users", schema);
 	});
@@ -59,7 +59,7 @@ test.describe(
 				const login = await api
 					.path(endpoints.login)
 					.body({ ...userData })
-					.clearAuth()
+					.withoutAuth()
 					.postRequest(Status200_Ok);
 				await expect(login).shouldMatchSchema("users", "POST_users_login");
 				expect(login.user).toHaveProperty("token");

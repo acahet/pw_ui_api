@@ -1,73 +1,42 @@
-import { test } from "@fixtures";
-import { expect } from "@utils/custom-expect";
+import { test } from '@fixtures';
+import { expect } from '@utils/custom-expect';
 
 test.describe(
-	"Feature: User Articles API",
+	'Feature: User Articles API',
 	{
 		annotation: {
-			type: "api-user-articles",
-			description: "Tests for the Logged user Articles API endpoints",
+			type: 'api-user-articles',
+			description: 'Tests for the Logged user Articles API endpoints',
 		},
-		tag: ["@user", "@articles"],
+		tag: ['@user', '@articles'],
 	},
 	() => {
-		test.beforeEach(
-			"Clean up existing articles",
-			async ({
-				api,
-				endpoints,
-				httpStatus: { Status200_Ok, Status204_No_Content },
-			}) => {
-				const currentUser = await api
-					.path(endpoints.user)
-					.getRequest(Status200_Ok);
-
-				const articlesResponse = await api
-					.path(endpoints.articles)
-					.params({
-						author: currentUser.user.username,
-						limit: 100,
-						offset: 0,
-					})
-					.getRequest(Status200_Ok);
-
-				if (articlesResponse.articlesCount > 0) {
-					for (const article of articlesResponse.articles) {
-						await api
-							.path(endpoints.updateDeleteArticle(article.slug as string))
-							.deleteRequest(Status204_No_Content);
-					}
-				}
-			},
-		);
-
-		test("GET Current User Favorite Articles", async ({
+		test('GET Current User Favorite Articles', async ({
 			api,
 			endpoints,
 			httpStatus: { Status200_Ok },
 		}) => {
-			const currentUser = await api
+		const currentUser = await api
 				.path(endpoints.user)
 				.getRequest(Status200_Ok);
 
 			const articlesResponse = await api
 				.path(endpoints.articles)
-				.clearAuth()
+				.withoutAuth()
 				.params({
 					favorited: currentUser.user.username,
 					limit: 10,
 					offset: 0,
 				})
-
 				.getRequest(Status200_Ok);
 			await expect(articlesResponse).shouldMatchSchema(
-				"articles",
-				"GET_articles_favorite",
+				'articles',
+				'GET_articles_favorite'
 			);
 			expect(articlesResponse.articlesCount).shouldBeEqual(0);
 		});
 
-		test("GET Current User Articles", async ({
+		test('GET Current User Articles', async ({
 			api,
 			endpoints,
 			httpStatus: { Status200_Ok },
@@ -85,10 +54,10 @@ test.describe(
 				})
 				.getRequest(Status200_Ok);
 			await expect(articlesResponse).shouldMatchSchema(
-				"articles",
-				"GET_user_articles",
+				'articles',
+				'GET_user_articles'
 			);
 			expect(articlesResponse.articlesCount).shouldBeEqual(0);
 		});
-	},
+	}
 );
