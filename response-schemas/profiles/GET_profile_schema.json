@@ -8,7 +8,7 @@
                     "type": "string"
                 },
                 "bio": {
-                    "type": "null"
+                    "type": ["null", "string"]
                 },
                 "image": {
                     "type": "string"
