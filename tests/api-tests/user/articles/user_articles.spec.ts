@@ -32,15 +32,13 @@ test.describe(
 					.getRequest(Status200_Ok);
 
 				if (articlesResponse.articlesCount > 0) {
-					for (const article of (
-						articlesResponse as { articles: { slug: string }[] }
-					).articles) {
+					for (const article of articlesResponse.articles) {
 						await api
-							.path(endpoints.updateDeleteArticle(article.slug))
+							.path(endpoints.updateDeleteArticle(article.slug as string))
 							.deleteRequest(Status204_No_Content);
 					}
 				}
-			},
+			}
 		);
 
 		test("GET Current User Favorite Articles", async ({
@@ -63,7 +61,7 @@ test.describe(
 				.getRequest(Status200_Ok);
 			await expect(articlesResponse).shouldMatchSchema(
 				"articles",
-				"GET_articles_favorite",
+				"GET_articles_favorite"
 			);
 			expect(articlesResponse.articlesCount).shouldBeEqual(0);
 		});
@@ -87,9 +85,9 @@ test.describe(
 				.getRequest(Status200_Ok);
 			await expect(articlesResponse).shouldMatchSchema(
 				"articles",
-				"GET_user_articles",
+				"GET_user_articles"
 			);
 			expect(articlesResponse.articlesCount).shouldBeEqual(0);
 		});
-	},
+	}
 );
