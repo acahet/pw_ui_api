@@ -4,10 +4,12 @@ on:
         branches: [main, master]
     pull_request:
         branches: [main, master]
+        types: [opened, synchronize, reopened, ready_for_review]
         paths: ['tests/**']
 
 jobs:
     run-tests:
+        if: github.event.pull_request.draft == false
         uses: acahet/shared-workflows/.github/workflows/playwright.yml@main
         with:
             run-api-tests: true # API tests are skipped
