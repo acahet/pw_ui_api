@@ -1,5 +1,5 @@
 echo "Running format check with Biome..."
-npx biome format tests || {
+yarn code:format:check || {
   echo "❌ Format check failed! Please run 'yarn code:format' to fix formatting issues."
   exit 1
 }

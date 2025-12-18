@@ -30,7 +30,6 @@
   },
   "scripts": {
     "lint": "npx eslint",
-    "lint:check": "npx eslint",
     "code:format": "biome format --write tests",
     "code:format:check": "biome format tests",
     "test:all": "npx playwright test --workers=1",
