@@ -1,5 +1,5 @@
-import { APIRequestContext, test } from "@playwright/test";
-import { APILogger } from "@utils/logger";
+import { type APIRequestContext, test } from "@playwright/test";
+import type { APILogger } from "@utils/logger";
 
 interface RequestConfig {
 	baseUrl?: string;
@@ -313,8 +313,7 @@ export class RequestHandler {
 		const headers = { ...this.config.headers };
 
 		if (this.config.includeAuth && this.defaultAuthToken) {
-			headers["Authorization"] =
-				headers["Authorization"] || this.defaultAuthToken;
+			headers.Authorization = headers.Authorization || this.defaultAuthToken;
 		}
 
 		return headers;

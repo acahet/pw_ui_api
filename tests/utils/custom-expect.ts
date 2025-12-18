@@ -1,7 +1,7 @@
-import { APILogger } from "./logger";
-import { validateSchema } from "./schema-validator";
-import { SchemaDir, SchemaFile } from "@config";
+import type { SchemaDir, SchemaFile } from "@config";
 import { expect as baseExpect } from "@playwright/test";
+import type { APILogger } from "./logger";
+import { validateSchema } from "./schema-validator";
 
 let apiLogger: APILogger;
 

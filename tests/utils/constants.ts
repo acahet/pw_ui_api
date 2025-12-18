@@ -1,4 +1,4 @@
-import { Endpoint, HttpStatusCode } from "@config";
+import type { Endpoint, HttpStatusCode } from "@config";
 
 /**
  * HTTP status codes used across API tests.
