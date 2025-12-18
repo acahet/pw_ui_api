@@ -5,7 +5,7 @@ test("login", async ({ page, loginPage, homePage }) => {
 	await test.step("GIVEN - I am at the login page", async () => {
 		await page.goto("/");
 		await expect(page.locator(homePage.selectors.navBar)).toHaveCount(3);
-		await homePage.do.goToLoginPage();
+		await homePage.do.clickLoginButton();
 	});
 	await test.step("WHEN - I add valid credentials", async () =>
 		await loginPage.do.compileLoginForm(

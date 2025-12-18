@@ -14,10 +14,7 @@ class Actions {
 		this.selectors = selectors;
 	}
 
-	async goToLoginPage(): Promise<void> {
-		await this.page.locator(this.selectors.loginBtn).click();
-	}
-	async clickLoginBtn(): Promise<void> {
+	async clickLoginButton(): Promise<void> {
 		await this.page.locator(this.selectors.loginBtn).click();
 	}
 }
