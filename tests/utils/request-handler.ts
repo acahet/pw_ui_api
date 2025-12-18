@@ -151,9 +151,9 @@ export class RequestHandler {
 	 * @returns The response JSON from the API request.
 	 * @throws Error if the actual status code does not match the expected status code.
 	 */
-	async getRequest(statusCode: number): Promise<any> {
+	async getRequest(statusCode: number): Promise<unknown> {
 		const url = this.getUrl();
-		let responseJSON: any;
+		let responseJSON: unknown;
 
 		await test.step(`GET request to: ${url}`, async () => {
 			this.logger.logRequest("GET", url, this.getHeaders());
@@ -176,9 +176,9 @@ export class RequestHandler {
 	 * @returns The response JSON from the API request.
 	 * @throws Error if the actual status code does not match the expected status code.
 	 */
-	async postRequest(statusCode: number): Promise<any> {
+	async postRequest(statusCode: number): Promise<unknown> {
 		const url = this.getUrl();
-		let responseJSON: any;
+		let responseJSON: unknown;
 
 		await test.step(`POST request to: ${url}`, async () => {
 			this.logger.logRequest("POST", url, this.getHeaders(), this.config.body);
@@ -202,9 +202,9 @@ export class RequestHandler {
 	 * @returns The response JSON from the API request.
 	 * @throws Error if the actual status code does not match the expected status code.
 	 */
-	async putRequest(statusCode: number): Promise<any> {
+	async putRequest(statusCode: number): Promise<unknown> {
 		const url = this.getUrl();
-		let responseJSON: any;
+		let responseJSON: unknown;
 
 		await test.step(`PUT request to: ${url}`, async () => {
 			this.logger.logRequest("PUT", url, this.getHeaders(), this.config.body);
@@ -228,9 +228,9 @@ export class RequestHandler {
 	 * @returns The response JSON from the API request.
 	 * @throws Error if the actual status code does not match the expected status code.
 	 */
-	async patchRequest(statusCode: number): Promise<any> {
+	async patchRequest(statusCode: number): Promise<unknown> {
 		const url = this.getUrl();
-		let responseJSON: any;
+		let responseJSON: unknown;
 
 		await test.step(`PATCH request to: ${url}`, async () => {
 			this.logger.logRequest("PATCH", url, this.getHeaders(), this.config.body);
@@ -293,7 +293,7 @@ export class RequestHandler {
 	private statusCodeValidator(
 		actualStatus: number,
 		expectedStatus: number,
-		callingMethod: Function,
+		callingMethod: (statusCode: number) => Promise<unknown>,
 	): void {
 		if (actualStatus !== expectedStatus) {
 			const logs = this.logger.getRecentLogs();

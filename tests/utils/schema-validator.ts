@@ -73,7 +73,8 @@ async function generateNewSchema(responseBody: object, schemaPath: string) {
 		// const enrichedSchema = addDateTimeFormats(generateSchema);
 		await fs.mkdir(path.dirname(schemaPath), { recursive: true });
 		await fs.writeFile(schemaPath, JSON.stringify(enrichedSchema, null, 4));
-	} catch (error: any) {
-		throw new Error(`Failed to create schema file: ${error.message}`);
+	} catch (error: unknown) {
+		const errorMessage = error instanceof Error ? error.message : String(error);
+		throw new Error(`Failed to create schema file: ${errorMessage}`);
 	}
 }

@@ -65,6 +65,7 @@ export const test = base.extend<TestOptions, WorkerFixture>({
 		const homePage = new HomePage(page);
 		await use(homePage);
 	},
+	//constants
 	httpStatus,
 	endpoints,
 });
