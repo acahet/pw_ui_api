@@ -26,8 +26,8 @@
 	},
 	"scripts": {
 		"lint": "npx eslint",
-		"code:format": "biome check --write .",
-		"code:format:check": "biome check .",
+		"code:format": "biome check --write tests",
+		"code:format:check": "biome check tests",
 		"test:all": "npx playwright test --workers=1",
 		"test:ui": "npx playwright test --project ui-tests",
 		"test:api": "npx playwright test --project api-tests",
