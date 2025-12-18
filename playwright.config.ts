@@ -1,7 +1,7 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "@playwright/test";
 import dotenv from "dotenv";
-import path from "node:path";
-import { fileURLToPath } from "url";
 
 // Convert import.meta.url to __filename and __dirname
 const __filename = fileURLToPath(import.meta.url);

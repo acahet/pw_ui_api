@@ -1,7 +1,7 @@
 {
-    "user": {
-        "email": "<email>",
-        "password": "<password>",
-        "username": "<username>"
-    }
+	"user": {
+		"email": "<email>",
+		"password": "<password>",
+		"username": "<username>"
+	}
 }
