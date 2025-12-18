@@ -15,6 +15,7 @@ A comprehensive test automation framework using [Playwright](https://playwright.
 -   [Configuration](#configuration)
 -   [Running Tests](#running-tests)
 -   [Code Quality](#code-quality)
+-   [Git Hooks (Husky)](#git-hooks-husky)
 -   [CI/CD Pipeline](#cicd-pipeline)
 -   [Development](#development)
 -   [Contributing](#contributing)
@@ -42,6 +43,10 @@ pw_ui_api/
 │   │   ├── playwright.yml        # Playwright test execution
 │   │   └── pr-title-check.yml    # PR title validation
 │   └── dependabot.yml            # Dependency update automation
+│
+├── .husky/                        # Git hooks for pre-commit validation
+│   ├── pre-commit                 # Format & lint checks before commit
+│   └── commit-msg                 # Commit message format validation
 │
 ├── tests/
 │   ├── api-tests/                # API test suites
@@ -119,6 +124,8 @@ pw_ui_api/
     npm install -g yarn
     yarn
     ```
+
+    This will also automatically set up Husky git hooks via the `prepare` script.
 
 3. **Install Playwright browsers**
 
@@ -240,6 +247,75 @@ Biome provides:
 -   **ESLint**: JavaScript/TypeScript linting
 -   **Biome**: Modern formatter and linter
 -   **TypeScript**: Static type checking
+
+## Git Hooks (Husky)
+
+This project uses [Husky](https://typicode.github.io/husky/) to enforce code quality and commit conventions through Git hooks.
+
+### Pre-commit Hook
+
+Automatically runs before every commit to ensure code quality:
+
+1. **Format Check**: Verifies code formatting with Biome
+2. **Lint Check**: Runs ESLint to catch code issues
+
+If either check fails, the commit will be blocked. To fix:
+
+```bash
+# Fix formatting issues
+yarn code:format
+
+# Check and fix linting issues
+yarn lint
+```
+
+### Commit Message Hook
+
+Validates that commit messages follow [Conventional Commits](https://www.conventionalcommits.org/) format:
+
+**Format**: `<type>(<optional scope>): <description>`
+
+**Valid types**:
+-   `feat`: New feature
+-   `fix`: Bug fix
+-   `chore`: Maintenance tasks
+-   `build`: Build system changes
+-   `ci`: CI/CD changes
+-   `docs`: Documentation
+-   `style`: Code style (formatting)
+-   `refactor`: Code refactoring
+-   `perf`: Performance improvements
+-   `test`: Test additions/updates
+
+**Examples**:
+```bash
+git commit -m "feat: add user authentication"
+git commit -m "fix(api): resolve login endpoint issue"
+git commit -m "chore: update dependencies"
+```
+
+### Branch Naming Convention
+
+While not strictly enforced, branch names should follow the same convention:
+
+**Format**: `<type>/<description>`
+
+**Examples**:
+-   `feat/add-user-profile`
+-   `fix/auth-bug`
+-   `chore/update-deps`
+
+The commit-msg hook will show a warning if your branch doesn't follow this convention, but it won't block the commit.
+
+### Bypassing Hooks (Not Recommended)
+
+In exceptional cases, you can bypass hooks using:
+
+```bash
+git commit --no-verify -m "your message"
+```
+
+**Note**: This should only be used in emergencies as it bypasses quality checks.
 
 ## CI/CD Pipeline
 
@@ -396,12 +472,19 @@ await expect(value).shouldBeLessThanOrEqual(expected);
 
 ## Contributing
 
-1. Create a feature branch: `git checkout -b feature/your-feature`
+1. Create a feature branch following the naming convention: `git checkout -b <type>/<description>`
+   - Example: `git checkout -b feat/add-user-profile`
 2. Make your changes and ensure tests pass
-3. Format code: `yarn code:format`
-4. Lint: `yarn lint`
+3. Husky hooks will automatically run before commit:
+   - **Pre-commit**: Checks code formatting and linting
+   - **Commit-msg**: Validates commit message format
+4. If hooks fail, fix the issues:
+   - Format: `yarn code:format`
+   - Lint: `yarn lint`
 5. Commit with semantic message: `git commit -m "feat: add new feature"`
 6. Push and open a pull request
+
+**Note**: The PR title must also follow conventional commit format to pass CI checks.
 
 ### Commit Convention
 
