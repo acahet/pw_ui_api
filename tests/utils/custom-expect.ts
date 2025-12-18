@@ -1,7 +1,7 @@
-import { APILogger } from "./logger";
-import { validateSchema } from "./schema-validator";
-import { SchemaDir, SchemaFile } from "@config";
+import type { SchemaDir, SchemaFile } from "@config";
 import { expect as baseExpect } from "@playwright/test";
+import type { APILogger } from "./logger";
+import { validateSchema } from "./schema-validator";
 
 let apiLogger: APILogger;
 
@@ -31,7 +31,7 @@ export const expect = baseExpect.extend({
 	 * @param expected - The expected value
 	 * @returns The result of the comparison
 	 */
-	shouldBeEqual(received: any, expected: any) {
+	shouldBeEqual(received: unknown, expected: unknown) {
 		let pass: boolean;
 		let logs: string = "";
 		try {
@@ -62,7 +62,7 @@ export const expect = baseExpect.extend({
 	 * @param expected - The expected value
 	 * @returns The result of the comparison
 	 */
-	shouldBeLessThanOrEqual(received: any, expected: any) {
+	shouldBeLessThanOrEqual(received: unknown, expected: unknown) {
 		let pass: boolean;
 		let logs: string = "";
 		try {
@@ -96,7 +96,7 @@ export const expect = baseExpect.extend({
 	 * @returns The result of the schema validation
 	 */
 	async shouldMatchSchema<Dir extends SchemaDir, File extends SchemaFile<Dir>>(
-		received: any,
+		received: unknown,
 		dirName: Dir,
 		fileName: File,
 		createSchemaFlag: boolean = false,
@@ -113,10 +113,11 @@ export const expect = baseExpect.extend({
 			);
 			pass = true;
 			message = "Schema validation passed";
-		} catch (e: any) {
+		} catch (e: unknown) {
 			pass = false;
 			const logs = apiLogger.getRecentLogs();
-			message = `${e.message}\n\nRecentAPI Activity:\n${logs}`;
+			const errorMessage = e instanceof Error ? e.message : String(e);
+			message = `${errorMessage}\n\nRecentAPI Activity:\n${logs}`;
 		}
 		return { message: () => message, pass };
 	},

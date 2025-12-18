@@ -20,7 +20,7 @@ export async function createToken(email: string, password: string) {
 			})
 			.postRequest(httpStatus.Status200_Ok);
 
-		return "Token " + tokenResponse.user.token;
+		return `Token ${tokenResponse.user.token}`;
 	} catch (error: unknown) {
 		if (error instanceof Error) {
 			Error.captureStackTrace(error, createToken);

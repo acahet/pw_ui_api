@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import type { Page } from "@playwright/test";
 
 class Selectors {
 	navBar = 'ul[class*="navbar-nav"] li';
@@ -14,10 +14,7 @@ class Actions {
 		this.selectors = selectors;
 	}
 
-	async goToLoginPage(): Promise<void> {
-		await this.page.locator(this.selectors.loginBtn).click();
-	}
-	async clickLoginBtn(): Promise<void> {
+	async clickLoginButton(): Promise<void> {
 		await this.page.locator(this.selectors.loginBtn).click();
 	}
 }

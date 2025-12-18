@@ -1,42 +1,23 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "resolveJsonModule": true,
-    "baseUrl": ".",
-    "esModuleInterop": true,
-    "strict": false,
-    "strictNullChecks": true,
-    "paths": {
-      "@features/*": [
-        "tests/ui-tests/feature/*"
-      ],
-      "@fixtures": [
-        "tests/fixtures.ts"
-      ],
-      "@pages/*": [
-        "tests/ui-tests/pages/*"
-      ],
-      "@config": [
-        "tests/config/index.ts"
-      ],
-      "@utils/*": [
-        "tests/utils/*"
-      ],
-      "@helpers/*": [
-        "tests/helpers/*"
-      ],
-      "@schemas/*": [
-        "tests/response-schemas/*"
-      ],
-      "@request-objects/*": [
-        "request-objects/*"
-      ],
-    },
-    "types": [
-      "@playwright/test",
-      "node"
-    ],
-    "moduleResolution": "node",
-  }
+	"compilerOptions": {
+		"target": "esnext",
+		"module": "esnext",
+		"resolveJsonModule": true,
+		"baseUrl": ".",
+		"esModuleInterop": true,
+		"strict": false,
+		"strictNullChecks": true,
+		"paths": {
+			"@features/*": ["tests/ui-tests/feature/*"],
+			"@fixtures": ["tests/fixtures.ts"],
+			"@pages/*": ["tests/ui-tests/pages/*"],
+			"@config": ["tests/config/index.ts"],
+			"@utils/*": ["tests/utils/*"],
+			"@helpers/*": ["tests/helpers/*"],
+			"@schemas/*": ["tests/response-schemas/*"],
+			"@request-objects/*": ["request-objects/*"]
+		},
+		"types": ["@playwright/test", "node"],
+		"moduleResolution": "node"
+	}
 }

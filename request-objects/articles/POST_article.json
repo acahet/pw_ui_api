@@ -1,8 +1,8 @@
 {
-    "article": {
-        "title": "Post new article title",
-        "description": "API post article description",
-        "body": "Post new article body",
-        "tagList": []
-    }
+	"article": {
+		"title": "Post new article title",
+		"description": "API post article description",
+		"body": "Post new article body",
+		"tagList": []
+	}
 }

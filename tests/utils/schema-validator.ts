@@ -1,8 +1,8 @@
-import { SchemaDir, SchemaFile } from "@config";
+import fs from "node:fs/promises";
+import path from "node:path";
+import type { SchemaDir, SchemaFile } from "@config";
 import Ajv from "ajv";
-import fs from "fs/promises";
 import { createSchema } from "genson-js";
-import path from "path";
 
 const SCHEMA_BASE_PATH = "./tests/response-schemas";
 const ajv = new Ajv({ allErrors: true });
@@ -73,7 +73,8 @@ async function generateNewSchema(responseBody: object, schemaPath: string) {
 		// const enrichedSchema = addDateTimeFormats(generateSchema);
 		await fs.mkdir(path.dirname(schemaPath), { recursive: true });
 		await fs.writeFile(schemaPath, JSON.stringify(enrichedSchema, null, 4));
-	} catch (error: any) {
-		throw new Error(`Failed to create schema file: ${error.message}`);
+	} catch (error: unknown) {
+		const errorMessage = error instanceof Error ? error.message : String(error);
+		throw new Error(`Failed to create schema file: ${errorMessage}`);
 	}
 }

@@ -1,6 +1,6 @@
 {
-    "user": {
-        "email": "<email>",
-        "password": "<password>"
-    }
+	"user": {
+		"email": "<email>",
+		"password": "<password>"
+	}
 }
