@@ -1,0 +1,49 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Get the commit message
+commit_msg=$(cat "$1")
+
+# Get the current branch name
+branch_name=$(git rev-parse --abbrev-ref HEAD)
+
+# Define valid commit types (matching PR title check conventions)
+valid_types="feat|fix|chore|build|ci|docs|style|refactor|perf|test"
+
+# Check if commit message follows conventional commit format
+if ! echo "$commit_msg" | grep -qE "^($valid_types)(\(.+\))?: .+"; then
+  echo "❌ Commit message does not follow conventional commit format!"
+  echo ""
+  echo "Expected format: <type>(<optional scope>): <description>"
+  echo ""
+  echo "Valid types: feat, fix, chore, build, ci, docs, style, refactor, perf, test"
+  echo ""
+  echo "Examples:"
+  echo "  feat: add new login feature"
+  echo "  fix(api): resolve user authentication issue"
+  echo "  chore: update dependencies"
+  echo ""
+  echo "Your commit message:"
+  echo "  $commit_msg"
+  exit 1
+fi
+
+# Check if branch name follows PR title conventions (unless it's main, master, or develop)
+if [ "$branch_name" != "main" ] && [ "$branch_name" != "master" ] && [ "$branch_name" != "develop" ]; then
+  # Extract the type from branch name (e.g., feat/something, fix/issue-123)
+  branch_type=$(echo "$branch_name" | cut -d'/' -f1)
+  
+  # Check if branch type is valid
+  if ! echo "$branch_type" | grep -qE "^($valid_types)$"; then
+    echo "⚠️  Warning: Branch name '$branch_name' does not follow conventional naming."
+    echo ""
+    echo "Recommended format: <type>/<description>"
+    echo "Examples: feat/add-login, fix/auth-bug, chore/update-deps"
+    echo ""
+    echo "Valid types: feat, fix, chore, build, ci, docs, style, refactor, perf, test"
+    echo ""
+    echo "Note: This is a warning only. Commit will proceed."
+  fi
+fi
+
+echo "✅ Commit message format is valid!"

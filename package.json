@@ -21,6 +21,7 @@
     "eslint-plugin-playwright": "^2.4.0",
     "fs": "^0.0.1-security",
     "genson-js": "^0.0.8",
+    "husky": "^9.1.7",
     "path": "^0.12.7",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
@@ -29,11 +30,14 @@
   },
   "scripts": {
     "lint": "npx eslint",
+    "lint:check": "npx eslint",
     "code:format": "biome format --write tests",
+    "code:format:check": "biome format tests",
     "test:all": "npx playwright test --workers=1",
     "test:ui": "npx playwright test --project ui-tests",
     "test:api": "npx playwright test --project api-tests",
     "test:ui-mode": "npx playwright test --ui",
-    "report": "yarn playwright show-report tests/report/playwright-report"
+    "report": "yarn playwright show-report tests/report/playwright-report",
+    "prepare": "husky"
   }
 }
