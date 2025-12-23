@@ -23,4 +23,8 @@ jobs:
     with:
       test_grep: ${{ inputs.test_grep }}
       run_env: ${{ inputs.run_env }}
-      node_version: '18'
+      node_version: '20'
+    secrets:
+      EMAIL_API: ${{ secrets.EMAIL_API }}
+      PASSWORD_API: ${{ secrets.PASSWORD_API }}
+      API_URL: ${{ secrets.API_URL }}
