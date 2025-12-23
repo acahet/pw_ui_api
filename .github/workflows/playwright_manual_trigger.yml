@@ -19,7 +19,7 @@ on:
 
 jobs:
   trigger-tests:
-    uses: acahet/shared-workflows/.github/workflows/playwright-manual.yml@main
+    uses: acahet/shared-workflows/.github/workflows/playwright_manual_trigger.yml@main
     with:
       test_grep: ${{ inputs.test_grep }}
       run_env: ${{ inputs.run_env }}
