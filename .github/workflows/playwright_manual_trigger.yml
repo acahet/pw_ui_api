@@ -1,0 +1,26 @@
+name: Playwright Manual Trigger
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_grep:
+        description: 'Test tag/pattern to run (e.g., @smoke, @regression)'
+        required: false
+        type: string
+      run_env:
+        description: 'Environment to run tests in'
+        required: false
+        type: choice
+        options:
+          - production
+          - staging
+          - local
+        default: 'local'
+
+jobs:
+  trigger-tests:
+    uses: acahet/shared-workflows/.github/workflows/playwright-manual.yml@main
+    with:
+      test_grep: ${{ inputs.test_grep }}
+      run_env: ${{ inputs.run_env }}
+      node_version: '18'
