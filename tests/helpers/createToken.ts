@@ -18,7 +18,7 @@ export async function createToken(email: string, password: string) {
 					password,
 				},
 			})
-			.postRequest(httpStatus.Status200_Ok);
+			.post(httpStatus.Status200_Ok);
 
 		return `Token ${tokenResponse.user.token}`;
 	} catch (error: unknown) {

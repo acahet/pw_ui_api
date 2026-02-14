@@ -11,7 +11,7 @@ const runTestFor = (title: string, status: number, body: object, schema) => {
 			.path(endpoints.login)
 			.body(body)
 			.withoutAuth()
-			.postRequest(status);
+			.post(status);
 		await expect(login).shouldMatchSchema("users", schema);
 	});
 };
@@ -60,7 +60,7 @@ test.describe(
 					.path(endpoints.login)
 					.body({ ...userData })
 					.withoutAuth()
-					.postRequest(Status200_Ok);
+					.post(Status200_Ok);
 				await expect(login).shouldMatchSchema("users", "POST_users_login");
 				expect(login.user).toHaveProperty("token");
 				expect(login.user.token.length).toBeGreaterThan(0);

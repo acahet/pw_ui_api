@@ -20,7 +20,7 @@ test.describe(
 				.path(endpoints.articles)
 				.params({ limit: 10, offset: 0 })
 				.withoutAuth()
-				.getRequest(Status200_Ok);
+				.get(Status200_Ok);
 			await expect(articlesResponse).shouldMatchSchema(
 				"articles",
 				"GET_articles",
