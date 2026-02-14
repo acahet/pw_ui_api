@@ -76,7 +76,7 @@ const runTestFor = (
 				},
 			})
 			.withoutAuth()
-			.postRequest(Status422_Unprocessable_Content);
+			.post(Status422_Unprocessable_Content);
 		const abs = newUserResponse.errors[section];
 		if (expectedError) {
 			expect(abs[0]).shouldBeEqual(expectedError);

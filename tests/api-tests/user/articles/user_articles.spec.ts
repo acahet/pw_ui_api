@@ -18,9 +18,7 @@ test.describe(
 				endpoints,
 				httpStatus: { Status200_Ok, Status204_No_Content },
 			}) => {
-				const currentUser = await api
-					.path(endpoints.user)
-					.getRequest(Status200_Ok);
+				const currentUser = await api.path(endpoints.user).get(Status200_Ok);
 
 				const articlesResponse = await api
 					.path(endpoints.articles)
@@ -29,13 +27,13 @@ test.describe(
 						limit: 100,
 						offset: 0,
 					})
-					.getRequest(Status200_Ok);
+					.get(Status200_Ok);
 
 				if (articlesResponse.articlesCount > 0) {
 					for (const article of articlesResponse.articles) {
 						await api
 							.path(endpoints.updateDeleteArticle(article.slug as string))
-							.deleteRequest(Status204_No_Content);
+							.delete(Status204_No_Content);
 					}
 				}
 			},
@@ -46,9 +44,7 @@ test.describe(
 			endpoints,
 			httpStatus: { Status200_Ok },
 		}) => {
-			const currentUser = await api
-				.path(endpoints.user)
-				.getRequest(Status200_Ok);
+			const currentUser = await api.path(endpoints.user).get(Status200_Ok);
 
 			const articlesResponse = await api
 				.path(endpoints.articles)
@@ -58,7 +54,7 @@ test.describe(
 					limit: 10,
 					offset: 0,
 				})
-				.getRequest(Status200_Ok);
+				.get(Status200_Ok);
 			await expect(articlesResponse).shouldMatchSchema(
 				"articles",
 				"GET_articles_favorite",
@@ -71,9 +67,7 @@ test.describe(
 			endpoints,
 			httpStatus: { Status200_Ok },
 		}) => {
-			const currentUser = await api
-				.path(endpoints.user)
-				.getRequest(Status200_Ok);
+			const currentUser = await api.path(endpoints.user).get(Status200_Ok);
 
 			const articlesResponse = await api
 				.path(endpoints.articles)
@@ -82,7 +76,7 @@ test.describe(
 					limit: 10,
 					offset: 0,
 				})
-				.getRequest(Status200_Ok);
+				.get(Status200_Ok);
 			await expect(articlesResponse).shouldMatchSchema(
 				"articles",
 				"GET_user_articles",

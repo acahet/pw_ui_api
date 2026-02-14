@@ -24,7 +24,7 @@ test.describe(
 			const newArticlesResponse = await api
 				.path(endpoints.articles)
 				.body(articleRequestPayload)
-				.postRequest(httpStatus.Status201_Created);
+				.post(httpStatus.Status201_Created);
 			await expect(newArticlesResponse).shouldMatchSchema(
 				"articles",
 				"POST_articles",
@@ -38,7 +38,7 @@ test.describe(
 			const articlesResponse = await api
 				.path(endpoints.articles)
 				.params({ limit: 10, offset: 0 })
-				.getRequest(httpStatus.Status200_Ok);
+				.get(httpStatus.Status200_Ok);
 
 			//READ
 			expect(articlesResponse.articles[0].title).shouldBeEqual(
@@ -49,7 +49,7 @@ test.describe(
 			const updateArticleResponse = await api
 				.path(endpoints.updateDeleteArticle(articleSlug))
 				.body(updateArticleRequestPayload)
-				.putRequest(httpStatus.Status200_Ok);
+				.put(httpStatus.Status200_Ok);
 			await expect(updateArticleResponse).shouldMatchSchema(
 				"articles",
 				"PUT_articles",
@@ -63,14 +63,14 @@ test.describe(
 
 			const deleteArticleResponse = await api
 				.path(endpoints.updateDeleteArticle(articleSlugUpdated))
-				.deleteRequest(httpStatus.Status204_No_Content);
+				.delete(httpStatus.Status204_No_Content);
 			expect(deleteArticleResponse).toBeUndefined();
 
 			//VERIFY DELETION
 			const articlesResponseAfterDelete = await api
 				.path(endpoints.articles)
 				.params({ limit: 10, offset: 0 })
-				.getRequest(httpStatus.Status200_Ok);
+				.get(httpStatus.Status200_Ok);
 			await expect(articlesResponseAfterDelete).shouldMatchSchema(
 				"articles",
 				"GET_articles",

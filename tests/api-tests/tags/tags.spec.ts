@@ -16,9 +16,7 @@ test.describe(
 			endpoints,
 			httpStatus: { Status200_Ok },
 		}) => {
-			const tagsResponse = await api
-				.path(endpoints.tags)
-				.getRequest(Status200_Ok);
+			const tagsResponse = await api.path(endpoints.tags).get(Status200_Ok);
 			await expect(tagsResponse).shouldMatchSchema("tags", "GET_tags");
 			expect(tagsResponse).toHaveProperty("tags");
 			expect(tagsResponse.tags[0]).shouldBeEqual("Test");
