@@ -220,6 +220,37 @@ yarn report
 yarn report:smart
 ```
 
+## Test Reports
+
+### Local Reports
+
+After running tests locally, you can view the reports in your browser:
+
+- **Standard HTML Report**: `yarn report` - Opens the default Playwright HTML report
+- **Smart Report**: `yarn report:smart` - Opens the enhanced smart reporter dashboard
+
+### CI/CD Reports (GitHub Pages)
+
+Test reports from CI runs are automatically deployed to GitHub Pages and accessible via:
+
+**Main Report Hub**: `https://<your-username>.github.io/<repo-name>/`
+
+From there you can access:
+- **🧠 Smart Report**: Enhanced report with historical trends, flaky test detection, and analytics
+- **📊 Standard Report**: Default Playwright HTML report with traces and screenshots
+
+#### Report URLs:
+- Report Hub: `https://<your-username>.github.io/<repo-name>/`
+- Smart Report: `https://<your-username>.github.io/<repo-name>/smart-report.html`
+- Standard Report: `https://<your-username>.github.io/<repo-name>/index.html`
+
+#### Setup GitHub Pages:
+1. Go to your repository **Settings** → **Pages**
+2. Under **Source**, select **GitHub Actions**
+3. Reports will be automatically deployed after each successful test run
+
+**Note**: Reports are deployed only on successful test runs on the `main` branch or can be triggered manually via the workflow dispatch button.
+
 ### Code quality checks
 
 ```bash
