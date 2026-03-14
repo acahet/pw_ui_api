@@ -5,7 +5,13 @@ on:
     pull_request:
         branches: [main, master]
         types: [opened, synchronize, reopened, ready_for_review]
-        paths: ['tests/**']
+        paths:
+            - 'tests/**'
+            - 'playwright.config.ts'
+            - 'package.json'
+            - 'package-lock.json'
+            - '.github/workflows/playwright.yml'
+            - '.github/workflows/playwright_manual_trigger.yml'
 
 jobs:
     run-tests:
