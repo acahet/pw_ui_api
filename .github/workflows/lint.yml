@@ -23,8 +23,8 @@ jobs:
           npm install -g yarn
           yarn
 
-      - name: Run ESLint
-        run: yarn lint
+      - name: Run Biome Lint
+        run: npx biome lint tests
 
       - name: Check formatting with Biome
         run: npx biome format tests
