@@ -8,7 +8,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const playwrightReportDir = "./tests/report/playwright-report";
 const smartReportFile = `${playwrightReportDir}/smart-report.html`;
-const smartHistoryFile = "./tests/report/smart-reporter-history/test-history.json";
+const smartHistoryFile =
+	"./tests/report/smart-reporter-history/test-history.json";
 
 // Load environment variables
 dotenv.config({ path: path.resolve(__dirname, ".env") });
