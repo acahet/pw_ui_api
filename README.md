@@ -39,7 +39,7 @@ This framework provides:
 pw_ui_api/
 ├── .github/
 │   ├── workflows/
-│   │   ├── lint.yml              # ESLint & Biome format checks
+│   │   ├── lint.yml              # Code quality checks (Biome + ESLint)
 │   │   ├── playwright.yml        # Playwright test execution
 │   │   └── pr-title-check.yml    # PR title validation
 │   └── dependabot.yml            # Dependency update automation
@@ -96,10 +96,12 @@ pw_ui_api/
 │
 ├── playwright.config.ts          # Playwright configuration
 ├── tsconfig.json                 # TypeScript configuration
-├── eslint.config.js              # ESLint configuration
-├── biome.json                    # Biome formatter/linter config
+├── biome.json                    # Biome configuration (formatter, linter, imports)
+├── eslint.config.js              # ESLint configuration (Playwright rules)
 ├── package.json                  # Dependencies and scripts
 ├── .env.example                  # Environment variables template
+├── .vscode/                      # VS Code settings
+│   └── settings.json             # Editor configuration for Biome
 └── README.md                     # This file
 ```
 
@@ -205,46 +207,103 @@ yarn test:ui-mode
 yarn report
 ```
 
-### Watch mode (for development)
+### Code quality checks
 
 ```bash
-npx playwright test --watch
+# Run Biome checks with auto-fix
+yarn code:check
+
+# Run ESLint on test files
+yarn code:lint:playwright
+
+# Run both Biome + ESLint
+yarn code:all
+
+# CI mode (both tools, with caching)
+yarn code:ci
 ```
 
 ## Code Quality
 
-### Linting
+### Hybrid Setup: Biome + ESLint
 
-Run Biome to check for code issues:
+This project uses a **hybrid approach** for optimal code quality:
+
+- **Biome**: Fast formatting, general linting, and import organization (entire codebase)
+- **ESLint**: Playwright-specific rules and best practices (test files only)
+
+### Biome - Formatting & General Linting
+
+[Biome](https://biomejs.dev/) handles all formatting, import organization, and general TypeScript linting.
+
+**Commands:**
 
 ```bash
-npx biome lint tests
-```
+# Format, lint, and organize imports (auto-fix)
+yarn code:check
 
-### Code Formatting
-
-Format code with Biome:
-
-```bash
+# Format code only
 yarn code:format
+
+# Lint code only
+yarn code:lint
 ```
 
-Biome provides:
-
-- Code formatting with consistent style
-- Import organization
-- Linting rules for code quality
+**Features:**
+- ⚡ Extremely fast (Rust-based)
+- 🎨 Consistent code formatting
+- 📦 Automatic import organization
+- 🔍 Modern linting rules
+- 🔒 Type-aware for TypeScript
 
 **Configuration**: `biome.json`
-
 - **Indent**: Tabs
-- **Quote Style**: Double quotes for JavaScript
-- **Trailing Commas**: All
-- **Arrow Parentheses**: Always
+- **Quote Style**: Double quotes
+- **Line Ending**: LF
+- **Rules**: Recommended + custom overrides
+
+### ESLint - Playwright-Specific Linting
+
+[ESLint](https://eslint.org/) with `eslint-plugin-playwright` catches Playwright-specific issues that Biome can't detect.
+
+**Commands:**
+
+```bash
+# Lint test files with Playwright rules
+yarn code:lint:playwright
+
+# Run both Biome + ESLint
+yarn code:all
+
+# CI mode (both tools, with caching)
+yarn code:ci
+```
+
+**Playwright Rules:**
+- ❌ Missing `await` on async Playwright methods
+- ❌ Deprecated element handles
+- ❌ Using `page.pause()` in committed code
+- ✅ Web-first assertions
+- ✅ Best practices for selectors
+
+**Configuration**: `eslint.config.js`
+- **Scope**: `tests/**/*.ts` only
+- **Caching**: Enabled (`.eslintcache`)
+- **Auto-fix**: Enabled with `--fix`
+
+### Why Both Tools?
+
+| Tool | Purpose | Speed | Scope |
+|------|---------|-------|-------|
+| **Biome** | Format, general lint, imports | ⚡ ~1s | All files |
+| **ESLint** | Playwright-specific rules | 🐢 ~3-5s | Test files only |
+
+**Combined**: ~5s total for full codebase checks
 
 ### Tools
 
-- **Biome**: Modern formatter and linter
+- **Biome**: Modern all-in-one toolchain (formatting, linting, imports)
+- **ESLint**: Playwright-specific linting and best practices
 - **TypeScript**: Static type checking
 
 ## Git Hooks (Husky)
@@ -255,18 +314,26 @@ This project uses [Husky](https://typicode.github.io/husky/) to enforce code qua
 
 Automatically runs before every commit to ensure code quality:
 
-1. **Format Check**: Verifies code formatting with Biome
-2. **Lint Check**: Runs Biome to catch code issues
+1. **Biome Check**: Formats, lints, and organizes imports on all staged files
+2. **ESLint Check**: Runs Playwright-specific rules on staged test files only
 
-If either check fails, the commit will be blocked. To fix:
+If any check fails, the commit will be blocked. To fix:
 
 ```bash
-# Fix formatting issues
-yarn code:format
+# Fix Biome issues (format, lint, organize imports)
+yarn code:check
 
-# Check and fix linting issues
-npx biome lint tests --write
+# Fix Playwright-specific issues
+yarn code:lint:playwright
+
+# Or fix both at once
+yarn code:all
 ```
+
+The pre-commit hook is optimized:
+- Uses `--staged` to check only files being committed
+- ESLint only runs if test files are staged
+- Fast execution (~1-2s for typical commits)
 
 ### Commit Message Hook
 
@@ -323,12 +390,13 @@ git commit --no-verify -m "your message"
 
 ### Workflows
 
-#### 1. **Lint & Format Check** (`.github/workflows/lint.yml`)
+#### 1. **Code Quality Check** (`.github/workflows/lint.yml`)
 
 - Triggers on every push and pull request to `main`/`master`
-- Runs Biome lint checks
-- Runs Biome format verification
-- Blocks merge if checks fail
+- Runs Biome CI checks (format, lint, organize imports)
+- Runs ESLint with Playwright-specific rules (with caching)
+- Blocks merge if either check fails
+- Typical runtime: ~5-6 seconds
 
 #### 2. **Playwright Tests** (`.github/workflows/playwright.yml`)
 

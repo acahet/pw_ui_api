@@ -1,13 +1,16 @@
-echo "Running format check with Biome..."
-yarn code:format:check || {
-  echo "❌ Format check failed! Please run 'yarn code:format' to fix formatting issues."
+echo "Running Biome check (format + lint)..."
+npx biome check --staged --no-errors-on-unmatched || {
+  echo "❌ Biome check failed! Run 'yarn code:check' to fix issues automatically."
   exit 1
 }
 
-echo "Running lint check with ESLint..."
-yarn lint || {
-  echo "❌ Lint check failed! Please fix linting issues before committing."
-  exit 1
-}
+echo "Running ESLint (Playwright rules) on test files..."
+STAGED_TS_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep "tests/.*\.ts$" || true)
+if [ -n "$STAGED_TS_FILES" ]; then
+  npx eslint --fix $STAGED_TS_FILES || {
+    echo "❌ ESLint check failed! Run 'yarn code:lint:playwright' to fix issues."
+    exit 1
+  }
+fi
 
 echo "✅ All pre-commit checks passed!"

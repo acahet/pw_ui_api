@@ -6,7 +6,16 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"ignoreUnknown": true
+		"ignoreUnknown": true,
+		"ignore": [
+			"**/node_modules/**",
+			"**/dist/**",
+			"**/build/**",
+			"**/.git/**",
+			"**/playwright-report/**",
+			"**/test-results/**",
+			"**/coverage/**"
+		]
 	},
 	"formatter": {
 		"enabled": true,
@@ -21,7 +30,15 @@
 				"noEmptyPattern": "off"
 			},
 			"suspicious": {
-				"noExplicitAny": "off"
+				"noExplicitAny": "warn",
+				"noConsoleLog": "warn"
+			},
+			"complexity": {
+				"noForEach": "off"
+			},
+			"style": {
+				"useConst": "error",
+				"useTemplate": "warn"
 			}
 		}
 	},
@@ -30,12 +47,7 @@
 			"quoteStyle": "double"
 		}
 	},
-	"assist": {
-		"enabled": true,
-		"actions": {
-			"source": {
-				"organizeImports": "on"
-			}
-		}
+	"organizeImports": {
+		"enabled": true
 	}
 }
