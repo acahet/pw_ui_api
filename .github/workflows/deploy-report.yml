@@ -2,7 +2,7 @@ name: Deploy Test Reports to GitHub Pages
 
 on:
     workflow_run:
-        workflows: ["UI Tests CI"]
+        workflows: ["UI Tests CI"]  # Make sure this matches your CI workflow name exactly
         types:
             - completed
     # Allow manual trigger
@@ -31,17 +31,20 @@ jobs:
             - name: Download artifact
               uses: actions/download-artifact@v4
               with:
-                  # Download from the workflow run that triggered this
                   github-token: ${{ secrets.GITHUB_TOKEN }}
-                  run-id: ${{ github.event.workflow_run.id }}
+                  run-id: ${{ github.event.workflow_run.id || github.run_id }}
                   name: playwright-report
                   path: ./report
 
-            - name: Prepare report structure
+            - name: Prepare report structure (Make Smart Report Root)
               run: |
-                  # Rename report-index.html to index.html for GitHub Pages root
+                  # Make smart-report.html the default page
+                  if [ -f ./report/smart-report.html ]; then
+                      cp ./report/smart-report.html ./report/index.html
+                  fi
+                  # Keep hub page accessible
                   if [ -f ./report/report-index.html ]; then
-                      mv ./report/report-index.html ./report/index.html
+                      mv ./report/report-index.html ./report/hub.html
                   fi
                   # List files for debugging
                   ls -la ./report/
