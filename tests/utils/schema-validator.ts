@@ -58,7 +58,9 @@ async function loadSchema(schemaPath: string) {
 		}
 		return schema;
 	} catch (error) {
-		throw new Error(`Failed to read the schema file: ${error.message}`);
+		throw new Error(`Failed to read the schema file: ${error.message}`, {
+			cause: error,
+		});
 	}
 }
 
@@ -75,6 +77,8 @@ async function generateNewSchema(responseBody: object, schemaPath: string) {
 		await fs.writeFile(schemaPath, JSON.stringify(enrichedSchema, null, 4));
 	} catch (error: unknown) {
 		const errorMessage = error instanceof Error ? error.message : String(error);
-		throw new Error(`Failed to create schema file: ${errorMessage}`);
+		throw new Error(`Failed to create schema file: ${errorMessage}`, {
+			cause: error,
+		});
 	}
 }

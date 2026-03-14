@@ -28,7 +28,9 @@ export async function createToken(email: string, password: string) {
 		}
 
 		// ✅ Handles non-Error throws safely
-		throw new Error(`Unknown error occurred: ${JSON.stringify(error)}`);
+		throw new Error(`Unknown error occurred: ${JSON.stringify(error)}`, {
+			cause: error,
+		});
 	} finally {
 		await context.dispose();
 	}

@@ -1,4 +1,4 @@
-name: Lint & Format Check
+name: Code Quality Check
 
 on:
   push:
@@ -23,8 +23,8 @@ jobs:
           npm install -g yarn
           yarn
 
-      - name: Run Biome Lint
-        run: npx biome lint tests
+      - name: Run Biome CI
+        run: npx biome ci .
 
-      - name: Check formatting with Biome
-        run: npx biome format tests
+      - name: Run ESLint (Playwright rules)
+        run: npx eslint --cache tests/**/*.ts
