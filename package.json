@@ -17,6 +17,7 @@
 		"eslint": "^10.0.3",
 		"eslint-plugin-playwright": "^2.9.0",
 		"genson-js": "^0.0.8",
+		"http-server": "^14.1.1",
 		"husky": "^9.1.7",
 		"playwright-smart-reporter": "^1.6.5",
 		"ts-node": "^10.9.2",
@@ -37,7 +38,7 @@
 		"test:api": "npx playwright test --project api-tests",
 		"test:ui-mode": "npx playwright test --ui",
 		"report": "yarn playwright show-report tests/report/playwright-report",
-		"report:smart": "npx playwright-smart-reporter-serve tests/report/playwright-report/smart-report.html",
+		"report:history": "node scripts/start-history-server.js",
 		"prepare": "husky"
 	}
 }

@@ -1,0 +1,1249 @@
+{
+  "config": {
+    "configFile": "/Users/andersoncahet/Documents/studies/pw_ui_api/playwright.config.ts",
+    "rootDir": "/Users/andersoncahet/Documents/studies/pw_ui_api",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/report/test-results/ui-tests",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "ui-tests",
+        "name": "ui-tests",
+        "testDir": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/ui-tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/report/test-results/api-tests",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "api-tests",
+        "name": "api-tests",
+        "testDir": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "./tests/report/playwright-report"
+        }
+      ],
+      [
+        "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/reporters/history-reporter.ts",
+        null
+      ],
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "./tests/report/test-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.2",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "tests/api-tests/articles/create_article.spec.ts",
+      "file": "tests/api-tests/articles/create_article.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Feature: Articles API",
+          "file": "tests/api-tests/articles/create_article.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "CREATE and DELETE Article",
+              "ok": true,
+              "tags": [
+                "articles"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "api-articles",
+                      "description": "Tests for the Articles API endpoints",
+                      "location": {
+                        "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/articles/create_article.spec.ts",
+                        "line": 5,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "api-tests",
+                  "projectName": "api-tests",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1376,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "POST https://conduit-api.bondaracademy.com/api/articles",
+                          "duration": 255
+                        },
+                        {
+                          "title": "GET https://conduit-api.bondaracademy.com/api/articles",
+                          "duration": 292
+                        },
+                        {
+                          "title": "DELETE https://conduit-api.bondaracademy.com/api/articles/QA-TEST:-Adipiscor-ara-reprehenderit-pecto-delibero.-42545",
+                          "duration": 246
+                        },
+                        {
+                          "title": "GET https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0",
+                          "duration": 257
+                        }
+                      ],
+                      "startTime": "2026-03-14T18:20:12.614Z",
+                      "annotations": [
+                        {
+                          "type": "api-articles",
+                          "description": "Tests for the Articles API endpoints",
+                          "location": {
+                            "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/articles/create_article.spec.ts",
+                            "line": 5,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "6e9bac4acf683dd8300e-581004de3fbfde94acce",
+              "file": "tests/api-tests/articles/create_article.spec.ts",
+              "line": 15,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tests/api-tests/articles/get_articles.spec.ts",
+      "file": "tests/api-tests/articles/get_articles.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Feature: Articles API",
+          "file": "tests/api-tests/articles/get_articles.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "GET Articles",
+              "ok": true,
+              "tags": [
+                "articles"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "api-articles",
+                      "description": "Tests for the Articles API endpoints",
+                      "location": {
+                        "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/articles/get_articles.spec.ts",
+                        "line": 4,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "api-tests",
+                  "projectName": "api-tests",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 693,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "GET https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0",
+                          "duration": 634
+                        }
+                      ],
+                      "startTime": "2026-03-14T18:20:14.821Z",
+                      "annotations": [
+                        {
+                          "type": "api-articles",
+                          "description": "Tests for the Articles API endpoints",
+                          "location": {
+                            "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/articles/get_articles.spec.ts",
+                            "line": 4,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2b8195d36ea0a4ea1bbb-6ecc19aedf4cc3c0aaf9",
+              "file": "tests/api-tests/articles/get_articles.spec.ts",
+              "line": 14,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tests/api-tests/articles/update_article.spec.ts",
+      "file": "tests/api-tests/articles/update_article.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Feature: Articles API",
+          "file": "tests/api-tests/articles/update_article.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "CREATE, UPDATE and DELETE Article",
+              "ok": true,
+              "tags": [
+                "articles"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "api-articles",
+                      "description": "Tests for the Articles API endpoints",
+                      "location": {
+                        "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/articles/update_article.spec.ts",
+                        "line": 5,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "api-tests",
+                  "projectName": "api-tests",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1222,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "POST https://conduit-api.bondaracademy.com/api/articles",
+                          "duration": 202
+                        },
+                        {
+                          "title": "GET https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0",
+                          "duration": 238
+                        },
+                        {
+                          "title": "PUT https://conduit-api.bondaracademy.com/api/articles/QA-TEST:-Amicitia-summa-coerceo-ascisco-cauda.-42545",
+                          "duration": 228
+                        },
+                        {
+                          "title": "DELETE https://conduit-api.bondaracademy.com/api/articles/QA-TEST:-Terreo-adipiscor-commodo-speculum-vereor.-42545",
+                          "duration": 236
+                        },
+                        {
+                          "title": "GET https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0",
+                          "duration": 249
+                        }
+                      ],
+                      "startTime": "2026-03-14T18:20:15.574Z",
+                      "annotations": [
+                        {
+                          "type": "api-articles",
+                          "description": "Tests for the Articles API endpoints",
+                          "location": {
+                            "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/articles/update_article.spec.ts",
+                            "line": 5,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3f5162fe476926531a1b-9423a868eaafc06960d1",
+              "file": "tests/api-tests/articles/update_article.spec.ts",
+              "line": 15,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tests/api-tests/tags/tags.spec.ts",
+      "file": "tests/api-tests/tags/tags.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Feature: Tags API",
+          "file": "tests/api-tests/tags/tags.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "GET tags",
+              "ok": true,
+              "tags": [
+                "tags"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "api-tags",
+                      "description": "Tests for the Tags API endpoints",
+                      "location": {
+                        "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/tags/tags.spec.ts",
+                        "line": 4,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "api-tests",
+                  "projectName": "api-tests",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 390,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "GET https://conduit-api.bondaracademy.com/api/tags",
+                          "duration": 350
+                        }
+                      ],
+                      "startTime": "2026-03-14T18:20:16.848Z",
+                      "annotations": [
+                        {
+                          "type": "api-tags",
+                          "description": "Tests for the Tags API endpoints",
+                          "location": {
+                            "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/tags/tags.spec.ts",
+                            "line": 4,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "8b0b640a8fb172c55ea9-d6bf815031d6442ee0c3",
+              "file": "tests/api-tests/tags/tags.spec.ts",
+              "line": 14,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tests/api-tests/user/articles/user_articles.spec.ts",
+      "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Feature: User Articles API",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "GET Current User Favorite Articles",
+              "ok": true,
+              "tags": [
+                "user",
+                "articles"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "api-user-articles",
+                      "description": "Tests for the Logged user Articles API endpoints",
+                      "location": {
+                        "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/articles/user_articles.spec.ts",
+                        "line": 4,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "api-tests",
+                  "projectName": "api-tests",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 783,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "GET https://conduit-api.bondaracademy.com/api/user",
+                          "duration": 178
+                        },
+                        {
+                          "title": "GET https://conduit-api.bondaracademy.com/api/articles?favorited=pw_api_udemy&limit=10&offset=0",
+                          "duration": 197
+                        }
+                      ],
+                      "startTime": "2026-03-14T18:20:17.293Z",
+                      "annotations": [
+                        {
+                          "type": "api-user-articles",
+                          "description": "Tests for the Logged user Articles API endpoints",
+                          "location": {
+                            "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/articles/user_articles.spec.ts",
+                            "line": 4,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5aef451273aa9b5218c8-5ba57f83d030372778b7",
+              "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+              "line": 42,
+              "column": 3
+            },
+            {
+              "title": "GET Current User Articles",
+              "ok": true,
+              "tags": [
+                "user",
+                "articles"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "api-user-articles",
+                      "description": "Tests for the Logged user Articles API endpoints",
+                      "location": {
+                        "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/articles/user_articles.spec.ts",
+                        "line": 4,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "api-tests",
+                  "projectName": "api-tests",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 803,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "GET https://conduit-api.bondaracademy.com/api/user",
+                          "duration": 182
+                        },
+                        {
+                          "title": "GET https://conduit-api.bondaracademy.com/api/articles?author=pw_api_udemy&limit=10&offset=0",
+                          "duration": 187
+                        }
+                      ],
+                      "startTime": "2026-03-14T18:20:18.106Z",
+                      "annotations": [
+                        {
+                          "type": "api-user-articles",
+                          "description": "Tests for the Logged user Articles API endpoints",
+                          "location": {
+                            "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/articles/user_articles.spec.ts",
+                            "line": 4,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5aef451273aa9b5218c8-ab355a50690874a3be78",
+              "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+              "line": 65,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tests/api-tests/user/login/login.spec.ts",
+      "file": "tests/api-tests/user/login/login.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Feature: Login User API",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "line": 19,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Negavtive Tests",
+              "file": "tests/api-tests/user/login/login.spec.ts",
+              "line": 29,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Invalid Login",
+                  "ok": true,
+                  "tags": [
+                    "user",
+                    "login"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [
+                        {
+                          "type": "api-user-login",
+                          "description": "Tests for the User Login API endpoint",
+                          "location": {
+                            "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/login/login.spec.ts",
+                            "line": 19,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "expectedStatus": "passed",
+                      "projectId": "api-tests",
+                      "projectName": "api-tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 198,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "POST https://conduit-api.bondaracademy.com/api/users/login",
+                              "duration": 182
+                            }
+                          ],
+                          "startTime": "2026-03-14T18:20:18.968Z",
+                          "annotations": [
+                            {
+                              "type": "api-user-login",
+                              "description": "Tests for the User Login API endpoint",
+                              "location": {
+                                "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/login/login.spec.ts",
+                                "line": 19,
+                                "column": 6
+                              }
+                            }
+                          ],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "11f28cb92e49d8100d5e-b571a963e1c8fee2c453",
+                  "file": "tests/api-tests/user/login/login.spec.ts",
+                  "line": 9,
+                  "column": 2
+                },
+                {
+                  "title": "Blank Email",
+                  "ok": true,
+                  "tags": [
+                    "user",
+                    "login"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [
+                        {
+                          "type": "api-user-login",
+                          "description": "Tests for the User Login API endpoint",
+                          "location": {
+                            "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/login/login.spec.ts",
+                            "line": 19,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "expectedStatus": "passed",
+                      "projectId": "api-tests",
+                      "projectName": "api-tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 211,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "POST https://conduit-api.bondaracademy.com/api/users/login",
+                              "duration": 174
+                            }
+                          ],
+                          "startTime": "2026-03-14T18:20:19.197Z",
+                          "annotations": [
+                            {
+                              "type": "api-user-login",
+                              "description": "Tests for the User Login API endpoint",
+                              "location": {
+                                "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/login/login.spec.ts",
+                                "line": 19,
+                                "column": 6
+                              }
+                            }
+                          ],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "11f28cb92e49d8100d5e-6a8131267986ce17446c",
+                  "file": "tests/api-tests/user/login/login.spec.ts",
+                  "line": 9,
+                  "column": 2
+                },
+                {
+                  "title": "Blank Password",
+                  "ok": true,
+                  "tags": [
+                    "user",
+                    "login"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [
+                        {
+                          "type": "api-user-login",
+                          "description": "Tests for the User Login API endpoint",
+                          "location": {
+                            "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/login/login.spec.ts",
+                            "line": 19,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "expectedStatus": "passed",
+                      "projectId": "api-tests",
+                      "projectName": "api-tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 184,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "POST https://conduit-api.bondaracademy.com/api/users/login",
+                              "duration": 166
+                            }
+                          ],
+                          "startTime": "2026-03-14T18:20:19.479Z",
+                          "annotations": [
+                            {
+                              "type": "api-user-login",
+                              "description": "Tests for the User Login API endpoint",
+                              "location": {
+                                "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/login/login.spec.ts",
+                                "line": 19,
+                                "column": 6
+                              }
+                            }
+                          ],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "11f28cb92e49d8100d5e-5f87b61067832af8c44f",
+                  "file": "tests/api-tests/user/login/login.spec.ts",
+                  "line": 9,
+                  "column": 2
+                }
+              ]
+            },
+            {
+              "title": "Happy Path Test",
+              "file": "tests/api-tests/user/login/login.spec.ts",
+              "line": 50,
+              "column": 8,
+              "specs": [
+                {
+                  "title": "Login user",
+                  "ok": true,
+                  "tags": [
+                    "user",
+                    "login"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [
+                        {
+                          "type": "api-user-login",
+                          "description": "Tests for the User Login API endpoint",
+                          "location": {
+                            "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/login/login.spec.ts",
+                            "line": 19,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "expectedStatus": "passed",
+                      "projectId": "api-tests",
+                      "projectName": "api-tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 333,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "POST https://conduit-api.bondaracademy.com/api/users/login",
+                              "duration": 273
+                            }
+                          ],
+                          "startTime": "2026-03-14T18:20:19.714Z",
+                          "annotations": [
+                            {
+                              "type": "api-user-login",
+                              "description": "Tests for the User Login API endpoint",
+                              "location": {
+                                "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/login/login.spec.ts",
+                                "line": 19,
+                                "column": 6
+                              }
+                            }
+                          ],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "11f28cb92e49d8100d5e-4ea79531b261f7a284e0",
+                  "file": "tests/api-tests/user/login/login.spec.ts",
+                  "line": 51,
+                  "column": 4
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tests/api-tests/user/profile/profile.spec.ts",
+      "file": "tests/api-tests/user/profile/profile.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Feature: User Profile API",
+          "file": "tests/api-tests/user/profile/profile.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Get User Profile",
+              "ok": true,
+              "tags": [
+                "user",
+                "profile"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "api-user-profile",
+                      "description": "Tests for the User Profile API endpoint",
+                      "location": {
+                        "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/profile/profile.spec.ts",
+                        "line": 4,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "api-tests",
+                  "projectName": "api-tests",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 394,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "GET https://conduit-api.bondaracademy.com/api/user",
+                          "duration": 178
+                        },
+                        {
+                          "title": "GET https://conduit-api.bondaracademy.com/api/profiles/pw_api_udemy",
+                          "duration": 182
+                        }
+                      ],
+                      "startTime": "2026-03-14T18:20:20.108Z",
+                      "annotations": [
+                        {
+                          "type": "api-user-profile",
+                          "description": "Tests for the User Profile API endpoint",
+                          "location": {
+                            "file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/profile/profile.spec.ts",
+                            "line": 4,
+                            "column": 6
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "fa2b40f0d59ad59c7ccb-192fe424efa4ee5cd123",
+              "file": "tests/api-tests/user/profile/profile.spec.ts",
+              "line": 14,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "tests/api-tests/user/signup/signup.spec.test.ts",
+      "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Feature: Registration API",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "line": 89,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "Negative tests: Username ",
+              "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+              "line": 90,
+              "column": 7,
+              "specs": [
+                {
+                  "title": "too short with 2 characters",
+                  "ok": true,
+                  "tags": [
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "api-tests",
+                      "projectName": "api-tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 193,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "POST https://conduit-api.bondaracademy.com/api/users",
+                              "duration": 170
+                            }
+                          ],
+                          "startTime": "2026-03-14T18:20:20.543Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "430f90b3f0d574b773e6-99b6b783263b381d518b",
+                  "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+                  "line": 64,
+                  "column": 2
+                },
+                {
+                  "title": "minimum with 3 characters",
+                  "ok": true,
+                  "tags": [
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "api-tests",
+                      "projectName": "api-tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 248,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "POST https://conduit-api.bondaracademy.com/api/users",
+                              "duration": 186
+                            }
+                          ],
+                          "startTime": "2026-03-14T18:20:20.754Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "430f90b3f0d574b773e6-4750c7f3db52c6173e92",
+                  "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+                  "line": 64,
+                  "column": 2
+                },
+                {
+                  "title": "maximum with 20 characters",
+                  "ok": true,
+                  "tags": [
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "api-tests",
+                      "projectName": "api-tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 207,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "POST https://conduit-api.bondaracademy.com/api/users",
+                              "duration": 185
+                            }
+                          ],
+                          "startTime": "2026-03-14T18:20:21.053Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "430f90b3f0d574b773e6-c017a5560d84d9f3dc47",
+                  "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+                  "line": 64,
+                  "column": 2
+                },
+                {
+                  "title": "too long with 21 characters",
+                  "ok": true,
+                  "tags": [
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "api-tests",
+                      "projectName": "api-tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 203,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "POST https://conduit-api.bondaracademy.com/api/users",
+                              "duration": 179
+                            }
+                          ],
+                          "startTime": "2026-03-14T18:20:21.286Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "430f90b3f0d574b773e6-ebf051dd00e06ce5097d",
+                  "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+                  "line": 64,
+                  "column": 2
+                }
+              ]
+            },
+            {
+              "title": "Negative tests: Password ",
+              "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+              "line": 95,
+              "column": 7,
+              "specs": [
+                {
+                  "title": "too short with 7 characters",
+                  "ok": true,
+                  "tags": [
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "api-tests",
+                      "projectName": "api-tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 188,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "POST https://conduit-api.bondaracademy.com/api/users",
+                              "duration": 170
+                            }
+                          ],
+                          "startTime": "2026-03-14T18:20:21.505Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "430f90b3f0d574b773e6-0ae38c76a0425f0aed12",
+                  "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+                  "line": 64,
+                  "column": 2
+                },
+                {
+                  "title": "too long with 21 characters",
+                  "ok": true,
+                  "tags": [
+                    "registration"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "api-tests",
+                      "projectName": "api-tests",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 224,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "steps": [
+                            {
+                              "title": "POST https://conduit-api.bondaracademy.com/api/users",
+                              "duration": 186
+                            }
+                          ],
+                          "startTime": "2026-03-14T18:20:21.728Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "430f90b3f0d574b773e6-dbe65d84866526ad2d78",
+                  "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+                  "line": 64,
+                  "column": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-03-14T18:20:08.199Z",
+    "duration": 13896.615000000002,
+    "expected": 17,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,1366 @@
+{
+  "runs": [
+    {
+      "runId": "2026-03-14T18-20-09-205Z",
+      "timestamp": "2026-03-14T18:20:22.310Z",
+      "duration": 13104,
+      "totalTests": 17,
+      "passed": 17,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "allTests": [
+        {
+          "title": "CREATE and DELETE Article",
+          "file": "tests/api-tests/articles/create_article.spec.ts",
+          "project": "api-tests",
+          "duration": 1376,
+          "status": "passed",
+          "tags": [
+            "@articles"
+          ],
+          "artifacts": {}
+        },
+        {
+          "title": "GET Articles",
+          "file": "tests/api-tests/articles/get_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 693,
+          "status": "passed",
+          "tags": [
+            "@articles"
+          ],
+          "artifacts": {}
+        },
+        {
+          "title": "CREATE, UPDATE and DELETE Article",
+          "file": "tests/api-tests/articles/update_article.spec.ts",
+          "project": "api-tests",
+          "duration": 1222,
+          "status": "passed",
+          "tags": [
+            "@articles"
+          ],
+          "artifacts": {}
+        },
+        {
+          "title": "GET tags",
+          "file": "tests/api-tests/tags/tags.spec.ts",
+          "project": "api-tests",
+          "duration": 390,
+          "status": "passed",
+          "tags": [
+            "@tags"
+          ],
+          "artifacts": {}
+        },
+        {
+          "title": "GET Current User Favorite Articles",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 783,
+          "status": "passed",
+          "tags": [
+            "@user",
+            "@articles"
+          ],
+          "artifacts": {}
+        },
+        {
+          "title": "GET Current User Articles",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 803,
+          "status": "passed",
+          "tags": [
+            "@user",
+            "@articles"
+          ],
+          "artifacts": {}
+        },
+        {
+          "title": "Invalid Login",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 198,
+          "status": "passed",
+          "tags": [
+            "@user",
+            "@login"
+          ],
+          "artifacts": {}
+        },
+        {
+          "title": "Blank Email",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 211,
+          "status": "passed",
+          "tags": [
+            "@user",
+            "@login"
+          ],
+          "artifacts": {}
+        },
+        {
+          "title": "Blank Password",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 184,
+          "status": "passed",
+          "tags": [
+            "@user",
+            "@login"
+          ],
+          "artifacts": {}
+        },
+        {
+          "title": "Login user",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 333,
+          "status": "passed",
+          "tags": [
+            "@user",
+            "@login"
+          ],
+          "artifacts": {}
+        },
+        {
+          "title": "Get User Profile",
+          "file": "tests/api-tests/user/profile/profile.spec.ts",
+          "project": "api-tests",
+          "duration": 394,
+          "status": "passed",
+          "tags": [
+            "@user",
+            "@profile"
+          ],
+          "artifacts": {}
+        },
+        {
+          "title": "too short with 2 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 193,
+          "status": "passed",
+          "tags": [
+            "@registration"
+          ],
+          "artifacts": {}
+        },
+        {
+          "title": "minimum with 3 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 248,
+          "status": "passed",
+          "tags": [
+            "@registration"
+          ],
+          "artifacts": {}
+        },
+        {
+          "title": "maximum with 20 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 207,
+          "status": "passed",
+          "tags": [
+            "@registration"
+          ],
+          "artifacts": {}
+        },
+        {
+          "title": "too long with 21 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 203,
+          "status": "passed",
+          "tags": [
+            "@registration"
+          ],
+          "artifacts": {}
+        },
+        {
+          "title": "too short with 7 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 188,
+          "status": "passed",
+          "tags": [
+            "@registration"
+          ],
+          "artifacts": {}
+        },
+        {
+          "title": "too long with 21 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 224,
+          "status": "passed",
+          "tags": [
+            "@registration"
+          ],
+          "artifacts": {}
+        }
+      ],
+      "failedTests": []
+    },
+    {
+      "runId": "2026-03-14T18-20-03-140Z",
+      "timestamp": "2026-03-14T18:20:03.675Z",
+      "duration": 534,
+      "totalTests": 17,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 17,
+      "flaky": 0,
+      "allTests": [
+        {
+          "title": "CREATE and DELETE Article",
+          "file": "tests/api-tests/articles/create_article.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Articles",
+          "file": "tests/api-tests/articles/get_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "CREATE, UPDATE and DELETE Article",
+          "file": "tests/api-tests/articles/update_article.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "GET tags",
+          "file": "tests/api-tests/tags/tags.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Current User Favorite Articles",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Current User Articles",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "Invalid Login",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "Blank Email",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "Blank Password",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "Login user",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "Get User Profile",
+          "file": "tests/api-tests/user/profile/profile.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "too short with 2 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "minimum with 3 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "maximum with 20 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "too long with 21 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "too short with 7 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "too long with 21 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        }
+      ],
+      "failedTests": []
+    },
+    {
+      "runId": "2026-03-14T18-18-44-854Z",
+      "timestamp": "2026-03-14T18:18:49.070Z",
+      "duration": 4215,
+      "totalTests": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "allTests": [
+        {
+          "title": "GET tags",
+          "file": "tests/api-tests/tags/tags.spec.ts",
+          "project": "api-tests",
+          "duration": 587,
+          "status": "passed",
+          "tags": [
+            "@tags"
+          ],
+          "artifacts": {}
+        }
+      ],
+      "failedTests": []
+    },
+    {
+      "runId": "2026-03-14T18-16-23-408Z",
+      "timestamp": "2026-03-14T18:16:27.826Z",
+      "duration": 4417,
+      "totalTests": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "allTests": [
+        {
+          "title": "GET tags",
+          "file": "tests/api-tests/tags/tags.spec.ts",
+          "project": "api-tests",
+          "duration": 1070,
+          "status": "passed",
+          "artifacts": {}
+        }
+      ],
+      "failedTests": []
+    },
+    {
+      "runId": "2026-03-14T18-15-39-544Z",
+      "timestamp": "2026-03-14T18:15:46.003Z",
+      "duration": 6458,
+      "totalTests": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "allTests": [
+        {
+          "title": "GET tags",
+          "file": "tests/api-tests/tags/tags.spec.ts",
+          "project": "api-tests",
+          "duration": 810,
+          "status": "passed",
+          "artifacts": {}
+        }
+      ],
+      "failedTests": []
+    },
+    {
+      "runId": "2026-03-14T18-01-12-257Z",
+      "timestamp": "2026-03-14T18:01:35.752Z",
+      "duration": 23494,
+      "totalTests": 18,
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "allTests": [
+        {
+          "title": "login",
+          "file": "tests/ui-tests/feature/login/login.spec.ts",
+          "project": "ui-tests",
+          "duration": 2884,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "CREATE and DELETE Article",
+          "file": "tests/api-tests/articles/create_article.spec.ts",
+          "project": "api-tests",
+          "duration": 1332,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Articles",
+          "file": "tests/api-tests/articles/get_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 606,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "CREATE, UPDATE and DELETE Article",
+          "file": "tests/api-tests/articles/update_article.spec.ts",
+          "project": "api-tests",
+          "duration": 1247,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET tags",
+          "file": "tests/api-tests/tags/tags.spec.ts",
+          "project": "api-tests",
+          "duration": 544,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Current User Favorite Articles",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 767,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Current User Articles",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 757,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "Invalid Login",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 228,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "Blank Email",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 208,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "Blank Password",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 204,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "Login user",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 398,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "Get User Profile",
+          "file": "tests/api-tests/user/profile/profile.spec.ts",
+          "project": "api-tests",
+          "duration": 444,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "too short with 2 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 188,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "minimum with 3 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 200,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "maximum with 20 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 194,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "too long with 21 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 193,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "too short with 7 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 210,
+          "status": "passed",
+          "artifacts": {}
+        },
+        {
+          "title": "too long with 21 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 196,
+          "status": "passed",
+          "artifacts": {}
+        }
+      ],
+      "failedTests": []
+    },
+    {
+      "runId": "2026-03-14T17-58-47-619Z",
+      "timestamp": "2026-03-14T17:59:11.947Z",
+      "duration": 24324,
+      "totalTests": 18,
+      "passed": 0,
+      "failed": 18,
+      "skipped": 0,
+      "flaky": 0,
+      "allTests": [
+        {
+          "title": "login",
+          "file": "tests/ui-tests/feature/login/login.spec.ts",
+          "project": "ui-tests",
+          "duration": 5025,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "CREATE and DELETE Article",
+          "file": "tests/api-tests/articles/create_article.spec.ts",
+          "project": "api-tests",
+          "duration": 1162,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Articles",
+          "file": "tests/api-tests/articles/get_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 563,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "CREATE, UPDATE and DELETE Article",
+          "file": "tests/api-tests/articles/update_article.spec.ts",
+          "project": "api-tests",
+          "duration": 1177,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET tags",
+          "file": "tests/api-tests/tags/tags.spec.ts",
+          "project": "api-tests",
+          "duration": 392,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Current User Favorite Articles",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 751,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Current User Articles",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 740,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Invalid Login",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 218,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Blank Email",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 215,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Blank Password",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 227,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Login user",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 401,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Get User Profile",
+          "file": "tests/api-tests/user/profile/profile.spec.ts",
+          "project": "api-tests",
+          "duration": 400,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "too short with 2 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 201,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "minimum with 3 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 241,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "maximum with 20 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 226,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "too long with 21 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 206,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "too short with 7 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 199,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "too long with 21 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 187,
+          "status": "failed",
+          "artifacts": {}
+        }
+      ],
+      "failedTests": [
+        {
+          "title": "login",
+          "file": "tests/ui-tests/feature/login/login.spec.ts",
+          "project": "ui-tests",
+          "duration": 5025,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "CREATE and DELETE Article",
+          "file": "tests/api-tests/articles/create_article.spec.ts",
+          "project": "api-tests",
+          "duration": 1162,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Articles",
+          "file": "tests/api-tests/articles/get_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 563,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "CREATE, UPDATE and DELETE Article",
+          "file": "tests/api-tests/articles/update_article.spec.ts",
+          "project": "api-tests",
+          "duration": 1177,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET tags",
+          "file": "tests/api-tests/tags/tags.spec.ts",
+          "project": "api-tests",
+          "duration": 392,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Current User Favorite Articles",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 751,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Current User Articles",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 740,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Invalid Login",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 218,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Blank Email",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 215,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Blank Password",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 227,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Login user",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 401,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Get User Profile",
+          "file": "tests/api-tests/user/profile/profile.spec.ts",
+          "project": "api-tests",
+          "duration": 400,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "too short with 2 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 201,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "minimum with 3 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 241,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "maximum with 20 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 226,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "too long with 21 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 206,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "too short with 7 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 199,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "too long with 21 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 187,
+          "status": "failed",
+          "artifacts": {}
+        }
+      ]
+    },
+    {
+      "runId": "2026-03-14T17-57-12-850Z",
+      "timestamp": "2026-03-14T17:57:29.897Z",
+      "duration": 16960,
+      "totalTests": 18,
+      "passed": 0,
+      "failed": 18,
+      "skipped": 0,
+      "flaky": 0,
+      "allTests": [
+        {
+          "title": "login",
+          "file": "tests/ui-tests/feature/login/login.spec.ts",
+          "project": "ui-tests",
+          "duration": 3884,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "CREATE and DELETE Article",
+          "file": "tests/api-tests/articles/create_article.spec.ts",
+          "project": "api-tests",
+          "duration": 1524,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Articles",
+          "file": "tests/api-tests/articles/get_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 587,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "CREATE, UPDATE and DELETE Article",
+          "file": "tests/api-tests/articles/update_article.spec.ts",
+          "project": "api-tests",
+          "duration": 1374,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET tags",
+          "file": "tests/api-tests/tags/tags.spec.ts",
+          "project": "api-tests",
+          "duration": 618,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Current User Favorite Articles",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 1032,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Current User Articles",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 765,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Invalid Login",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 207,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Blank Email",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 226,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Blank Password",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 253,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Login user",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 387,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Get User Profile",
+          "file": "tests/api-tests/user/profile/profile.spec.ts",
+          "project": "api-tests",
+          "duration": 405,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "too short with 2 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 198,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "minimum with 3 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 187,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "maximum with 20 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 182,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "too long with 21 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 192,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "too short with 7 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 185,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "too long with 21 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 199,
+          "status": "failed",
+          "artifacts": {}
+        }
+      ],
+      "failedTests": [
+        {
+          "title": "login",
+          "file": "tests/ui-tests/feature/login/login.spec.ts",
+          "project": "ui-tests",
+          "duration": 3884,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "CREATE and DELETE Article",
+          "file": "tests/api-tests/articles/create_article.spec.ts",
+          "project": "api-tests",
+          "duration": 1524,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Articles",
+          "file": "tests/api-tests/articles/get_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 587,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "CREATE, UPDATE and DELETE Article",
+          "file": "tests/api-tests/articles/update_article.spec.ts",
+          "project": "api-tests",
+          "duration": 1374,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET tags",
+          "file": "tests/api-tests/tags/tags.spec.ts",
+          "project": "api-tests",
+          "duration": 618,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Current User Favorite Articles",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 1032,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Current User Articles",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 765,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Invalid Login",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 207,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Blank Email",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 226,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Blank Password",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 253,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Login user",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 387,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "Get User Profile",
+          "file": "tests/api-tests/user/profile/profile.spec.ts",
+          "project": "api-tests",
+          "duration": 405,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "too short with 2 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 198,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "minimum with 3 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 187,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "maximum with 20 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 182,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "too long with 21 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 192,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "too short with 7 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 185,
+          "status": "failed",
+          "artifacts": {}
+        },
+        {
+          "title": "too long with 21 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 199,
+          "status": "failed",
+          "artifacts": {}
+        }
+      ]
+    },
+    {
+      "runId": "2026-03-14T17-56-55-112Z",
+      "timestamp": "2026-03-14T17:56:55.194Z",
+      "duration": 80,
+      "totalTests": 18,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 18,
+      "flaky": 0,
+      "allTests": [
+        {
+          "title": "login",
+          "file": "tests/ui-tests/feature/login/login.spec.ts",
+          "project": "ui-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "CREATE and DELETE Article",
+          "file": "tests/api-tests/articles/create_article.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Articles",
+          "file": "tests/api-tests/articles/get_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "CREATE, UPDATE and DELETE Article",
+          "file": "tests/api-tests/articles/update_article.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "GET tags",
+          "file": "tests/api-tests/tags/tags.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Current User Favorite Articles",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "GET Current User Articles",
+          "file": "tests/api-tests/user/articles/user_articles.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "Invalid Login",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "Blank Email",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "Blank Password",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "Login user",
+          "file": "tests/api-tests/user/login/login.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "Get User Profile",
+          "file": "tests/api-tests/user/profile/profile.spec.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "too short with 2 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "minimum with 3 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "maximum with 20 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "too long with 21 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "too short with 7 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        },
+        {
+          "title": "too long with 21 characters",
+          "file": "tests/api-tests/user/signup/signup.spec.test.ts",
+          "project": "api-tests",
+          "duration": 0,
+          "status": "skipped",
+          "artifacts": {}
+        }
+      ],
+      "failedTests": []
+    },
+    {
+      "runId": "2026-03-14T17-48-14-974Z",
+      "timestamp": "2026-03-14T17:48:23.599Z",
+      "duration": 8625,
+      "totalTests": 1,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "failedTests": []
+    },
+    {
+      "runId": "2026-03-14T17-47-22-250Z",
+      "timestamp": "2026-03-14T17:47:39.199Z",
+      "duration": 16948,
+      "totalTests": 17,
+      "passed": 17,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "failedTests": []
+    }
+  ]
+}
