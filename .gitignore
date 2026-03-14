@@ -3,6 +3,7 @@
 node_modules/
 /tests/report/test-results/
 /tests/report/playwright-report/
+/tests/report/smart-reporter-history/*.json
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/

@@ -160,7 +160,8 @@ pw_ui_api/
   - `ui-tests` - UI testing with Chromium
   - `api-tests` - API testing with 1 worker
 - **Retries**: 2 on CI, 0 locally
-- **Reporting**: HTML reports saved to `tests/report/playwright-report`
+- **Reporting**: Playwright HTML and Smart Reporter output saved to `tests/report/playwright-report`
+- **Smart report history**: Stored in `tests/report/smart-reporter-history/test-history.json`
 - **Trace**: Retained on test failure for debugging
 
 ### TypeScript Paths (`tsconfig.json`)
@@ -181,6 +182,12 @@ Configured path aliases for cleaner imports:
 
 ```bash
 yarn test:all
+```
+
+### Run the combined CI test command
+
+```bash
+yarn test:ci
 ```
 
 ### Run UI tests only
@@ -205,6 +212,12 @@ yarn test:ui-mode
 
 ```bash
 yarn report
+```
+
+### View Smart Reporter dashboard
+
+```bash
+yarn report:smart
 ```
 
 ### Code quality checks
@@ -403,7 +416,9 @@ git commit --no-verify -m "your message"
 - Executes on changes to `tests/` directory
 - Caches Node modules and Playwright browsers
 - Runs both UI and API tests
-- Uploads test reports on failure
+- Uploads the Playwright HTML report artifact
+- Generates `smart-report.html` inside `tests/report/playwright-report/` so the shared workflow artifact can include both reports
+- Shared workflow follow-up: run a single combined Playwright command when both suites are enabled, cache `tests/report/smart-reporter-history/test-history.json`, and set artifact retention to 30 days
 
 #### 3. **PR Title Check** (`.github/workflows/pr-title-check.yml`)
 

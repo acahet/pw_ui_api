@@ -18,6 +18,7 @@
 		"eslint-plugin-playwright": "^2.9.0",
 		"genson-js": "^0.0.8",
 		"husky": "^9.1.7",
+		"playwright-smart-reporter": "^1.6.5",
 		"ts-node": "^10.9.2",
 		"tsconfig-paths": "^4.2.0",
 		"typescript": "^5.9.3",
@@ -31,10 +32,12 @@
 		"code:all": "yarn code:check && yarn code:lint:playwright",
 		"code:ci": "biome ci . && eslint --cache tests/**/*.ts",
 		"test:all": "npx playwright test --workers=1",
+		"test:ci": "npx playwright test",
 		"test:ui": "npx playwright test --project ui-tests",
 		"test:api": "npx playwright test --project api-tests",
 		"test:ui-mode": "npx playwright test --ui",
 		"report": "yarn playwright show-report tests/report/playwright-report",
+		"report:smart": "npx playwright-smart-reporter-serve tests/report/playwright-report/smart-report.html",
 		"prepare": "husky"
 	}
 }
