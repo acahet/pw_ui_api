@@ -60,7 +60,7 @@ class LocalHistoryReporter implements Reporter {
 		await fs.mkdir(this.currentRunDir, { recursive: true });
 	}
 
-	async onEnd(result: FullResult) {
+	async onEnd(_result: FullResult) {
 		const duration = Date.now() - this.startTime;
 
 		// Collect test statistics

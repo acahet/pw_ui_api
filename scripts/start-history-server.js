@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable no-undef */
 
 import { exec } from 'node:child_process';
 import { promisify } from 'node:util';
@@ -27,16 +28,6 @@ async function isPortInUse(port) {
   });
 }
 
-async function findProcessOnPort(port) {
-  try {
-    // Try netstat first (cross-platform)
-    const { stdout } = await execAsync(`netstat -anv | grep LISTEN | grep ${port}`);
-    return stdout.trim() !== '';
-  } catch {
-    return false;
-  }
-}
-
 async function killProcessOnPort(port) {
   try {
     // Try to find and kill process using netstat and awk
@@ -44,7 +35,7 @@ async function killProcessOnPort(port) {
     console.log(`✓ Killed process on port ${port}`);
     // Wait a moment for the port to be released
     await new Promise(resolve => setTimeout(resolve, 500));
-  } catch (error) {
+  } catch {
     // Silently fail - process might not exist
   }
 }
