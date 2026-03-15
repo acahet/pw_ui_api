@@ -829,7 +829,9 @@
             const testView = document.getElementById('testTrendView');
             const buttons = document.querySelectorAll('.view-mode-btn');
 
-            buttons.forEach(btn => btn.classList.remove('active'));
+            buttons.forEach((btn) => {
+                btn.classList.remove('active');
+            });
 
             if (view === 'overall') {
                 overallView.style.display = 'block';
@@ -871,26 +873,6 @@
 
                 trendBars.innerHTML += barHtml;
             });
-        }
-        function switchView(view) {
-            const overallView = document.getElementById('overallTrendView');
-            const testView = document.getElementById('testTrendView');
-            const buttons = document.querySelectorAll('.view-mode-btn');
-
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            if (view === 'overall') {
-                overallView.style.display = 'block';
-                testView.style.display = 'none';
-                buttons[0].classList.add('active');
-
-                // Clear test selection
-                document.getElementById('testTrendResults').innerHTML = '';
-            } else {
-                overallView.style.display = 'none';
-                testView.style.display = 'block';
-                buttons[1].classList.add('active');
-            }
         }
         function displayRunsList(runs) {
             const runsList = document.getElementById('runsList');

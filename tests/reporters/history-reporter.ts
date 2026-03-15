@@ -111,51 +111,58 @@ class LocalHistoryReporter implements Reporter {
 				const results = test.results;
 				if (results.length === 0) {
 					skipped++;
-				// For skipped tests without results, create a minimal entry
-				const testEntry: TestInfo = {
-					title: test.title,
-					file: path.relative(process.cwd(), test.location.file),
-					project: test.parent?.project()?.name || "unknown",
-					duration: 0,
-					status: "skipped",
-					artifacts: {},
-				};
-				allTests.push(testEntry);
-				continue;
+					// For skipped tests without results, create a minimal entry
+					const testEntry: TestInfo = {
+						title: test.title,
+						file: path.relative(process.cwd(), test.location.file),
+						project: test.parent?.project()?.name || "unknown",
+						duration: 0,
+						status: "skipped",
+						artifacts: {},
+					};
+					allTests.push(testEntry);
+					continue;
+				}
+
+				const lastResult = results[results.length - 1];
+
+				if (lastResult.status === "skipped") {
+					skipped++;
+					allTests.push(this.createTestEntry(test, lastResult, "skipped"));
+				} else if (lastResult.status === "passed") {
+					passed++;
+					// Check if flaky (passed after retry)
+					const isFlaky =
+						results.length > 1 && results.some((r) => r.status !== "passed");
+					if (isFlaky) {
+						flaky++;
+					}
+					allTests.push(
+						this.createTestEntry(
+							test,
+							lastResult,
+							isFlaky ? "flaky" : "passed",
+						),
+					);
+				} else {
+					failed++;
+					const testEntry = this.createTestEntry(test, lastResult, "failed");
+					failedTests.push(testEntry);
+					allTests.push(testEntry);
+				}
 			}
 
-			const lastResult = results[results.length - 1];
-
-			if (lastResult.status === "skipped") {
-				skipped++;
-				allTests.push(this.createTestEntry(test, lastResult, "skipped"));
-		} else if (lastResult.status === "passed") {
-			passed++;
-			// Check if flaky (passed after retry)
-			const isFlaky = results.length > 1 && results.some((r) => r.status !== "passed");
-			if (isFlaky) {
-				flaky++;
+			for (const child of s.suites) {
+				processSuite(child);
 			}
-			allTests.push(this.createTestEntry(test, lastResult, isFlaky ? "flaky" : "passed"));
-		} else {
-			failed++;
-			const testEntry = this.createTestEntry(test, lastResult, "failed");
-			failedTests.push(testEntry);
-			allTests.push(testEntry);
-		}
+		};
+
+		processSuite(suite);
+
+		return { total, passed, failed, skipped, flaky, allTests, failedTests };
 	}
 
-	for (const child of s.suites) {
-		processSuite(child);
-	}
-};
-
-processSuite(suite);
-
-return { total, passed, failed, skipped, flaky, allTests, failedTests };
-}
-
-private createTestEntry(
+	private createTestEntry(
 		test: TestCase,
 		result: TestResult,
 		status: string,
@@ -181,9 +188,7 @@ private createTestEntry(
 		};
 	}
 
-	private async copyFailureArtifacts(
-		failedTests: TestInfo[],
-	) {
+	private async copyFailureArtifacts(failedTests: TestInfo[]) {
 		for (const failedTest of failedTests) {
 			try {
 				// Find artifacts in the outputDir for this project
