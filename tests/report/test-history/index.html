@@ -557,8 +557,7 @@
                 }
 
                 displayDashboard(data);
-            } catch (error) {
-                console.error('Error loading history:', error);
+            } catch {
                 displayError();
             }
         }
@@ -587,7 +586,6 @@
 
             // Calculate overall statistics
             const totalRuns = runs.length;
-            const totalTests = runs.reduce((sum, run) => sum + run.totalTests, 0);
             const avgPassRate = runs.reduce((sum, run) =>
                 sum + (run.totalTests > 0 ? (run.passed / run.totalTests) * 100 : 0), 0) / runs.length;
 
@@ -691,7 +689,7 @@
                 return;
             }
 
-            testList.innerHTML = tests.map((test, index) => {
+            testList.innerHTML = tests.map((test) => {
                 const testKey = `${test.project}:${test.title}`;
                 const isSelected = selectedTestKey === testKey;
                 const tagsHtml = test.tags && test.tags.length > 0
@@ -715,22 +713,22 @@
             }).join('');
         }
 
-        function filterTestList() {
+        window.filterTestList = function filterTestList() {
             const searchInput = document.getElementById('testSearch');
             const searchTerm = searchInput.value.toLowerCase();
 
             const filteredTests = allTests.filter(test => {
                 const matchTitle = test.title.toLowerCase().includes(searchTerm);
                 const matchProject = test.project.toLowerCase().includes(searchTerm);
-                const matchTags = test.tags && test.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+                const matchTags = test.tags?.some(tag => tag.toLowerCase().includes(searchTerm));
 
                 return matchTitle || matchProject || matchTags;
             });
 
             renderTestList(filteredTests);
-        }
+        };
 
-        function selectTest(testKey) {
+        window.selectTest = function selectTest(testKey) {
             selectedTestKey = testKey;
 
             // Update visual selection
@@ -746,7 +744,7 @@
             const [project, ...titleParts] = testKey.split(':');
             const title = titleParts.join(':');
             displayTestTrendForSelection({ project, title });
-        }
+        };
 
         function displayTestTrendForSelection(selectedTest) {
             const resultsDiv = document.getElementById('testTrendResults');
@@ -824,7 +822,7 @@
             `;
         }
 
-        function switchView(view) {
+        window.switchView = function switchView(view) {
             const overallView = document.getElementById('overallTrendView');
             const testView = document.getElementById('testTrendView');
             const buttons = document.querySelectorAll('.view-mode-btn');
@@ -845,14 +843,14 @@
                 testView.style.display = 'block';
                 buttons[1].classList.add('active');
             }
-        }
+        };
 
         function displayTrendChart(runs) {
             const trendBars = document.getElementById('trendBars');
 
             const maxTests = Math.max(...runs.map(run => run.totalTests));
 
-            runs.forEach((run, index) => {
+            runs.forEach((run) => {
                 const passRate = run.totalTests > 0 ? (run.passed / run.totalTests) * 100 : 0;
                 const height = run.totalTests > 0 ? (run.totalTests / maxTests) * 100 : 0;
                 const status = run.failed === 0 ? 'passed' : 'failed';
@@ -899,7 +897,7 @@
                             </div>
                             <div>
                                 <span class="run-duration">⏱️ ${durationSec}s</span>
-                                ${hasTests ? '<span class="toggle-icon" id="toggle-' + index + '">▼</span>' : ''}
+                                ${hasTests ? `<span class="toggle-icon" id="toggle-${index}">▼</span>` : ''}
                             </div>
                         </div>
                         ${hasTests ? `
@@ -956,7 +954,7 @@
             }
         }
 
-        function toggleRunDetails(index) {
+        window.toggleRunDetails = function toggleRunDetails(index) {
             const details = document.getElementById(`details-${index}`);
             const toggle = document.getElementById(`toggle-${index}`);
 
@@ -966,7 +964,7 @@
                     toggle.classList.toggle('open');
                 }
             }
-        }
+        };
 
         function escapeHtml(text) {
             const div = document.createElement('div');

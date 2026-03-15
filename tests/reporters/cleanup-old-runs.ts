@@ -44,7 +44,9 @@ export async function cleanupOldRuns(
 				await fs.rm(runDir, { recursive: true, force: true });
 				deletedCount++;
 			} catch (err) {
-				console.error(`Failed to delete old run directory ${runDir}:`, err);
+				process.stderr.write(
+					`Failed to delete old run directory ${runDir}: ${String(err)}\n`,
+				);
 			}
 		}
 
@@ -59,7 +61,7 @@ export async function cleanupOldRuns(
 
 		return deletedCount;
 	} catch (err) {
-		console.error("Failed to cleanup old runs:", err);
+		process.stderr.write(`Failed to cleanup old runs: ${String(err)}\n`);
 		return 0;
 	}
 }

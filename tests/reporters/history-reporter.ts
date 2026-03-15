@@ -40,6 +40,10 @@ interface HistoryIndex {
 	runs: TestHistoryEntry[];
 }
 
+type TestCaseWithTags = TestCase & {
+	tags?: string[];
+};
+
 class LocalHistoryReporter implements Reporter {
 	private config!: FullConfig;
 	private suite!: Suite;
@@ -171,7 +175,7 @@ class LocalHistoryReporter implements Reporter {
 		const relativePath = path.relative(process.cwd(), test.location.file);
 
 		// Extract tags from test (tags are on the TestCase object)
-		const testTags = (test as any).tags || [];
+		const testTags = (test as TestCaseWithTags).tags ?? [];
 
 		return {
 			title: test.title,
@@ -241,9 +245,8 @@ class LocalHistoryReporter implements Reporter {
 					// Ignore errors reading output directory
 				}
 			} catch (err) {
-				console.error(
-					`Failed to copy artifacts for test "${failedTest.title}":`,
-					err,
+				process.stderr.write(
+					`Failed to copy artifacts for test "${failedTest.title}": ${String(err)}\n`,
 				);
 			}
 		}
@@ -300,7 +303,9 @@ class LocalHistoryReporter implements Reporter {
 				try {
 					await fs.rm(runDir, { recursive: true, force: true });
 				} catch (err) {
-					console.error(`Failed to delete old run directory ${runDir}:`, err);
+					process.stderr.write(
+						`Failed to delete old run directory ${runDir}: ${String(err)}\n`,
+					);
 				}
 			}
 
@@ -311,12 +316,12 @@ class LocalHistoryReporter implements Reporter {
 					this.historyIndexFile,
 					JSON.stringify(historyIndex, null, 2),
 				);
-				console.log(
-					`Cleaned up ${runsToDelete.length} test run(s) older than 7 days`,
+				process.stdout.write(
+					`Cleaned up ${runsToDelete.length} test run(s) older than 7 days\n`,
 				);
 			}
 		} catch (err) {
-			console.error("Failed to cleanup old runs:", err);
+			process.stderr.write(`Failed to cleanup old runs: ${String(err)}\n`);
 		}
 	}
 }

@@ -32,7 +32,7 @@ async function killProcessOnPort(port) {
 	try {
 		// Try to find and kill process using netstat and awk
 		await execAsync(`kill -9 $(lsof -ti:${port}) 2>/dev/null || true`);
-		console.log(`✓ Killed process on port ${port}`);
+		process.stdout.write(`✓ Killed process on port ${port}\n`);
 		// Wait a moment for the port to be released
 		await new Promise((resolve) => setTimeout(resolve, 500));
 	} catch {
@@ -54,11 +54,11 @@ async function findAvailablePort(startPort) {
 async function startServer() {
 	const desiredPort = 8080;
 
-	console.log("🚀 Starting test history server...\n");
+	process.stdout.write("🚀 Starting test history server...\n\n");
 
 	// Check if desired port is in use
 	if (await isPortInUse(desiredPort)) {
-		console.log(`⚠️  Port ${desiredPort} is already in use`);
+		process.stdout.write(`⚠️  Port ${desiredPort} is already in use\n`);
 
 		// Try to kill the process
 		await killProcessOnPort(desiredPort);
@@ -67,18 +67,18 @@ async function startServer() {
 		if (await isPortInUse(desiredPort)) {
 			// Find alternative port
 			const availablePort = await findAvailablePort(desiredPort + 1);
-			console.log(`✓ Using alternative port ${availablePort}\n`);
+			process.stdout.write(`✓ Using alternative port ${availablePort}\n\n`);
 
 			// Start server on alternative port
 			const serverProcess = exec(
 				`npx http-server tests/report/test-history -p ${availablePort} -o`,
-				(error, stdout, stderr) => {
+				(error, _stdout, stderr) => {
 					if (error) {
-						console.error(`Error: ${error.message}`);
+						process.stderr.write(`Error: ${error.message}\n`);
 						return;
 					}
 					if (stderr) {
-						console.error(`stderr: ${stderr}`);
+						process.stderr.write(`stderr: ${stderr}\n`);
 						return;
 					}
 				},
@@ -91,18 +91,18 @@ async function startServer() {
 		}
 	}
 
-	console.log(`✓ Port ${desiredPort} is available\n`);
+	process.stdout.write(`✓ Port ${desiredPort} is available\n\n`);
 
 	// Start server on desired port
 	const serverProcess = exec(
 		`npx http-server tests/report/test-history -p ${desiredPort} -o`,
-		(error, stdout, stderr) => {
+		(error, _stdout, stderr) => {
 			if (error) {
-				console.error(`Error: ${error.message}`);
+				process.stderr.write(`Error: ${error.message}\n`);
 				return;
 			}
 			if (stderr) {
-				console.error(`stderr: ${stderr}`);
+				process.stderr.write(`stderr: ${stderr}\n`);
 				return;
 			}
 		},
@@ -113,13 +113,13 @@ async function startServer() {
 
 	// Keep process alive
 	process.on("SIGINT", () => {
-		console.log("\n\n👋 Shutting down server...");
+		process.stdout.write("\n\n👋 Shutting down server...\n");
 		serverProcess.kill();
 		process.exit(0);
 	});
 }
 
 startServer().catch((error) => {
-	console.error("Failed to start server:", error);
+	process.stderr.write(`Failed to start server: ${String(error)}\n`);
 	process.exit(1);
 });
