@@ -1,0 +1,318 @@
+# Playwright Local Test History Tracking Implementation
+
+## Overview
+Implement a local test history tracking system for Playwright that automatically tracks test runs, preserves failure artifacts (traces, screenshots), and provides a visual HTML dashboard - all without external dependencies.
+
+## Requirements
+
+### Core Features
+1. **Automatic history tracking** for all test runs
+2. **7-day automatic cleanup** of old test runs and artifacts
+3. **Failure artifact preservation** (traces and screenshots)
+4. **HTML dashboard** to visualize test trends
+5. **Exclude setup project** from tracking
+6. **Preserve existing Playwright config** (trace, screenshot settings)
+
+### Technical Stack
+- TypeScript for reporter implementation
+- Playwright Reporter API
+- Pure HTML/CSS/JavaScript for dashboard (no build tools)
+- Node.js fs/promises for file operations
+
+## Implementation Steps
+
+### Step 1: Create Custom Reporter
+
+**File**: `tests/reporters/history-reporter.ts`
+
+**Key Implementation Details**:
+
+```typescript
+import type { Reporter, FullConfig, Suite, TestCase, TestResult } from '@playwright/test/reporter';
+
+class LocalHistoryReporter implements Reporter {
+  // Core properties
+  private historyDir = './tests/report/test-history';
+  private historyIndexFile = `${this.historyDir}/history-index.json`;
+
+  // Lifecycle hooks
+  async onBegin(config: FullConfig, suite: Suite) {
+    // Initialize run ID and directories
+    this.currentRunId = new Date().toISOString().replace(/[:.]/g, '-');
+    this.currentRunDir = `${this.historyDir}/runs/${this.currentRunId}`;
+    await fs.mkdir(this.currentRunDir, { recursive: true });
+  }
+
+  async onEnd(result: FullResult) {
+    // 1. Collect test statistics
+    // 2. Copy failure artifacts
+    // 3. Update history index
+    // 4. Cleanup old runs (>7 days)
+  }
+}
+```
+
+**Important Patterns**:
+- **Exclude setup project**: Check `test.parent?.project()?.name === "setup"`
+- **Artifact copying**: Scan project outputDir for traces/screenshots
+- **Filename sanitization**: Replace non-alphanumeric with underscores
+- **Keep last 30 runs**: Slice array before saving
+
+### Step 2: Create Cleanup Utility
+
+**File**: `tests/reporters/cleanup-old-runs.ts`
+
+**Key Functions**:
+
+```typescript
+export async function cleanupOldRuns(historyDir: string, daysToKeep = 7): Promise<number> {
+  const cutoffDate = Date.now() - daysToKeep * 24 * 60 * 60 * 1000;
+
+  // 1. Read history index
+  // 2. Filter runs by date
+  // 3. Delete old run directories
+  // 4. Update history index
+  // 5. Return count of deleted runs
+}
+
+export async function getHistorySize(historyDir: string): Promise<number> {
+  // Recursively calculate directory size
+}
+
+export function formatBytes(bytes: number): string {
+  // Convert bytes to human-readable format
+}
+```
+
+### Step 3: Create HTML Dashboard
+
+**File**: `tests/report/test-history/index.html`
+
+**Dashboard Sections**:
+
+1. **Header** - Title and description
+2. **Statistics Cards**:
+   - Total runs
+   - Latest passed
+   - Latest failed
+   - Average pass rate
+
+3. **Trend Chart**:
+   - CSS bar chart (no external libraries)
+   - Last 20 runs
+   - Color-coded: Green (passed), Red (failed)
+   - Hover tooltips
+
+4. **Recent Runs List**:
+   - Expandable run details
+   - Failed test information
+   - Download links for traces/screenshots
+   - Error messages
+
+**Key Implementation**:
+```javascript
+// Load history on page load
+fetch('history-index.json')
+  .then(response => response.json())
+  .then(data => displayDashboard(data));
+
+// Pure CSS for styling (no frameworks)
+// Vanilla JavaScript for interactivity
+```
+
+### Step 4: Update Playwright Config
+
+**File**: `playwright.config.ts`
+
+**Changes**:
+```typescript
+reporter: [
+  ["html", { outputFolder: playwrightReportDir }],
+  ["./tests/reporters/history-reporter.ts"],  // Add custom reporter
+  ["list"],
+  ["json", { outputFile: "./tests/report/test-results.json" }],
+],
+```
+
+**Remove**:
+- `playwright-smart-reporter` configuration
+- Unused constants (smartReportFile, smartHistoryFile)
+
+**Preserve**:
+- `trace: "retain-on-failure"`
+- `screenshot: "only-on-failure"`
+- All project configurations
+
+### Step 5: Add npm Script
+
+**File**: `package.json`
+
+```json
+{
+  "scripts": {
+    "report:history": "http-server tests/report/test-history -p 8080 -o"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
+```
+
+## Data Structure
+
+### History Index Format
+
+```typescript
+interface TestHistoryEntry {
+  runId: string;                    // ISO timestamp with special chars replaced
+  timestamp: string;                // ISO 8601 timestamp
+  duration: number;                 // Run duration in milliseconds
+  totalTests: number;               // Total tests executed
+  passed: number;                   // Passed tests
+  failed: number;                   // Failed tests
+  skipped: number;                  // Skipped tests
+  flaky: number;                    // Flaky tests (passed after retry)
+  failedTests: Array<{
+    title: string;                  // Test title
+    file: string;                   // Relative file path
+    project: string;                // Project name
+    duration: number;               // Test duration in ms
+    error?: string;                 // Error message
+    artifacts: {
+      trace?: string;               // Relative path to trace file
+      screenshot?: string;          // Relative path to screenshot
+    };
+  }>;
+}
+
+interface HistoryIndex {
+  runs: TestHistoryEntry[];
+}
+```
+
+## Directory Structure
+
+```
+tests/
+├── reporters/
+│   ├── history-reporter.ts          # Custom reporter implementation
+│   └── cleanup-old-runs.ts          # Cleanup utilities
+└── report/
+    └── test-history/
+        ├── index.html                # Dashboard UI
+        ├── history-index.json        # Master index
+        └── runs/
+            └── YYYY-MM-DDTHH-MM-SS-SSSZ/
+                ├── test_name-trace.zip
+                └── test_name-screenshot.png
+```
+
+## Usage Instructions
+
+### Running Tests
+```bash
+# Tests automatically track history
+npm run test:all
+npm run test:ui
+npm run test:api
+```
+
+### Viewing Dashboard
+```bash
+# Automatically opens browser
+npm run report:history
+
+# Or manually open
+open tests/report/test-history/index.html
+```
+
+### Customization Options
+
+**Change retention period**:
+```typescript
+// In history-reporter.ts
+const cutoffDate = Date.now() - 14 * 24 * 60 * 60 * 1000; // 14 days
+```
+
+**Change max runs stored**:
+```typescript
+// In history-reporter.ts
+historyIndex.runs = historyIndex.runs.slice(0, 50); // Keep 50 runs
+```
+
+**Modify dashboard styling**:
+```html
+<!-- In index.html <style> section -->
+.stat-card { background: #your-color; }
+```
+
+## Testing Checklist
+
+- [ ] Run tests and verify history-index.json is created
+- [ ] Check that runs directory contains timestamped folders
+- [ ] Verify failed tests have artifacts copied
+- [ ] Confirm setup project tests are excluded
+- [ ] Test dashboard loads and displays data correctly
+- [ ] Verify cleanup removes runs older than 7 days
+- [ ] Check traces and screenshots are downloadable
+- [ ] Verify trend chart displays correctly
+- [ ] Test expandable run details work
+- [ ] Confirm error messages are displayed
+
+## Common Issues & Solutions
+
+### Dashboard shows "No Test History"
+- **Solution**: Run tests first to generate history data
+
+### Artifacts not copying
+- **Check**: Project outputDir exists and contains artifacts
+- **Check**: Failed tests actually produced traces/screenshots
+- **Check**: File permissions allow copying
+
+### Cleanup not working
+- **Check**: Dates in history-index.json are valid ISO strings
+- **Check**: File system permissions
+- **Check**: Console for error messages
+
+### Dashboard not loading
+- **Solution**: Serve via HTTP server (not file:// protocol)
+- **Use**: `npm run report:history` or `http-server`
+
+## Benefits Over playwright-smart-reporter
+
+1. **Local-only** - No external dependencies or services
+2. **Full control** - Modify any aspect of tracking
+3. **Artifact preservation** - Automatically copies and preserves failure artifacts
+4. **Automatic cleanup** - 7-day retention with no manual intervention
+5. **Simple setup** - No npm package installation required
+6. **Customizable** - Full access to source code
+
+## Performance Considerations
+
+- **Artifact copying**: Only failed tests have artifacts copied
+- **History limit**: Maximum 30 runs stored by default
+- **Cleanup timing**: Runs after each test execution
+- **File I/O**: Asynchronous operations prevent blocking
+
+## Security Notes
+
+- All files stored locally
+- No external API calls
+- No sensitive data in artifacts (traces may contain tokens - be careful)
+- Dashboard runs entirely client-side (no server processing)
+
+## Future Enhancements
+
+Possible improvements:
+- Add filtering by project/date in dashboard
+- Export history to CSV/PDF
+- Integrate with CI/CD systems
+- Add email notifications for failures
+- Implement artifact compression
+- Add performance metrics tracking
+
+---
+
+**Implementation Date**: March 14, 2026
+**Version**: 1.0.0
+**Tested with**: Playwright ^1.58.2

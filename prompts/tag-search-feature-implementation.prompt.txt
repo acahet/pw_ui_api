@@ -1,0 +1,118 @@
+# Prompt: Implement Tag Search Feature for Playwright Test History Dashboard
+
+## Context
+I have a Playwright test project with a custom history tracking reporter and HTML dashboard. I want to add the ability to search for tests by their tags (e.g., @smoke, @regression, @api).
+
+## Requirements
+1. Extract test tags from Playwright test cases and store them in the history data
+2. Display tags as visual badges next to each test in the test list
+3. Enable searching/filtering tests by tag names in the search box
+4. Tags should be styled with gradient background badges
+5. Search should work across test title, project name, AND tags
+
+## Current Structure
+- Custom reporter: `tests/reporters/history-reporter.ts`
+  - Has a `TestInfo` interface that defines test metadata structure
+  - Has a `createTestEntry()` method that creates test information objects
+  - Stores history data as JSON files
+
+- Dashboard: `tests/report/test-history/index.html`
+  - Has a test list view with search functionality
+  - Has `populateTestSelector()` function that collects unique tests
+  - Has `renderTestList()` function that renders test items
+  - Has `filterTestList()` function that filters tests based on search input
+
+## Implementation Tasks
+
+### Task 1: Update Reporter Interface
+Add `tags?: string[]` field to the `TestInfo` interface in the reporter.
+
+### Task 2: Extract Tags in Reporter
+In the `createTestEntry()` method:
+- Extract tags from the TestCase object using `(test as any).tags || []`
+- Add the tags to the returned TestInfo object
+- Only include tags if the array has items: `tags: testTags.length > 0 ? testTags : undefined`
+
+### Task 3: Add CSS Styles for Tags
+In the dashboard HTML, add CSS styles:
+- `.test-list-item-meta`: Add `flex-wrap: wrap` and `gap: 8px`
+- `.test-list-item-tags`: Display flex, flex-wrap, gap 4px
+- `.test-tag`: Badge style with gradient background, white text, rounded corners, small font size
+
+Suggested styling:
+```css
+.test-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: 500;
+}
+```
+
+### Task 4: Update Data Collection
+In `populateTestSelector()` function:
+- When collecting unique tests, include `tags: test.tags || []` in the JSON.stringify object
+
+### Task 5: Display Tags in Test List
+In `renderTestList()` function:
+- Create a `tagsHtml` variable that generates tag badges if tags exist
+- Add the tags HTML to the test-list-item-meta section
+- Add `data-tags` attribute to the test-list-item div for reference
+
+Example tag HTML generation:
+```javascript
+const tagsHtml = test.tags && test.tags.length > 0
+    ? `<div class="test-list-item-tags">${test.tags.map(tag => `<span class="test-tag">${tag}</span>`).join('')}</div>`
+    : '';
+```
+
+### Task 6: Update Search Filter
+In `filterTestList()` function:
+- Add tag matching logic: check if any tag includes the search term
+- Use case-insensitive comparison
+- Combine with existing title and project matching using OR logic
+
+Example:
+```javascript
+const matchTags = test.tags && test.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+return matchTitle || matchProject || matchTags;
+```
+
+## Expected Outcome
+After implementation:
+1. Run tests that have tags defined in their `test.describe()` config
+2. Open the test history dashboard
+3. Tags should appear as colorful badges next to test names
+4. Typing a tag name in the search box should filter tests accordingly
+5. Search should work for partial tag matches (e.g., "api" matches "@api", "@api-auth")
+
+## Testing
+To verify the implementation works:
+
+1. Create a test with tags:
+```typescript
+test.describe(
+    "My Feature",
+    {
+        tag: ["@smoke", "@api"],
+    },
+    () => {
+        test("my test", async () => {
+            // test code
+        });
+    },
+);
+```
+
+2. Run the tests to generate history data
+3. Open the dashboard and verify tags appear as badges
+4. Search for "@smoke" and verify the test is filtered correctly
+
+## Notes
+- Tags are stored on the `TestCase` object in Playwright, not on the `Suite`
+- Tags should be optional (use `undefined` if no tags exist)
+- Keep the gradient styling consistent with the overall dashboard theme
+- Ensure the search is case-insensitive for better user experience

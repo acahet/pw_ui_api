@@ -17,6 +17,7 @@ interface RequestConfig {
 }
 
 type ExpectedStatus = number | number[];
+type ResponsePayload = ReturnType<typeof JSON.parse>;
 
 /**
  * Lightweight immutable API client for Playwright API tests.
@@ -117,31 +118,31 @@ export class RequestHandler {
      HTTP METHODS
      ========================= */
 
-	async get(expectedStatus: ExpectedStatus = 200): Promise<any> {
+	async get(expectedStatus: ExpectedStatus = 200): Promise<ResponsePayload> {
 		return this.execute("GET", expectedStatus);
 	}
 
 	async post(
 		expectedStatus: ExpectedStatus = httpStatus.Status201_Created,
-	): Promise<any> {
+	): Promise<ResponsePayload> {
 		return this.execute("POST", expectedStatus);
 	}
 
 	async put(
 		expectedStatus: ExpectedStatus = httpStatus.Status200_Ok,
-	): Promise<any> {
+	): Promise<ResponsePayload> {
 		return this.execute("PUT", expectedStatus);
 	}
 
 	async patch(
 		expectedStatus: ExpectedStatus = httpStatus.Status200_Ok,
-	): Promise<any> {
+	): Promise<ResponsePayload> {
 		return this.execute("PATCH", expectedStatus);
 	}
 
 	async delete(
 		expectedStatus: ExpectedStatus = httpStatus.Status204_No_Content,
-	): Promise<any> {
+	): Promise<ResponsePayload> {
 		return this.execute("DELETE", expectedStatus);
 	}
 
@@ -152,12 +153,12 @@ export class RequestHandler {
 	private async execute(
 		method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE",
 		expectedStatus: ExpectedStatus,
-	): Promise<any> {
+	): Promise<ResponsePayload> {
 		// Resolve final URL/headers once per request so logs match executed call.
 		const url = this.getUrl();
 		const headers = this.getHeaders();
 
-		let responseBody: any;
+		let responseBody: ResponsePayload;
 
 		await test.step(`${method} ${url}`, async () => {
 			this.logger.logRequest(method, url, headers, this.config.body);
@@ -229,7 +230,9 @@ export class RequestHandler {
 		}
 	}
 
-	private async safeParseResponse(response: APIResponse): Promise<any> {
+	private async safeParseResponse(
+		response: APIResponse,
+	): Promise<ResponsePayload> {
 		const contentType = response.headers()["content-type"] ?? "";
 		const responseText = await response.text();
 
