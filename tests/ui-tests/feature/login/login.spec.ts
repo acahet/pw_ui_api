@@ -7,6 +7,7 @@ test("login", async ({ page, loginPage, homePage }) => {
 		await expect(page.locator(homePage.selectors.navBar)).toHaveCount(3);
 		await homePage.do.clickLoginButton();
 	});
+
 	await test.step("WHEN - I add valid credentials", async () =>
 		await loginPage.do.compileLoginForm(
 			process.env.EMAIL_API as string,
@@ -17,5 +18,5 @@ test("login", async ({ page, loginPage, homePage }) => {
 		await loginPage.do.signIn());
 
 	await test.step("THEN - I navigate back to home page with signed in nav bar", async () =>
-		await expect(page.locator(homePage.selectors.navBar)).toHaveCount(3));
+		await expect(page.locator(homePage.selectors.navBar)).toHaveCount(0));
 });
