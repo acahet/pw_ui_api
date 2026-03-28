@@ -40,6 +40,7 @@ export default [
 			"build/**",
 			"coverage/**",
 			".eslintcache",
+			"dashboard/test-history/**",
 		],
 	},
 ];

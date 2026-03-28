@@ -8,6 +8,8 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 .env
-
+/prompts/
 # ESLint
 .eslintcache
+dashboard/
+# yarn add -D C:/Users/ander/CodeDevelopment/github-repos/playwright-toolbox/packages/playwright-reporter/acahet-playwright-reporter-0.0.2.tgz

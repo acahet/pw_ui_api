@@ -7,6 +7,7 @@
 	"license": "MIT",
 	"type": "module",
 	"devDependencies": {
+		"@acahet/playwright-reporter": "C:/Users/ander/CodeDevelopment/github-repos/playwright-toolbox/packages/playwright-reporter/acahet-playwright-reporter-0.0.3.tgz",
 		"@biomejs/biome": "^2.4.9",
 		"@eslint/js": "^10.0.1",
 		"@faker-js/faker": "^10.3.0",
@@ -19,7 +20,7 @@
 		"genson-js": "^0.0.8",
 		"http-server": "^14.1.1",
 		"husky": "^9.1.7",
-		"playwright-smart-reporter": "^1.6.5",
+		"live-server": "^1.2.2",
 		"ts-node": "^10.9.2",
 		"tsconfig-paths": "^4.2.0",
 		"typescript": "^5.9.3",
@@ -38,7 +39,7 @@
 		"test:api": "npx playwright test --project api-tests",
 		"test:ui-mode": "npx playwright test --ui",
 		"report": "yarn playwright show-report tests/report/playwright-report",
-		"report:history": "node scripts/start-history-server.js",
+		"report:history": "npx serve dashboard/test-history",
 		"prepare": "husky"
 	}
 }
