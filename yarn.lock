@@ -2,16 +2,10 @@
 # yarn lockfile v1
 
 
-"@acahet/playwright-reporter@C:/Users/ander/CodeDevelopment/github-repos/playwright-toolbox/packages/playwright-reporter/acahet-playwright-reporter-0.0.3.tgz":
-  version "0.0.3"
-  uid "175b52ff6f2c37d659d9af4c3240ce4bb2360dc4"
-  resolved "C:/Users/ander/CodeDevelopment/github-repos/playwright-toolbox/packages/playwright-reporter/acahet-playwright-reporter-0.0.3.tgz#175b52ff6f2c37d659d9af4c3240ce4bb2360dc4"
-  dependencies:
-    serve "^14.2.0"
-
-"@acahet/playwright-reporter@file:../playwright-toolbox/packages/playwright-reporter/acahet-playwright-reporter-0.0.3.tgz":
-  version "0.0.3"
-  resolved "file:../playwright-toolbox/packages/playwright-reporter/acahet-playwright-reporter-0.0.3.tgz#175b52ff6f2c37d659d9af4c3240ce4bb2360dc4"
+"@acahet/playwright-reporter@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@acahet/playwright-reporter/-/playwright-reporter-0.1.1.tgz#1ec5631c2365e4ad084ec9fa320c6f6d99282aca"
+  integrity sha512-i7/F50FX8YFn9E8qsMyv4ks+PU9kqUXFLFRsJC5OmY6WCq02LnVeH66gJCTfEuG2/IwGZHcMmIprvqFRzIOtGA==
   dependencies:
     serve "^14.2.0"
 

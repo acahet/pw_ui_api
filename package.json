@@ -7,7 +7,7 @@
 	"license": "MIT",
 	"type": "module",
 	"devDependencies": {
-		"@acahet/playwright-reporter": "C:/Users/ander/CodeDevelopment/github-repos/playwright-toolbox/packages/playwright-reporter/acahet-playwright-reporter-0.0.3.tgz",
+		"@acahet/playwright-reporter": "^0.1.1",
 		"@biomejs/biome": "^2.4.9",
 		"@eslint/js": "^10.0.1",
 		"@faker-js/faker": "^10.3.0",
