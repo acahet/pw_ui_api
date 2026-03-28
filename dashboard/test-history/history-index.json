@@ -1,0 +1,981 @@
+{
+	"runs": [
+		{
+			"runId": "2026-03-28T14-47-20-478Z",
+			"timestamp": "2026-03-28T14:47:41.223Z",
+			"duration": 20743,
+			"totalTests": 18,
+			"passed": 18,
+			"failed": 0,
+			"skipped": 0,
+			"flaky": 0,
+			"allTests": [
+				{
+					"title": "login",
+					"file": "tests\\ui-tests\\feature\\login\\login.spec.ts",
+					"project": "ui-tests",
+					"duration": 4179,
+					"status": "passed",
+					"artifacts": {}
+				},
+				{
+					"title": "CREATE and DELETE Article",
+					"file": "tests\\api-tests\\articles\\create_article.spec.ts",
+					"project": "api-tests",
+					"duration": 1360,
+					"status": "passed",
+					"tags": ["@articles"],
+					"annotations": [
+						{
+							"type": "api-articles",
+							"description": "Tests for the Articles API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\articles\\create_article.spec.ts",
+								"line": 5,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "GET Articles",
+					"file": "tests\\api-tests\\articles\\get_articles.spec.ts",
+					"project": "api-tests",
+					"duration": 639,
+					"status": "passed",
+					"tags": ["@articles"],
+					"annotations": [
+						{
+							"type": "api-articles",
+							"description": "Tests for the Articles API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\articles\\get_articles.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "CREATE, UPDATE and DELETE Article",
+					"file": "tests\\api-tests\\articles\\update_article.spec.ts",
+					"project": "api-tests",
+					"duration": 1436,
+					"status": "passed",
+					"tags": ["@articles"],
+					"annotations": [
+						{
+							"type": "api-articles",
+							"description": "Tests for the Articles API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\articles\\update_article.spec.ts",
+								"line": 5,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "GET tags",
+					"file": "tests\\api-tests\\tags\\tags.spec.ts",
+					"project": "api-tests",
+					"duration": 439,
+					"status": "passed",
+					"tags": ["@tags"],
+					"annotations": [
+						{
+							"type": "api-tags",
+							"description": "Tests for the Tags API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\tags\\tags.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "GET Current User Favorite Articles",
+					"file": "tests\\api-tests\\user\\articles\\user_articles.spec.ts",
+					"project": "api-tests",
+					"duration": 1049,
+					"status": "passed",
+					"tags": ["@user", "@articles"],
+					"annotations": [
+						{
+							"type": "api-user-articles",
+							"description": "Tests for the Logged user Articles API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\articles\\user_articles.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "GET Current User Articles",
+					"file": "tests\\api-tests\\user\\articles\\user_articles.spec.ts",
+					"project": "api-tests",
+					"duration": 862,
+					"status": "passed",
+					"tags": ["@user", "@articles"],
+					"annotations": [
+						{
+							"type": "api-user-articles",
+							"description": "Tests for the Logged user Articles API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\articles\\user_articles.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "Invalid Login",
+					"file": "tests\\api-tests\\user\\login\\login.spec.ts",
+					"project": "api-tests",
+					"duration": 225,
+					"status": "passed",
+					"tags": ["@user", "@login"],
+					"annotations": [
+						{
+							"type": "api-user-login",
+							"description": "Tests for the User Login API endpoint",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
+								"line": 19,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "Blank Email",
+					"file": "tests\\api-tests\\user\\login\\login.spec.ts",
+					"project": "api-tests",
+					"duration": 229,
+					"status": "passed",
+					"tags": ["@user", "@login"],
+					"annotations": [
+						{
+							"type": "api-user-login",
+							"description": "Tests for the User Login API endpoint",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
+								"line": 19,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "Blank Password",
+					"file": "tests\\api-tests\\user\\login\\login.spec.ts",
+					"project": "api-tests",
+					"duration": 213,
+					"status": "passed",
+					"tags": ["@user", "@login"],
+					"annotations": [
+						{
+							"type": "api-user-login",
+							"description": "Tests for the User Login API endpoint",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
+								"line": 19,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "Login user",
+					"file": "tests\\api-tests\\user\\login\\login.spec.ts",
+					"project": "api-tests",
+					"duration": 333,
+					"status": "passed",
+					"tags": ["@user", "@login"],
+					"annotations": [
+						{
+							"type": "api-user-login",
+							"description": "Tests for the User Login API endpoint",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
+								"line": 19,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "Get User Profile",
+					"file": "tests\\api-tests\\user\\profile\\profile.spec.ts",
+					"project": "api-tests",
+					"duration": 399,
+					"status": "passed",
+					"tags": ["@user", "@profile"],
+					"annotations": [
+						{
+							"type": "api-user-profile",
+							"description": "Tests for the User Profile API endpoint",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\profile\\profile.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "too short with 2 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 184,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				},
+				{
+					"title": "minimum with 3 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 190,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				},
+				{
+					"title": "maximum with 20 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 185,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				},
+				{
+					"title": "too long with 21 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 187,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				},
+				{
+					"title": "too short with 7 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 192,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				},
+				{
+					"title": "too long with 21 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 189,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				}
+			],
+			"failedTests": []
+		},
+		{
+			"runId": "2026-03-28T14-41-28-716Z",
+			"timestamp": "2026-03-28T14:41:55.085Z",
+			"duration": 26361,
+			"totalTests": 18,
+			"passed": 17,
+			"failed": 1,
+			"skipped": 0,
+			"flaky": 0,
+			"allTests": [
+				{
+					"title": "login",
+					"file": "tests\\ui-tests\\feature\\login\\login.spec.ts",
+					"project": "ui-tests",
+					"duration": 4416,
+					"status": "passed",
+					"artifacts": {}
+				},
+				{
+					"title": "CREATE and DELETE Article",
+					"file": "tests\\api-tests\\articles\\create_article.spec.ts",
+					"project": "api-tests",
+					"duration": 1585,
+					"status": "passed",
+					"tags": ["@articles"],
+					"annotations": [
+						{
+							"type": "api-articles",
+							"description": "Tests for the Articles API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\articles\\create_article.spec.ts",
+								"line": 5,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "GET Articles",
+					"file": "tests\\api-tests\\articles\\get_articles.spec.ts",
+					"project": "api-tests",
+					"duration": 667,
+					"status": "passed",
+					"tags": ["@articles"],
+					"annotations": [
+						{
+							"type": "api-articles",
+							"description": "Tests for the Articles API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\articles\\get_articles.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "CREATE, UPDATE and DELETE Article",
+					"file": "tests\\api-tests\\articles\\update_article.spec.ts",
+					"project": "api-tests",
+					"duration": 1511,
+					"status": "passed",
+					"tags": ["@articles"],
+					"annotations": [
+						{
+							"type": "api-articles",
+							"description": "Tests for the Articles API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\articles\\update_article.spec.ts",
+								"line": 5,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "GET tags",
+					"file": "tests\\api-tests\\tags\\tags.spec.ts",
+					"project": "api-tests",
+					"duration": 474,
+					"status": "failed",
+					"error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mshouldBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: \u001b[32m5\u001b[39m\nReceived: \u001b[31m10\u001b[39m\n\nRecent API Activity: \n=====Response Details=====\n{\n    \"method\": \"GET\",\n    \"url\": \"https://conduit-api.bondaracademy.com/api/tags\",\n    \"headers\": {\n        \"Authorization\": \"Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0MjU0NX0sImlhdCI6MTc3NDcwODg5NiwiZXhwIjoxNzc5ODkyODk2fQ.I0kjS8fTy3w0zLidE0dn5Pm2I_luZAaDijoReJsEE44\"\n    }\n}\n\n=====Response Details=====\n{\n    \"statusCode\": 200,\n    \"body\": {\n        \"tags\": [\n            \"Test\",\n            \"Blog\",\n            \"Git\",\n            \"YouTube\",\n            \"Slack\",\n            \"Bondar Academy\",\n            \"GitHub\",\n            \"Zoom\",\n            \"Value-Focused\",\n            \"Start for Free\"\n        ]\n    }\n}",
+					"tags": ["@tags"],
+					"annotations": [
+						{
+							"type": "api-tags",
+							"description": "Tests for the Tags API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\tags\\tags.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"attachmentPaths": [
+						"C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\report\\test-results\\api-tests\\tags-tags-Feature-Tags-API-GET-tags-api-tests\\trace.zip"
+					],
+					"artifacts": {
+						"trace": "runs\\2026-03-28T14-41-28-716Z\\get_tags-trace.zip"
+					}
+				},
+				{
+					"title": "GET Current User Favorite Articles",
+					"file": "tests\\api-tests\\user\\articles\\user_articles.spec.ts",
+					"project": "api-tests",
+					"duration": 930,
+					"status": "passed",
+					"tags": ["@user", "@articles"],
+					"annotations": [
+						{
+							"type": "api-user-articles",
+							"description": "Tests for the Logged user Articles API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\articles\\user_articles.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "GET Current User Articles",
+					"file": "tests\\api-tests\\user\\articles\\user_articles.spec.ts",
+					"project": "api-tests",
+					"duration": 782,
+					"status": "passed",
+					"tags": ["@user", "@articles"],
+					"annotations": [
+						{
+							"type": "api-user-articles",
+							"description": "Tests for the Logged user Articles API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\articles\\user_articles.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "Invalid Login",
+					"file": "tests\\api-tests\\user\\login\\login.spec.ts",
+					"project": "api-tests",
+					"duration": 222,
+					"status": "passed",
+					"tags": ["@user", "@login"],
+					"annotations": [
+						{
+							"type": "api-user-login",
+							"description": "Tests for the User Login API endpoint",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
+								"line": 19,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "Blank Email",
+					"file": "tests\\api-tests\\user\\login\\login.spec.ts",
+					"project": "api-tests",
+					"duration": 237,
+					"status": "passed",
+					"tags": ["@user", "@login"],
+					"annotations": [
+						{
+							"type": "api-user-login",
+							"description": "Tests for the User Login API endpoint",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
+								"line": 19,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "Blank Password",
+					"file": "tests\\api-tests\\user\\login\\login.spec.ts",
+					"project": "api-tests",
+					"duration": 201,
+					"status": "passed",
+					"tags": ["@user", "@login"],
+					"annotations": [
+						{
+							"type": "api-user-login",
+							"description": "Tests for the User Login API endpoint",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
+								"line": 19,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "Login user",
+					"file": "tests\\api-tests\\user\\login\\login.spec.ts",
+					"project": "api-tests",
+					"duration": 330,
+					"status": "passed",
+					"tags": ["@user", "@login"],
+					"annotations": [
+						{
+							"type": "api-user-login",
+							"description": "Tests for the User Login API endpoint",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
+								"line": 19,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "Get User Profile",
+					"file": "tests\\api-tests\\user\\profile\\profile.spec.ts",
+					"project": "api-tests",
+					"duration": 408,
+					"status": "passed",
+					"tags": ["@user", "@profile"],
+					"annotations": [
+						{
+							"type": "api-user-profile",
+							"description": "Tests for the User Profile API endpoint",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\profile\\profile.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "too short with 2 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 223,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				},
+				{
+					"title": "minimum with 3 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 238,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				},
+				{
+					"title": "maximum with 20 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 191,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				},
+				{
+					"title": "too long with 21 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 202,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				},
+				{
+					"title": "too short with 7 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 193,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				},
+				{
+					"title": "too long with 21 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 194,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				}
+			],
+			"failedTests": [
+				{
+					"title": "GET tags",
+					"file": "tests\\api-tests\\tags\\tags.spec.ts",
+					"project": "api-tests",
+					"duration": 474,
+					"status": "failed",
+					"error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mshouldBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: \u001b[32m5\u001b[39m\nReceived: \u001b[31m10\u001b[39m\n\nRecent API Activity: \n=====Response Details=====\n{\n    \"method\": \"GET\",\n    \"url\": \"https://conduit-api.bondaracademy.com/api/tags\",\n    \"headers\": {\n        \"Authorization\": \"Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0MjU0NX0sImlhdCI6MTc3NDcwODg5NiwiZXhwIjoxNzc5ODkyODk2fQ.I0kjS8fTy3w0zLidE0dn5Pm2I_luZAaDijoReJsEE44\"\n    }\n}\n\n=====Response Details=====\n{\n    \"statusCode\": 200,\n    \"body\": {\n        \"tags\": [\n            \"Test\",\n            \"Blog\",\n            \"Git\",\n            \"YouTube\",\n            \"Slack\",\n            \"Bondar Academy\",\n            \"GitHub\",\n            \"Zoom\",\n            \"Value-Focused\",\n            \"Start for Free\"\n        ]\n    }\n}",
+					"tags": ["@tags"],
+					"annotations": [
+						{
+							"type": "api-tags",
+							"description": "Tests for the Tags API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\tags\\tags.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"attachmentPaths": [
+						"C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\report\\test-results\\api-tests\\tags-tags-Feature-Tags-API-GET-tags-api-tests\\trace.zip"
+					],
+					"artifacts": {
+						"trace": "runs\\2026-03-28T14-41-28-716Z\\get_tags-trace.zip"
+					}
+				}
+			]
+		},
+		{
+			"runId": "2026-03-28T14-39-57-044Z",
+			"timestamp": "2026-03-28T14:40:29.034Z",
+			"duration": 31963,
+			"totalTests": 18,
+			"passed": 16,
+			"failed": 2,
+			"skipped": 0,
+			"flaky": 0,
+			"allTests": [
+				{
+					"title": "login",
+					"file": "tests\\ui-tests\\feature\\login\\login.spec.ts",
+					"project": "ui-tests",
+					"duration": 15329,
+					"status": "failed",
+					"error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('ul[class*=\"navbar-nav\"] li')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('ul[class*=\"navbar-nav\"] li')\u001b[22m\n\u001b[2m    4 × locator resolved to 3 elements\u001b[22m\n\u001b[2m      - unexpected value \"3\"\u001b[22m\n\u001b[2m    5 × locator resolved to 4 elements\u001b[22m\n\u001b[2m      - unexpected value \"4\"\u001b[22m\n",
+					"attachmentPaths": [
+						"C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\report\\test-results\\ui-tests\\feature-login-login-login-ui-tests\\test-failed-1.png",
+						"C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\report\\test-results\\ui-tests\\feature-login-login-login-ui-tests\\error-context.md",
+						"C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\report\\test-results\\ui-tests\\feature-login-login-login-ui-tests\\trace.zip"
+					],
+					"artifacts": {
+						"trace": "runs\\2026-03-28T14-39-57-044Z\\login-trace.zip",
+						"screenshot": "runs\\2026-03-28T14-39-57-044Z\\login-screenshot.png"
+					}
+				},
+				{
+					"title": "CREATE and DELETE Article",
+					"file": "tests\\api-tests\\articles\\create_article.spec.ts",
+					"project": "api-tests",
+					"duration": 1382,
+					"status": "passed",
+					"tags": ["@articles"],
+					"annotations": [
+						{
+							"type": "api-articles",
+							"description": "Tests for the Articles API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\articles\\create_article.spec.ts",
+								"line": 5,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "GET Articles",
+					"file": "tests\\api-tests\\articles\\get_articles.spec.ts",
+					"project": "api-tests",
+					"duration": 423,
+					"status": "passed",
+					"tags": ["@articles"],
+					"annotations": [
+						{
+							"type": "api-articles",
+							"description": "Tests for the Articles API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\articles\\get_articles.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "CREATE, UPDATE and DELETE Article",
+					"file": "tests\\api-tests\\articles\\update_article.spec.ts",
+					"project": "api-tests",
+					"duration": 2510,
+					"status": "passed",
+					"tags": ["@articles"],
+					"annotations": [
+						{
+							"type": "api-articles",
+							"description": "Tests for the Articles API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\articles\\update_article.spec.ts",
+								"line": 5,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "GET tags",
+					"file": "tests\\api-tests\\tags\\tags.spec.ts",
+					"project": "api-tests",
+					"duration": 1068,
+					"status": "failed",
+					"error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mshouldBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: \u001b[32m5\u001b[39m\nReceived: \u001b[31m10\u001b[39m\n\nRecent API Activity: \n=====Response Details=====\n{\n    \"method\": \"GET\",\n    \"url\": \"https://conduit-api.bondaracademy.com/api/tags\",\n    \"headers\": {\n        \"Authorization\": \"Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0MjU0NX0sImlhdCI6MTc3NDcwODgwNywiZXhwIjoxNzc5ODkyODA3fQ.jX3XSe9_xK7fWqTny1pd6UkSB-gLOVg0jUWqqk8jSd0\"\n    }\n}\n\n=====Response Details=====\n{\n    \"statusCode\": 200,\n    \"body\": {\n        \"tags\": [\n            \"Test\",\n            \"Blog\",\n            \"Git\",\n            \"YouTube\",\n            \"Slack\",\n            \"Bondar Academy\",\n            \"GitHub\",\n            \"Zoom\",\n            \"Value-Focused\",\n            \"Start for Free\"\n        ]\n    }\n}",
+					"tags": ["@tags"],
+					"annotations": [
+						{
+							"type": "api-tags",
+							"description": "Tests for the Tags API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\tags\\tags.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"attachmentPaths": [
+						"C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\report\\test-results\\api-tests\\tags-tags-Feature-Tags-API-GET-tags-api-tests\\trace.zip"
+					],
+					"artifacts": {
+						"trace": "runs\\2026-03-28T14-39-57-044Z\\get_tags-trace.zip"
+					}
+				},
+				{
+					"title": "GET Current User Favorite Articles",
+					"file": "tests\\api-tests\\user\\articles\\user_articles.spec.ts",
+					"project": "api-tests",
+					"duration": 878,
+					"status": "passed",
+					"tags": ["@user", "@articles"],
+					"annotations": [
+						{
+							"type": "api-user-articles",
+							"description": "Tests for the Logged user Articles API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\articles\\user_articles.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "GET Current User Articles",
+					"file": "tests\\api-tests\\user\\articles\\user_articles.spec.ts",
+					"project": "api-tests",
+					"duration": 792,
+					"status": "passed",
+					"tags": ["@user", "@articles"],
+					"annotations": [
+						{
+							"type": "api-user-articles",
+							"description": "Tests for the Logged user Articles API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\articles\\user_articles.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "Invalid Login",
+					"file": "tests\\api-tests\\user\\login\\login.spec.ts",
+					"project": "api-tests",
+					"duration": 212,
+					"status": "passed",
+					"tags": ["@user", "@login"],
+					"annotations": [
+						{
+							"type": "api-user-login",
+							"description": "Tests for the User Login API endpoint",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
+								"line": 19,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "Blank Email",
+					"file": "tests\\api-tests\\user\\login\\login.spec.ts",
+					"project": "api-tests",
+					"duration": 207,
+					"status": "passed",
+					"tags": ["@user", "@login"],
+					"annotations": [
+						{
+							"type": "api-user-login",
+							"description": "Tests for the User Login API endpoint",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
+								"line": 19,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "Blank Password",
+					"file": "tests\\api-tests\\user\\login\\login.spec.ts",
+					"project": "api-tests",
+					"duration": 259,
+					"status": "passed",
+					"tags": ["@user", "@login"],
+					"annotations": [
+						{
+							"type": "api-user-login",
+							"description": "Tests for the User Login API endpoint",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
+								"line": 19,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "Login user",
+					"file": "tests\\api-tests\\user\\login\\login.spec.ts",
+					"project": "api-tests",
+					"duration": 364,
+					"status": "passed",
+					"tags": ["@user", "@login"],
+					"annotations": [
+						{
+							"type": "api-user-login",
+							"description": "Tests for the User Login API endpoint",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
+								"line": 19,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "Get User Profile",
+					"file": "tests\\api-tests\\user\\profile\\profile.spec.ts",
+					"project": "api-tests",
+					"duration": 562,
+					"status": "passed",
+					"tags": ["@user", "@profile"],
+					"annotations": [
+						{
+							"type": "api-user-profile",
+							"description": "Tests for the User Profile API endpoint",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\profile\\profile.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"artifacts": {}
+				},
+				{
+					"title": "too short with 2 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 216,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				},
+				{
+					"title": "minimum with 3 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 194,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				},
+				{
+					"title": "maximum with 20 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 212,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				},
+				{
+					"title": "too long with 21 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 188,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				},
+				{
+					"title": "too short with 7 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 189,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				},
+				{
+					"title": "too long with 21 characters",
+					"file": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
+					"project": "api-tests",
+					"duration": 194,
+					"status": "passed",
+					"tags": ["@registration"],
+					"artifacts": {}
+				}
+			],
+			"failedTests": [
+				{
+					"title": "login",
+					"file": "tests\\ui-tests\\feature\\login\\login.spec.ts",
+					"project": "ui-tests",
+					"duration": 15329,
+					"status": "failed",
+					"error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveCount\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('ul[class*=\"navbar-nav\"] li')\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m4\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveCount\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('ul[class*=\"navbar-nav\"] li')\u001b[22m\n\u001b[2m    4 × locator resolved to 3 elements\u001b[22m\n\u001b[2m      - unexpected value \"3\"\u001b[22m\n\u001b[2m    5 × locator resolved to 4 elements\u001b[22m\n\u001b[2m      - unexpected value \"4\"\u001b[22m\n",
+					"attachmentPaths": [
+						"C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\report\\test-results\\ui-tests\\feature-login-login-login-ui-tests\\test-failed-1.png",
+						"C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\report\\test-results\\ui-tests\\feature-login-login-login-ui-tests\\error-context.md",
+						"C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\report\\test-results\\ui-tests\\feature-login-login-login-ui-tests\\trace.zip"
+					],
+					"artifacts": {
+						"trace": "runs\\2026-03-28T14-39-57-044Z\\login-trace.zip",
+						"screenshot": "runs\\2026-03-28T14-39-57-044Z\\login-screenshot.png"
+					}
+				},
+				{
+					"title": "GET tags",
+					"file": "tests\\api-tests\\tags\\tags.spec.ts",
+					"project": "api-tests",
+					"duration": 1068,
+					"status": "failed",
+					"error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mshouldBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: \u001b[32m5\u001b[39m\nReceived: \u001b[31m10\u001b[39m\n\nRecent API Activity: \n=====Response Details=====\n{\n    \"method\": \"GET\",\n    \"url\": \"https://conduit-api.bondaracademy.com/api/tags\",\n    \"headers\": {\n        \"Authorization\": \"Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo0MjU0NX0sImlhdCI6MTc3NDcwODgwNywiZXhwIjoxNzc5ODkyODA3fQ.jX3XSe9_xK7fWqTny1pd6UkSB-gLOVg0jUWqqk8jSd0\"\n    }\n}\n\n=====Response Details=====\n{\n    \"statusCode\": 200,\n    \"body\": {\n        \"tags\": [\n            \"Test\",\n            \"Blog\",\n            \"Git\",\n            \"YouTube\",\n            \"Slack\",\n            \"Bondar Academy\",\n            \"GitHub\",\n            \"Zoom\",\n            \"Value-Focused\",\n            \"Start for Free\"\n        ]\n    }\n}",
+					"tags": ["@tags"],
+					"annotations": [
+						{
+							"type": "api-tags",
+							"description": "Tests for the Tags API endpoints",
+							"location": {
+								"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\tags\\tags.spec.ts",
+								"line": 4,
+								"column": 6
+							}
+						}
+					],
+					"attachmentPaths": [
+						"C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\report\\test-results\\api-tests\\tags-tags-Feature-Tags-API-GET-tags-api-tests\\trace.zip"
+					],
+					"artifacts": {
+						"trace": "runs\\2026-03-28T14-39-57-044Z\\get_tags-trace.zip"
+					}
+				}
+			]
+		}
+	]
+}

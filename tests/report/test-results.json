@@ -1,7 +1,7 @@
 {
 	"config": {
-		"configFile": "/Users/andersoncahet/Documents/studies/pw_ui_api/playwright.config.ts",
-		"rootDir": "/Users/andersoncahet/Documents/studies/pw_ui_api",
+		"configFile": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\playwright.config.ts",
+		"rootDir": "C:/Users/ander/CodeDevelopment/github-repos/pw_ui_api",
 		"forbidOnly": false,
 		"fullyParallel": false,
 		"globalSetup": null,
@@ -11,34 +11,34 @@
 		"grepInvert": null,
 		"maxFailures": 0,
 		"metadata": {
-			"actualWorkers": 1
+			"actualWorkers": 2
 		},
 		"preserveOutput": "always",
 		"projects": [
 			{
-				"outputDir": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/report/test-results/ui-tests",
+				"outputDir": "C:/Users/ander/CodeDevelopment/github-repos/pw_ui_api/tests/report/test-results/ui-tests",
 				"repeatEach": 1,
 				"retries": 0,
 				"metadata": {
-					"actualWorkers": 1
+					"actualWorkers": 2
 				},
 				"id": "ui-tests",
 				"name": "ui-tests",
-				"testDir": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/ui-tests",
+				"testDir": "C:/Users/ander/CodeDevelopment/github-repos/pw_ui_api/tests/ui-tests",
 				"testIgnore": [],
 				"testMatch": ["**/*.@(spec|test).?(c|m)[jt]s?(x)"],
 				"timeout": 30000
 			},
 			{
-				"outputDir": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/report/test-results/api-tests",
+				"outputDir": "C:/Users/ander/CodeDevelopment/github-repos/pw_ui_api/tests/report/test-results/api-tests",
 				"repeatEach": 1,
 				"retries": 0,
 				"metadata": {
-					"actualWorkers": 1
+					"actualWorkers": 2
 				},
 				"id": "api-tests",
 				"name": "api-tests",
-				"testDir": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests",
+				"testDir": "C:/Users/ander/CodeDevelopment/github-repos/pw_ui_api/tests/api-tests",
 				"testIgnore": [],
 				"testMatch": ["**/*.@(spec|test).?(c|m)[jt]s?(x)"],
 				"timeout": 30000
@@ -49,18 +49,24 @@
 			[
 				"html",
 				{
-					"outputFolder": "./tests/report/playwright-report"
+					"outputFolder": "./tests/report/playwright-report",
+					"open": "never"
 				}
-			],
-			[
-				"/Users/andersoncahet/Documents/studies/pw_ui_api/tests/reporters/history-reporter.ts",
-				null
 			],
 			["list", null],
 			[
 				"json",
 				{
 					"outputFile": "./tests/report/test-results.json"
+				}
+			],
+			[
+				"C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\node_modules\\@acahet\\playwright-reporter\\dist\\src\\reporter.js",
+				{
+					"historyDir": "dashboard/test-history",
+					"projectName": "PW-UI-API",
+					"brandName": "ACAHET DASHBOARD",
+					"pageTitle": "Reporter"
 				}
 			]
 		],
@@ -74,12 +80,72 @@
 		"updateSnapshots": "missing",
 		"updateSourceMethod": "patch",
 		"version": "1.58.2",
-		"workers": 2,
+		"workers": 4,
 		"webServer": null
 	},
 	"suites": [
 		{
-			"title": "tests/api-tests/articles/create_article.spec.ts",
+			"title": "tests\\ui-tests\\feature\\login\\login.spec.ts",
+			"file": "tests/ui-tests/feature/login/login.spec.ts",
+			"column": 0,
+			"line": 0,
+			"specs": [
+				{
+					"title": "login",
+					"ok": true,
+					"tags": [],
+					"tests": [
+						{
+							"timeout": 30000,
+							"annotations": [],
+							"expectedStatus": "passed",
+							"projectId": "ui-tests",
+							"projectName": "ui-tests",
+							"results": [
+								{
+									"workerIndex": 0,
+									"parallelIndex": 0,
+									"status": "passed",
+									"duration": 4179,
+									"errors": [],
+									"stdout": [],
+									"stderr": [],
+									"retry": 0,
+									"steps": [
+										{
+											"title": "GIVEN - I am at the login page",
+											"duration": 1505
+										},
+										{
+											"title": "WHEN - I add valid credentials",
+											"duration": 579
+										},
+										{
+											"title": "AND - I click signin button",
+											"duration": 97
+										},
+										{
+											"title": "THEN - I navigate back to home page with signed in nav bar",
+											"duration": 946
+										}
+									],
+									"startTime": "2026-03-28T14:47:28.414Z",
+									"annotations": [],
+									"attachments": []
+								}
+							],
+							"status": "expected"
+						}
+					],
+					"id": "699478d00af3954a6080-03dc05ba07b27cfd45be",
+					"file": "tests/ui-tests/feature/login/login.spec.ts",
+					"line": 4,
+					"column": 1
+				}
+			]
+		},
+		{
+			"title": "tests\\api-tests\\articles\\create_article.spec.ts",
 			"file": "tests/api-tests/articles/create_article.spec.ts",
 			"column": 0,
 			"line": 0,
@@ -103,7 +169,7 @@
 											"type": "api-articles",
 											"description": "Tests for the Articles API endpoints",
 											"location": {
-												"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/articles/create_article.spec.ts",
+												"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\articles\\create_article.spec.ts",
 												"line": 5,
 												"column": 6
 											}
@@ -114,10 +180,10 @@
 									"projectName": "api-tests",
 									"results": [
 										{
-											"workerIndex": 0,
-											"parallelIndex": 0,
+											"workerIndex": 1,
+											"parallelIndex": 1,
 											"status": "passed",
-											"duration": 1376,
+											"duration": 1360,
 											"errors": [],
 											"stdout": [],
 											"stderr": [],
@@ -125,28 +191,28 @@
 											"steps": [
 												{
 													"title": "POST https://conduit-api.bondaracademy.com/api/articles",
-													"duration": 255
+													"duration": 213
 												},
 												{
 													"title": "GET https://conduit-api.bondaracademy.com/api/articles",
-													"duration": 292
+													"duration": 257
 												},
 												{
-													"title": "DELETE https://conduit-api.bondaracademy.com/api/articles/QA-TEST:-Adipiscor-ara-reprehenderit-pecto-delibero.-42545",
-													"duration": 246
+													"title": "DELETE https://conduit-api.bondaracademy.com/api/articles/QA-TEST:-Vere-clarus-cribro-delibero-crepusculum.-42545",
+													"duration": 207
 												},
 												{
 													"title": "GET https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0",
-													"duration": 257
+													"duration": 244
 												}
 											],
-											"startTime": "2026-03-14T18:20:12.614Z",
+											"startTime": "2026-03-28T14:47:29.688Z",
 											"annotations": [
 												{
 													"type": "api-articles",
 													"description": "Tests for the Articles API endpoints",
 													"location": {
-														"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/articles/create_article.spec.ts",
+														"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\articles\\create_article.spec.ts",
 														"line": 5,
 														"column": 6
 													}
@@ -168,7 +234,7 @@
 			]
 		},
 		{
-			"title": "tests/api-tests/articles/get_articles.spec.ts",
+			"title": "tests\\api-tests\\articles\\get_articles.spec.ts",
 			"file": "tests/api-tests/articles/get_articles.spec.ts",
 			"column": 0,
 			"line": 0,
@@ -192,7 +258,7 @@
 											"type": "api-articles",
 											"description": "Tests for the Articles API endpoints",
 											"location": {
-												"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/articles/get_articles.spec.ts",
+												"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\articles\\get_articles.spec.ts",
 												"line": 4,
 												"column": 6
 											}
@@ -203,10 +269,10 @@
 									"projectName": "api-tests",
 									"results": [
 										{
-											"workerIndex": 0,
-											"parallelIndex": 0,
+											"workerIndex": 1,
+											"parallelIndex": 1,
 											"status": "passed",
-											"duration": 693,
+											"duration": 639,
 											"errors": [],
 											"stdout": [],
 											"stderr": [],
@@ -214,16 +280,16 @@
 											"steps": [
 												{
 													"title": "GET https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0",
-													"duration": 634
+													"duration": 529
 												}
 											],
-											"startTime": "2026-03-14T18:20:14.821Z",
+											"startTime": "2026-03-28T14:47:32.106Z",
 											"annotations": [
 												{
 													"type": "api-articles",
 													"description": "Tests for the Articles API endpoints",
 													"location": {
-														"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/articles/get_articles.spec.ts",
+														"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\articles\\get_articles.spec.ts",
 														"line": 4,
 														"column": 6
 													}
@@ -245,7 +311,7 @@
 			]
 		},
 		{
-			"title": "tests/api-tests/articles/update_article.spec.ts",
+			"title": "tests\\api-tests\\articles\\update_article.spec.ts",
 			"file": "tests/api-tests/articles/update_article.spec.ts",
 			"column": 0,
 			"line": 0,
@@ -269,7 +335,7 @@
 											"type": "api-articles",
 											"description": "Tests for the Articles API endpoints",
 											"location": {
-												"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/articles/update_article.spec.ts",
+												"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\articles\\update_article.spec.ts",
 												"line": 5,
 												"column": 6
 											}
@@ -280,10 +346,10 @@
 									"projectName": "api-tests",
 									"results": [
 										{
-											"workerIndex": 0,
-											"parallelIndex": 0,
+											"workerIndex": 1,
+											"parallelIndex": 1,
 											"status": "passed",
-											"duration": 1222,
+											"duration": 1436,
 											"errors": [],
 											"stdout": [],
 											"stderr": [],
@@ -291,32 +357,32 @@
 											"steps": [
 												{
 													"title": "POST https://conduit-api.bondaracademy.com/api/articles",
-													"duration": 202
+													"duration": 229
 												},
 												{
 													"title": "GET https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0",
-													"duration": 238
+													"duration": 261
 												},
 												{
-													"title": "PUT https://conduit-api.bondaracademy.com/api/articles/QA-TEST:-Amicitia-summa-coerceo-ascisco-cauda.-42545",
-													"duration": 228
-												},
-												{
-													"title": "DELETE https://conduit-api.bondaracademy.com/api/articles/QA-TEST:-Terreo-adipiscor-commodo-speculum-vereor.-42545",
-													"duration": 236
-												},
-												{
-													"title": "GET https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0",
+													"title": "PUT https://conduit-api.bondaracademy.com/api/articles/QA-TEST:-Voluptas-esse-demens-taceo-socius.-42545",
 													"duration": 249
+												},
+												{
+													"title": "DELETE https://conduit-api.bondaracademy.com/api/articles/QA-TEST:-Creptio-antea-valeo-adfero-decerno.-42545",
+													"duration": 217
+												},
+												{
+													"title": "GET https://conduit-api.bondaracademy.com/api/articles?limit=10&offset=0",
+													"duration": 254
 												}
 											],
-											"startTime": "2026-03-14T18:20:15.574Z",
+											"startTime": "2026-03-28T14:47:32.967Z",
 											"annotations": [
 												{
 													"type": "api-articles",
 													"description": "Tests for the Articles API endpoints",
 													"location": {
-														"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/articles/update_article.spec.ts",
+														"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\articles\\update_article.spec.ts",
 														"line": 5,
 														"column": 6
 													}
@@ -338,7 +404,7 @@
 			]
 		},
 		{
-			"title": "tests/api-tests/tags/tags.spec.ts",
+			"title": "tests\\api-tests\\tags\\tags.spec.ts",
 			"file": "tests/api-tests/tags/tags.spec.ts",
 			"column": 0,
 			"line": 0,
@@ -362,7 +428,7 @@
 											"type": "api-tags",
 											"description": "Tests for the Tags API endpoints",
 											"location": {
-												"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/tags/tags.spec.ts",
+												"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\tags\\tags.spec.ts",
 												"line": 4,
 												"column": 6
 											}
@@ -373,10 +439,10 @@
 									"projectName": "api-tests",
 									"results": [
 										{
-											"workerIndex": 0,
-											"parallelIndex": 0,
+											"workerIndex": 1,
+											"parallelIndex": 1,
 											"status": "passed",
-											"duration": 390,
+											"duration": 439,
 											"errors": [],
 											"stdout": [],
 											"stderr": [],
@@ -384,16 +450,16 @@
 											"steps": [
 												{
 													"title": "GET https://conduit-api.bondaracademy.com/api/tags",
-													"duration": 350
+													"duration": 299
 												}
 											],
-											"startTime": "2026-03-14T18:20:16.848Z",
+											"startTime": "2026-03-28T14:47:34.566Z",
 											"annotations": [
 												{
 													"type": "api-tags",
 													"description": "Tests for the Tags API endpoints",
 													"location": {
-														"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/tags/tags.spec.ts",
+														"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\tags\\tags.spec.ts",
 														"line": 4,
 														"column": 6
 													}
@@ -415,7 +481,7 @@
 			]
 		},
 		{
-			"title": "tests/api-tests/user/articles/user_articles.spec.ts",
+			"title": "tests\\api-tests\\user\\articles\\user_articles.spec.ts",
 			"file": "tests/api-tests/user/articles/user_articles.spec.ts",
 			"column": 0,
 			"line": 0,
@@ -439,7 +505,7 @@
 											"type": "api-user-articles",
 											"description": "Tests for the Logged user Articles API endpoints",
 											"location": {
-												"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/articles/user_articles.spec.ts",
+												"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\articles\\user_articles.spec.ts",
 												"line": 4,
 												"column": 6
 											}
@@ -450,10 +516,10 @@
 									"projectName": "api-tests",
 									"results": [
 										{
-											"workerIndex": 0,
-											"parallelIndex": 0,
+											"workerIndex": 1,
+											"parallelIndex": 1,
 											"status": "passed",
-											"duration": 783,
+											"duration": 1049,
 											"errors": [],
 											"stdout": [],
 											"stderr": [],
@@ -461,20 +527,20 @@
 											"steps": [
 												{
 													"title": "GET https://conduit-api.bondaracademy.com/api/user",
-													"duration": 178
+													"duration": 196
 												},
 												{
 													"title": "GET https://conduit-api.bondaracademy.com/api/articles?favorited=pw_api_udemy&limit=10&offset=0",
-													"duration": 197
+													"duration": 218
 												}
 											],
-											"startTime": "2026-03-14T18:20:17.293Z",
+											"startTime": "2026-03-28T14:47:35.421Z",
 											"annotations": [
 												{
 													"type": "api-user-articles",
 													"description": "Tests for the Logged user Articles API endpoints",
 													"location": {
-														"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/articles/user_articles.spec.ts",
+														"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\articles\\user_articles.spec.ts",
 														"line": 4,
 														"column": 6
 													}
@@ -503,7 +569,7 @@
 											"type": "api-user-articles",
 											"description": "Tests for the Logged user Articles API endpoints",
 											"location": {
-												"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/articles/user_articles.spec.ts",
+												"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\articles\\user_articles.spec.ts",
 												"line": 4,
 												"column": 6
 											}
@@ -514,10 +580,10 @@
 									"projectName": "api-tests",
 									"results": [
 										{
-											"workerIndex": 0,
-											"parallelIndex": 0,
+											"workerIndex": 1,
+											"parallelIndex": 1,
 											"status": "passed",
-											"duration": 803,
+											"duration": 862,
 											"errors": [],
 											"stdout": [],
 											"stderr": [],
@@ -529,16 +595,16 @@
 												},
 												{
 													"title": "GET https://conduit-api.bondaracademy.com/api/articles?author=pw_api_udemy&limit=10&offset=0",
-													"duration": 187
+													"duration": 183
 												}
 											],
-											"startTime": "2026-03-14T18:20:18.106Z",
+											"startTime": "2026-03-28T14:47:36.800Z",
 											"annotations": [
 												{
 													"type": "api-user-articles",
 													"description": "Tests for the Logged user Articles API endpoints",
 													"location": {
-														"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/articles/user_articles.spec.ts",
+														"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\articles\\user_articles.spec.ts",
 														"line": 4,
 														"column": 6
 													}
@@ -560,7 +626,7 @@
 			]
 		},
 		{
-			"title": "tests/api-tests/user/login/login.spec.ts",
+			"title": "tests\\api-tests\\user\\login\\login.spec.ts",
 			"file": "tests/api-tests/user/login/login.spec.ts",
 			"column": 0,
 			"line": 0,
@@ -591,7 +657,7 @@
 													"type": "api-user-login",
 													"description": "Tests for the User Login API endpoint",
 													"location": {
-														"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/login/login.spec.ts",
+														"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
 														"line": 19,
 														"column": 6
 													}
@@ -602,10 +668,10 @@
 											"projectName": "api-tests",
 											"results": [
 												{
-													"workerIndex": 0,
-													"parallelIndex": 0,
+													"workerIndex": 1,
+													"parallelIndex": 1,
 													"status": "passed",
-													"duration": 198,
+													"duration": 225,
 													"errors": [],
 													"stdout": [],
 													"stderr": [],
@@ -613,16 +679,16 @@
 													"steps": [
 														{
 															"title": "POST https://conduit-api.bondaracademy.com/api/users/login",
-															"duration": 182
+															"duration": 183
 														}
 													],
-													"startTime": "2026-03-14T18:20:18.968Z",
+													"startTime": "2026-03-28T14:47:37.871Z",
 													"annotations": [
 														{
 															"type": "api-user-login",
 															"description": "Tests for the User Login API endpoint",
 															"location": {
-																"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/login/login.spec.ts",
+																"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
 																"line": 19,
 																"column": 6
 															}
@@ -651,7 +717,7 @@
 													"type": "api-user-login",
 													"description": "Tests for the User Login API endpoint",
 													"location": {
-														"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/login/login.spec.ts",
+														"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
 														"line": 19,
 														"column": 6
 													}
@@ -662,10 +728,10 @@
 											"projectName": "api-tests",
 											"results": [
 												{
-													"workerIndex": 0,
-													"parallelIndex": 0,
+													"workerIndex": 1,
+													"parallelIndex": 1,
 													"status": "passed",
-													"duration": 211,
+													"duration": 229,
 													"errors": [],
 													"stdout": [],
 													"stderr": [],
@@ -673,16 +739,16 @@
 													"steps": [
 														{
 															"title": "POST https://conduit-api.bondaracademy.com/api/users/login",
-															"duration": 174
+															"duration": 181
 														}
 													],
-													"startTime": "2026-03-14T18:20:19.197Z",
+													"startTime": "2026-03-28T14:47:38.163Z",
 													"annotations": [
 														{
 															"type": "api-user-login",
 															"description": "Tests for the User Login API endpoint",
 															"location": {
-																"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/login/login.spec.ts",
+																"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
 																"line": 19,
 																"column": 6
 															}
@@ -711,7 +777,7 @@
 													"type": "api-user-login",
 													"description": "Tests for the User Login API endpoint",
 													"location": {
-														"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/login/login.spec.ts",
+														"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
 														"line": 19,
 														"column": 6
 													}
@@ -722,10 +788,10 @@
 											"projectName": "api-tests",
 											"results": [
 												{
-													"workerIndex": 0,
-													"parallelIndex": 0,
+													"workerIndex": 1,
+													"parallelIndex": 1,
 													"status": "passed",
-													"duration": 184,
+													"duration": 213,
 													"errors": [],
 													"stdout": [],
 													"stderr": [],
@@ -733,16 +799,16 @@
 													"steps": [
 														{
 															"title": "POST https://conduit-api.bondaracademy.com/api/users/login",
-															"duration": 166
+															"duration": 178
 														}
 													],
-													"startTime": "2026-03-14T18:20:19.479Z",
+													"startTime": "2026-03-28T14:47:38.462Z",
 													"annotations": [
 														{
 															"type": "api-user-login",
 															"description": "Tests for the User Login API endpoint",
 															"location": {
-																"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/login/login.spec.ts",
+																"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
 																"line": 19,
 																"column": 6
 															}
@@ -779,7 +845,7 @@
 													"type": "api-user-login",
 													"description": "Tests for the User Login API endpoint",
 													"location": {
-														"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/login/login.spec.ts",
+														"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
 														"line": 19,
 														"column": 6
 													}
@@ -790,8 +856,8 @@
 											"projectName": "api-tests",
 											"results": [
 												{
-													"workerIndex": 0,
-													"parallelIndex": 0,
+													"workerIndex": 1,
+													"parallelIndex": 1,
 													"status": "passed",
 													"duration": 333,
 													"errors": [],
@@ -801,16 +867,16 @@
 													"steps": [
 														{
 															"title": "POST https://conduit-api.bondaracademy.com/api/users/login",
-															"duration": 273
+															"duration": 309
 														}
 													],
-													"startTime": "2026-03-14T18:20:19.714Z",
+													"startTime": "2026-03-28T14:47:38.797Z",
 													"annotations": [
 														{
 															"type": "api-user-login",
 															"description": "Tests for the User Login API endpoint",
 															"location": {
-																"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/login/login.spec.ts",
+																"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\login\\login.spec.ts",
 																"line": 19,
 																"column": 6
 															}
@@ -834,7 +900,7 @@
 			]
 		},
 		{
-			"title": "tests/api-tests/user/profile/profile.spec.ts",
+			"title": "tests\\api-tests\\user\\profile\\profile.spec.ts",
 			"file": "tests/api-tests/user/profile/profile.spec.ts",
 			"column": 0,
 			"line": 0,
@@ -858,7 +924,7 @@
 											"type": "api-user-profile",
 											"description": "Tests for the User Profile API endpoint",
 											"location": {
-												"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/profile/profile.spec.ts",
+												"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\profile\\profile.spec.ts",
 												"line": 4,
 												"column": 6
 											}
@@ -869,10 +935,10 @@
 									"projectName": "api-tests",
 									"results": [
 										{
-											"workerIndex": 0,
-											"parallelIndex": 0,
+											"workerIndex": 1,
+											"parallelIndex": 1,
 											"status": "passed",
-											"duration": 394,
+											"duration": 399,
 											"errors": [],
 											"stdout": [],
 											"stderr": [],
@@ -880,20 +946,20 @@
 											"steps": [
 												{
 													"title": "GET https://conduit-api.bondaracademy.com/api/user",
-													"duration": 178
+													"duration": 180
 												},
 												{
 													"title": "GET https://conduit-api.bondaracademy.com/api/profiles/pw_api_udemy",
-													"duration": 182
+													"duration": 181
 												}
 											],
-											"startTime": "2026-03-14T18:20:20.108Z",
+											"startTime": "2026-03-28T14:47:39.193Z",
 											"annotations": [
 												{
 													"type": "api-user-profile",
 													"description": "Tests for the User Profile API endpoint",
 													"location": {
-														"file": "/Users/andersoncahet/Documents/studies/pw_ui_api/tests/api-tests/user/profile/profile.spec.ts",
+														"file": "C:\\Users\\ander\\CodeDevelopment\\github-repos\\pw_ui_api\\tests\\api-tests\\user\\profile\\profile.spec.ts",
 														"line": 4,
 														"column": 6
 													}
@@ -915,7 +981,7 @@
 			]
 		},
 		{
-			"title": "tests/api-tests/user/signup/signup.spec.test.ts",
+			"title": "tests\\api-tests\\user\\signup\\signup.spec.test.ts",
 			"file": "tests/api-tests/user/signup/signup.spec.test.ts",
 			"column": 0,
 			"line": 0,
@@ -947,10 +1013,10 @@
 											"projectName": "api-tests",
 											"results": [
 												{
-													"workerIndex": 0,
-													"parallelIndex": 0,
+													"workerIndex": 1,
+													"parallelIndex": 1,
 													"status": "passed",
-													"duration": 193,
+													"duration": 184,
 													"errors": [],
 													"stdout": [],
 													"stderr": [],
@@ -958,10 +1024,10 @@
 													"steps": [
 														{
 															"title": "POST https://conduit-api.bondaracademy.com/api/users",
-															"duration": 170
+															"duration": 169
 														}
 													],
-													"startTime": "2026-03-14T18:20:20.543Z",
+													"startTime": "2026-03-28T14:47:39.680Z",
 													"annotations": [],
 													"attachments": []
 												}
@@ -987,10 +1053,10 @@
 											"projectName": "api-tests",
 											"results": [
 												{
-													"workerIndex": 0,
-													"parallelIndex": 0,
+													"workerIndex": 1,
+													"parallelIndex": 1,
 													"status": "passed",
-													"duration": 248,
+													"duration": 190,
 													"errors": [],
 													"stdout": [],
 													"stderr": [],
@@ -998,10 +1064,10 @@
 													"steps": [
 														{
 															"title": "POST https://conduit-api.bondaracademy.com/api/users",
-															"duration": 186
+															"duration": 173
 														}
 													],
-													"startTime": "2026-03-14T18:20:20.754Z",
+													"startTime": "2026-03-28T14:47:39.887Z",
 													"annotations": [],
 													"attachments": []
 												}
@@ -1027,10 +1093,10 @@
 											"projectName": "api-tests",
 											"results": [
 												{
-													"workerIndex": 0,
-													"parallelIndex": 0,
+													"workerIndex": 1,
+													"parallelIndex": 1,
 													"status": "passed",
-													"duration": 207,
+													"duration": 185,
 													"errors": [],
 													"stdout": [],
 													"stderr": [],
@@ -1038,10 +1104,10 @@
 													"steps": [
 														{
 															"title": "POST https://conduit-api.bondaracademy.com/api/users",
-															"duration": 185
+															"duration": 169
 														}
 													],
-													"startTime": "2026-03-14T18:20:21.053Z",
+													"startTime": "2026-03-28T14:47:40.109Z",
 													"annotations": [],
 													"attachments": []
 												}
@@ -1067,10 +1133,10 @@
 											"projectName": "api-tests",
 											"results": [
 												{
-													"workerIndex": 0,
-													"parallelIndex": 0,
+													"workerIndex": 1,
+													"parallelIndex": 1,
 													"status": "passed",
-													"duration": 203,
+													"duration": 187,
 													"errors": [],
 													"stdout": [],
 													"stderr": [],
@@ -1078,10 +1144,10 @@
 													"steps": [
 														{
 															"title": "POST https://conduit-api.bondaracademy.com/api/users",
-															"duration": 179
+															"duration": 170
 														}
 													],
-													"startTime": "2026-03-14T18:20:21.286Z",
+													"startTime": "2026-03-28T14:47:40.335Z",
 													"annotations": [],
 													"attachments": []
 												}
@@ -1115,10 +1181,10 @@
 											"projectName": "api-tests",
 											"results": [
 												{
-													"workerIndex": 0,
-													"parallelIndex": 0,
+													"workerIndex": 1,
+													"parallelIndex": 1,
 													"status": "passed",
-													"duration": 188,
+													"duration": 192,
 													"errors": [],
 													"stdout": [],
 													"stderr": [],
@@ -1126,10 +1192,10 @@
 													"steps": [
 														{
 															"title": "POST https://conduit-api.bondaracademy.com/api/users",
-															"duration": 170
+															"duration": 173
 														}
 													],
-													"startTime": "2026-03-14T18:20:21.505Z",
+													"startTime": "2026-03-28T14:47:40.547Z",
 													"annotations": [],
 													"attachments": []
 												}
@@ -1155,10 +1221,10 @@
 											"projectName": "api-tests",
 											"results": [
 												{
-													"workerIndex": 0,
-													"parallelIndex": 0,
+													"workerIndex": 1,
+													"parallelIndex": 1,
 													"status": "passed",
-													"duration": 224,
+													"duration": 189,
 													"errors": [],
 													"stdout": [],
 													"stderr": [],
@@ -1166,10 +1232,10 @@
 													"steps": [
 														{
 															"title": "POST https://conduit-api.bondaracademy.com/api/users",
-															"duration": 186
+															"duration": 171
 														}
 													],
-													"startTime": "2026-03-14T18:20:21.728Z",
+													"startTime": "2026-03-28T14:47:40.773Z",
 													"annotations": [],
 													"attachments": []
 												}
@@ -1191,9 +1257,9 @@
 	],
 	"errors": [],
 	"stats": {
-		"startTime": "2026-03-14T18:20:08.199Z",
-		"duration": 13896.615000000002,
-		"expected": 17,
+		"startTime": "2026-03-28T14:47:19.139Z",
+		"duration": 21981.373,
+		"expected": 18,
 		"skipped": 0,
 		"unexpected": 0,
 		"flaky": 0

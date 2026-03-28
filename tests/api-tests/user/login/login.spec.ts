@@ -16,55 +16,51 @@ const runTestFor = (title: string, status: number, body: object, schema) => {
 	});
 };
 
-test.describe(
-	"Feature: Login User API",
-	{
-		annotation: {
-			type: "api-user-login",
-			description: "Tests for the User Login API endpoint",
-		},
-		tag: ["@user", "@login"],
+test.describe("Feature: Login User API", {
+	annotation: {
+		type: "api-user-login",
+		description: "Tests for the User Login API endpoint",
 	},
-	() => {
-		test.describe("Negavtive Tests", () => {
-			runTestFor(
-				"Invalid Login",
-				httpStatus.Status403_Forbidden,
-				{ ...userData },
-				"POST_users_invalid_login",
-			);
-			runTestFor(
-				"Blank Email",
-				httpStatus.Status422_Unprocessable_Content,
-				{ user: { email: "", password: userData.user.password } },
-				"POST_users_blank_email_login",
-			);
-			runTestFor(
-				"Blank Password",
-				httpStatus.Status422_Unprocessable_Content,
-				{ user: { email: userData.user.email, password: "" } },
-				"POST_users_blank_password_login",
-			);
-		});
+	tag: ["@user", "@login"],
+}, () => {
+	test.describe("Negavtive Tests", () => {
+		runTestFor(
+			"Invalid Login",
+			httpStatus.Status403_Forbidden,
+			{ ...userData },
+			"POST_users_invalid_login",
+		);
+		runTestFor(
+			"Blank Email",
+			httpStatus.Status422_Unprocessable_Content,
+			{ user: { email: "", password: userData.user.password } },
+			"POST_users_blank_email_login",
+		);
+		runTestFor(
+			"Blank Password",
+			httpStatus.Status422_Unprocessable_Content,
+			{ user: { email: userData.user.email, password: "" } },
+			"POST_users_blank_password_login",
+		);
+	});
 
-		test.describe("Happy Path Test", () => {
-			test("Login user", async ({
-				api,
-				endpoints,
-				httpStatus: { Status200_Ok },
-			}) => {
-				userData.user.email = process.env.EMAIL_API as string;
-				userData.user.password = process.env.PASSWORD_API as string;
+	test.describe("Happy Path Test", () => {
+		test("Login user", async ({
+			api,
+			endpoints,
+			httpStatus: { Status200_Ok },
+		}) => {
+			userData.user.email = process.env.EMAIL_API as string;
+			userData.user.password = process.env.PASSWORD_API as string;
 
-				const login = await api
-					.path(endpoints.login)
-					.body({ ...userData })
-					.withoutAuth()
-					.post(Status200_Ok);
-				await expect(login).shouldMatchSchema("users", "POST_users_login");
-				expect(login.user).toHaveProperty("token");
-				expect(login.user.token.length).toBeGreaterThan(0);
-			});
+			const login = await api
+				.path(endpoints.login)
+				.body({ ...userData })
+				.withoutAuth()
+				.post(Status200_Ok);
+			await expect(login).shouldMatchSchema("users", "POST_users_login");
+			expect(login.user).toHaveProperty("token");
+			expect(login.user.token.length).toBeGreaterThan(0);
 		});
-	},
-);
+	});
+});
