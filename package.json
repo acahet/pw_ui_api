@@ -22,7 +22,7 @@
 		"playwright-smart-reporter": "^1.6.5",
 		"ts-node": "^10.9.2",
 		"tsconfig-paths": "^4.2.0",
-		"typescript": "^5.9.3",
+		"typescript": "^6.0.2",
 		"typescript-eslint": "^8.57.2"
 	},
 	"scripts": {
